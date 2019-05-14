@@ -1,0 +1,145 @@
+/*!
+ * Start Bootstrap - Simple Sidebar (https://startbootstrap.com/template-overviews/simple-sidebar)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/master/LICENSE)
+ */
+
+ /*
+-----> DATATABLES
+ */
+body {
+  overflow-x: hidden;
+}
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+  background-color: #2a2a2a;
+  color: #fff;
+}
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem;
+  }
+}
+.navbar {
+  background-color: #2a2a2a;
+  color: #fff;
+}
+
+hr{
+
+    width: 1200px;
+    border: 0;
+    background-color: #fff;
+}
+
+.contenedor{
+  margin: 0px auto;
+  background-color: #2a2a2a;
+  color: #fff;
+  padding: 10px;
+}
+
+.tabla{
+  background-color: #2a2a2a;
+  color:   #2680e3;
+}
+
+.display{
+  color:   #2680e3;
+}
+
+/*
+-----> email.php 
+*/
+
+.contEmail{
+  margin: 0px auto;
+  /*padding: 10px;
+  width: 600px;
+  border: solid 2px;
+  border-radius: 8px;*/
+  text-align: center;
+  display: inline-block;
+  background-color: #2a2a2a;
+  color: #fff;
+  padding: 10px;
+  width: 100%;
+}
+
+.label{
+  margin: 2px auto;
+  padding: 2px;
+  display: inline-block;
+  text-align: left;
+  vertical-align: top;
+}
+
+#form1{
+  margin: 10px auto;
+  display: inline-block;
+  text-align: right;
+}
+
+.boton{
+  display: block;
+  text-align: center;
+  padding: 2px;
+}
+
+/*
+-----> documentos.php
+*/
+
+.imgDocs
+{
+  width: 300px;
+  height: 250px;
+  display: block;
+  border-radius: 5px;
+}
+
+.container{
+  background-color: #2a2a2a;
+  color: #fff;
+}
+
+
+
+
+
+
+
