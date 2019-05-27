@@ -92,7 +92,7 @@
     </div>
 </div>
 
-<!-- The Modal -->
+<!-- Modal Agregar Usuarios -->
 <div class="modal fade" id="myModal">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -113,7 +113,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fas fa-user-plus"></i></div>
                             </div>
-                            <input type="text" class="form-control" id="nuevoUsuario" placeholder="Ingrese su nombre">
+                            <input type="text" class="form-control" id="nuevoNombre" placeholder="Ingrese su nombre">
                         </div>
                     </div>
 
@@ -133,7 +133,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fas fa-key"></i></div>
                             </div>
-                            <input type="password" class="form-control" id="nuevoPassword" autocomplete="new-password" placeholder="Ingrese su password">
+                            <input type="password" class="form-control" id="nuevoPassword1" autocomplete="new-password" placeholder="Ingrese su password">
                         </div>
                     </div>
 
@@ -173,7 +173,11 @@
                         <img src="view/componentes/images/anonimo.jpg" alt="Anonimo" class="img-thumbnail previsualizar" width="300px">
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <!-- div de errores -->
+                    <div class="form-group" id="errorValidacion">
+                    </div>
+
+                    <button type="submit" id="btnCrearUsuario" class="btn btn-primary">Crear Usuario</button>
                 </form>
 
             </div>
