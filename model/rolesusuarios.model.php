@@ -2,10 +2,10 @@
 
 require_once "Conexion.php";
 
-class ModelUsuarios{
+class ModelRolesUsuario{
     //___________________________________________________________________________________________________________
-    // model método que permite mostrar un usuario / varios usuarios dependiendo de la consulta
-    public static function modelMostrarUsuarios($tablaBD, $columnaBD, $valorBD){
+    // model método que permite mostrar un rol / varios roles de usuario dependiendo de la consulta
+    public static function modelMostrarRolesUsuario($tablaBD, $columnaBD, $valorBD){
         if($columnaBD != null){
             // si se pasa como argumento $columnaBD con info, quiere decir que la busqueda es a un usuario
             $columna = "";

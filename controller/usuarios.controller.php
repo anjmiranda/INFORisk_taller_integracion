@@ -53,4 +53,13 @@ class ControllerUsuarios{
             }
         }
     }
+    //___________________________________________________________________________________________________________
+
+    //___________________________________________________________________________________________________________
+    // controller método que permite mostrar un usuario / varios usuarios
+    public static function controllerMostrarUsuarios($columnaBD, $valorBD){
+        $tablaBD = "usuarios";
+        $respuesta = ModelUsuarios::modelMostrarUsuarios($tablaBD, $columnaBD, $valorBD);
+        return $respuesta;
+    }
 }
