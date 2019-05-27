@@ -67,9 +67,12 @@
   <!-- Bootstrap core JavaScript -->
   <script src="view/componentes/jquery/jquery.js"></script>
   <script src="view/componentes/js/bootstrap.bundle.js"></script>
-
   <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <!-- SweetAlert 2 -->
+  <script src="view/componentes/sweetalert2/sweetalert2.all.js"></script>
+  <!-- JS modulos -->  
+  <script src="view/js/usuarios.js"></script>
 
   <!-- Menu Toggle Script -->
   <script>
