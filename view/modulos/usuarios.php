@@ -170,7 +170,7 @@
                         <div class="panel">Subir Foto</div>
                         <input type="file" id="nuevaFoto" class="nuevaFoto" name="nuevaFoto">
                         <p class="help-block">Peso máximo de la foto: 2 MB </p>
-                        <img src="view/componentes/images/anonimo.jpg" alt="Anonimo" class="img-thumbnail previsualizar" width="300px">
+                        <img src="view/componentes/images/anonimo.jpg" alt="Anonimo" class="img-thumbnail previsualizar">
                     </div>
 
                     <!-- div de errores -->

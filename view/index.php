@@ -73,6 +73,7 @@
   <script src="view/componentes/sweetalert2/sweetalert2.all.js"></script>
   <!-- JS modulos -->  
   <script src="view/js/usuarios.js"></script>
+  <script src="view/js/main.js"></script>
 
   <!-- Menu Toggle Script -->
   <script>

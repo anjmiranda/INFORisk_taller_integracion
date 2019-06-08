@@ -22,7 +22,7 @@
             <?php
             // inicio de sesión
             $loginUsuario = new ControllerUsuarios();
-            $loginUsuario->controllerIngresoUsuario();
+            $loginUsuario->controllerIngresarUsuario();
             ?>
 
         </form>
