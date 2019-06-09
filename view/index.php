@@ -11,6 +11,9 @@
   <meta name="author" content="">
   <link rel="stylesheet" type="text/css" href="view/componentes/css/estilo.css">
   <title>Inicio InfoRISK</title>
+
+  <!-- CSS -->
+
   <!-- Bootstrap core CSS -->
   <!--<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
   <link href="view/componentes/css/bootstrap.css" rel="stylesheet">
@@ -20,6 +23,30 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  
+  <!-- JavaScript -->
+  
+  <!-- Bootstrap core JavaScript -->
+  <script src="view/componentes/jquery/jquery.js"></script>
+  <script src="view/componentes/js/bootstrap.bundle.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <!-- SweetAlert 2 -->
+  <script src="view/componentes/sweetalert2/sweetalert2.all.js"></script>
+  <!-- JS modulos -->  
+  <script src="view/js/usuarios.js"></script>
+  <script src="view/js/main.js"></script>
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+
+    $(document).ready(function() {
+      $('#tablaUser').DataTable();
+    });
+  </script>
 </head>
 
 <body>
@@ -63,29 +90,6 @@
       include "modulos/login.php";
     }
   ?>
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="view/componentes/jquery/jquery.js"></script>
-  <script src="view/componentes/js/bootstrap.bundle.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-  <!-- SweetAlert 2 -->
-  <script src="view/componentes/sweetalert2/sweetalert2.all.js"></script>
-  <!-- JS modulos -->  
-  <script src="view/js/usuarios.js"></script>
-  <script src="view/js/main.js"></script>
-
-  <!-- Menu Toggle Script -->
-  <script>
-    $("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    });
-
-    $(document).ready(function() {
-      $('#tablaUser').DataTable();
-    });
-  </script>
 
 </body>
 

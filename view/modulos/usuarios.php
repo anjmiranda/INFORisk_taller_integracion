@@ -106,14 +106,14 @@
             <!-- Modal body -->
             <div class="modal-body">
 
-                <form>
+                <form action="" method="POST" role="form" enctype="multipart/form-data">
                     <!-- Nombre usuario -->
                     <div class="form-group">
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fas fa-user-plus"></i></div>
                             </div>
-                            <input type="text" class="form-control" id="nuevoNombre" placeholder="Ingrese su nombre">
+                            <input type="text" class="form-control" name="nuevoNombre" id="nuevoNombre" placeholder="Ingrese su nombre">
                         </div>
                     </div>
 
@@ -123,7 +123,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fas fa-user-plus"></i></div>
                             </div>
-                            <input type="text" class="form-control" id="nuevoAlias" placeholder="Ingrese el alias">
+                            <input type="text" class="form-control" name="nuevoAlias" id="nuevoAlias" placeholder="Ingrese el alias">
                         </div>
                     </div>
 
@@ -133,7 +133,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fas fa-key"></i></div>
                             </div>
-                            <input type="password" class="form-control" id="nuevoPassword1" autocomplete="new-password" placeholder="Ingrese su password">
+                            <input type="password" class="form-control" name="nuevoPassword1" id="nuevoPassword1" autocomplete="new-password" placeholder="Ingrese su password">
                         </div>
                     </div>
 
@@ -153,7 +153,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fas fa-list-ul"></i></div>
                             </div>
-                            <select class="form-control input-lg" name="nuevoRol">
+                            <select class="form-control input-lg" name="nuevoRol" id="nuevoRol">
                                 <option value="">Seleccione una opción</option>
                                 <?php
                                 // foreach para rellenar la tabla de roles
@@ -168,7 +168,7 @@
                     <!-- div fotografía -->
                     <div class="form-group">
                         <div class="panel">Subir Foto</div>
-                        <input type="file" id="nuevaFoto" class="nuevaFoto" name="nuevaFoto">
+                        <input type="file" name="nuevaFoto" id="nuevaFoto" class="nuevaFoto">
                         <p class="help-block">Peso máximo de la foto: 2 MB </p>
                         <img src="view/componentes/images/anonimo.jpg" alt="Anonimo" class="img-thumbnail previsualizar">
                     </div>
@@ -179,14 +179,19 @@
 
                     <button type="submit" id="btnCrearUsuario" class="btn btn-primary">Crear Usuario</button>
                 </form>
-
             </div>
 
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
             </div>
 
         </div>
     </div>
 </div>
+
+<?php
+// controller: registrar usuario
+$regUsuario = new ControllerUsuarios();
+$regUsuario->controllerRegistrarUsuario();
+?>

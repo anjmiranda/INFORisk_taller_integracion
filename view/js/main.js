@@ -14,7 +14,7 @@ $(".nuevaFoto").change(function () {
             confirmButtonText: "cerrar"
         });
     } else if (imagen["size"] > 2000000) {
-        // 2.000.000 -> 2 mb
+        // verificar que la imagen no sea superior a 2.000.000 -> 2 mb
 
         //limpiar la variable
         $(".nuevaFoto").val("");
