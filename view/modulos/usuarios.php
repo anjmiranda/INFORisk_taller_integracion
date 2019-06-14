@@ -1,7 +1,7 @@
 <div class="container-fluid contenedor">
     <h1 class="mt-4">Usuarios</h1>
     <hr>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Agregar</button><br>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registrarUsuario">Agregar</button><br>
     <br>
     <div class="tabla">
         <table id="tablaUser" class="display" style="width:100%">
@@ -92,8 +92,106 @@
     </div>
 </div>
 
+<!-- Modal Editar Usuarios -->
+<div class="modal fade" id="registrarUsuario">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Agregar nuevo usuario</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+
+                <form action="" method="POST" role="form" enctype="multipart/form-data">
+                    <!-- Nombre usuario -->
+                    <div class="form-group">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-user-plus"></i></div>
+                            </div>
+                            <input type="text" class="form-control" name="nuevoNombre" id="nuevoNombre" placeholder="Ingrese su nombre">
+                        </div>
+                    </div>
+
+                    <!-- Alias usuario -->
+                    <div class="form-group">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-user-plus"></i></div>
+                            </div>
+                            <input type="text" class="form-control" name="nuevoAlias" id="nuevoAlias" placeholder="Ingrese el alias">
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-group">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-key"></i></div>
+                            </div>
+                            <input type="password" class="form-control" name="nuevoPassword1" id="nuevoPassword1" autocomplete="new-password" placeholder="Ingrese su password">
+                        </div>
+                    </div>
+
+                    <!-- Password 2 -->
+                    <div class="form-group">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-key"></i></div>
+                            </div>
+                            <input type="password" class="form-control" id="nuevoPassword2" autocomplete="new-password" placeholder="Reingrese su password">
+                        </div>
+                    </div>
+
+                    <!-- Rol -->
+                    <div class="form-group">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-list-ul"></i></div>
+                            </div>
+                            <select class="form-control input-lg" name="nuevoRol" id="nuevoRol">
+                                <option value="">Seleccione una opción</option>
+                                <?php
+                                // foreach para rellenar la tabla de roles
+                                foreach ($rolesUsuario as $key => $rol) {
+                                    echo '<option value="' . $rol["id_rol_usuario"] . '">' . $rol["nombre_rol_usuario"] . '</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- div fotografía -->
+                    <div class="form-group">
+                        <div class="panel">Subir Foto</div>
+                        <input type="file" name="nuevaFoto" id="nuevaFoto" class="nuevaFoto">
+                        <p class="help-block">Peso máximo de la foto: 2 MB </p>
+                        <img src="view/componentes/images/anonimo.jpg" alt="Anonimo" class="img-thumbnail previsualizar">
+                    </div>
+
+                    <!-- div de errores -->
+                    <div class="form-group" id="errorValidacion">
+                    </div>
+
+                    <button type="submit" id="btnCrearUsuario" class="btn btn-primary">Crear Usuario</button>
+                </form>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <!-- Modal Agregar Usuarios -->
-<div class="modal fade" id="myModal">
+<div class="modal fade" id="editarUsuario">
     <div class="modal-dialog">
         <div class="modal-content">
 

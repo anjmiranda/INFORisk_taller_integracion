@@ -3,6 +3,16 @@
 class ControllerUsuarios
 {
     //___________________________________________________________________________________________________________
+    // controller método que permite mostrar un usuario / varios usuarios
+    public static function controllerMostrarUsuarios($columnaBD, $valorBD)
+    {
+        $tablaBD = "usuarios";
+        $respuesta = ModelUsuarios::modelMostrarUsuarios($tablaBD, $columnaBD, $valorBD);
+        return $respuesta;
+    }
+    //___________________________________________________________________________________________________________
+
+    //___________________________________________________________________________________________________________
     // controller método que permite evaluar el ingreso de un usuario al sistema
     public static function controllerIngresarUsuario()
     {
@@ -60,40 +70,32 @@ class ControllerUsuarios
     //___________________________________________________________________________________________________________
 
     //___________________________________________________________________________________________________________
-    // controller método que permite mostrar un usuario / varios usuarios
-    public static function controllerMostrarUsuarios($columnaBD, $valorBD)
-    {
-        $tablaBD = "usuarios";
-        $respuesta = ModelUsuarios::modelMostrarUsuarios($tablaBD, $columnaBD, $valorBD);
-        return $respuesta;
-    }
-    //___________________________________________________________________________________________________________
-
-    //___________________________________________________________________________________________________________
     // controller método que permite agregar un usuario a la BBDD
     public static function controllerRegistrarUsuario()
     {
-        if(isset($_POST["nuevoNombre"])){
+        if (isset($_POST["nuevoNombre"])) {
             // expreg para validar nombre de usuario, alias y contraseña
-            if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoNombre"]) &&
-               preg_match('/^[a-zA-Z0-9]+$/', $_POST["nuevoAlias"]) &&
-               preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoPassword1"])){
-                
+            if (
+                preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoNombre"]) &&
+                preg_match('/^[a-zA-Z0-9]+$/', $_POST["nuevoAlias"]) &&
+                preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoPassword1"])
+            ) {
+
                 // si no viene foto de usuario, la ruta estará vacía
                 $ruta = "";
 
-                if($_FILES["nuevaFoto"]["tmp_name"] != ""){ 
+                if ($_FILES["nuevaFoto"]["tmp_name"] != "") {
                     list($ancho, $alto) = getimagesize($_FILES["nuevaFoto"]["tmp_name"]);
                     $nuevoAncho = 500;
                     $nuevoAlto = 500;
-                    $directorio = "view/componentes/images/usuarios/".$_POST["nuevoNombre"];
+                    $directorio = "view/componentes/images/usuarios/" . $_POST["nuevoNombre"];
                     // try para la creación de directorio
-                    try{
+                    try {
                         mkdir($directorio, 0755);
                         // valida si el formato es JPG y luego trata la imagen para guardarla en un nuevo directorio
-                        if($_FILES["nuevaFoto"]["type"] == "image/jpeg"){
-                            $aleatorio = mt_rand(100,999);
-                            $ruta = "view/componentes/images/usuarios/".$_POST["nuevoNombre"]."/".$aleatorio.".jpg";
+                        if ($_FILES["nuevaFoto"]["type"] == "image/jpeg") {
+                            $aleatorio = mt_rand(100, 999);
+                            $ruta = "view/componentes/images/usuarios/" . $_POST["nuevoNombre"] . "/" . $aleatorio . ".jpg";
                             $origen = imagecreatefromjpeg($_FILES["nuevaFoto"]["tmp_name"]);
                             $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
                             imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
@@ -101,15 +103,15 @@ class ControllerUsuarios
                         }
 
                         // valida si el formato es PNG y luego trata la imagen para guardarla en un nuevo directorio
-                        if($_FILES["nuevaFoto"]["type"] == "image/png"){
-                            $aleatorio = mt_rand(100,999);
-                            $ruta = "view/img/usuarios/".$_POST["nuevoNombre"]."/".$aleatorio.".png";
+                        if ($_FILES["nuevaFoto"]["type"] == "image/png") {
+                            $aleatorio = mt_rand(100, 999);
+                            $ruta = "view/img/usuarios/" . $_POST["nuevoNombre"] . "/" . $aleatorio . ".png";
                             $origen = imagecreatefrompng($_FILES["nuevaFoto"]["tmp_name"]);
                             $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
                             imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
                             imagepng($destino, $ruta);
                         }
-                    }catch (Exception $e){
+                    } catch (Exception $e) {
                         $ruta = "";
                     }
                 }
@@ -117,17 +119,18 @@ class ControllerUsuarios
                 // $encriptado captura la variable $_POST["nuevoPassword1"]
                 // y la transforma en una contraseña cifrada
                 $encriptado = hash('sha512', $_POST["nuevoPassword1"]);
-                $arrayDatos = array("nombre" => $_POST["nuevoNombre"],
-                               "alias" => $_POST["nuevoAlias"],
-                               "password" => $encriptado,
-                               "rol" => $_POST["nuevoRol"],
-                               "ruta" => $ruta
+                $arrayDatos = array(
+                    "nombre" => $_POST["nuevoNombre"],
+                    "alias" => $_POST["nuevoAlias"],
+                    "password" => $encriptado,
+                    "rol" => $_POST["nuevoRol"],
+                    "ruta" => $ruta
                 );
                 // envío de información al modelo
                 $respuesta = ModelUsuarios::modelRegistrarUsuario($tablaBD, $arrayDatos);
 
                 // si viene una respuesta "ok" del modelo, quiere decir que se agregó los datos
-                if($respuesta == "ok"){
+                if ($respuesta == "ok") {
                     echo '<script>
                         swal({
                             type: "success",
@@ -143,7 +146,7 @@ class ControllerUsuarios
                         });
                     </script>';
                 }
-            }else{
+            } else {
                 echo '<script>
                     swal({
                             title: "Error al ingresar el usuario",
@@ -155,4 +158,138 @@ class ControllerUsuarios
             }
         }
     }
+    //___________________________________________________________________________________________________________
+
+    //___________________________________________________________________________________________________________
+    // controller método que permite modificar un usuario
+    public static function controllerEditarUsuario()
+    {
+        if (isset($_POST["editarUsuario"])) {
+            if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarNombre"])) {
+                $ruta = $_POST["fotoActual"];
+                if (isset($_FILES["editarFoto"]["tmp_name"]) && !empty($_FILES["editarFoto"]["tmp_name"])) {
+                    list($ancho, $alto) = getimagesize($_FILES["editarFoto"]["tmp_name"]);
+                    $nuevoAncho = 500;
+                    $nuevoAlto = 500;
+                    $directorio = "view/img/usuarios/" . $_POST["editarUsuario"];
+                    if (!empty($_POST["fotoActual"])) {
+                        unlink($_POST["fotoActual"]);
+                    } else {
+                        mkdir($directorio, 0755);
+                    }
+                    if ($_FILES["editarFoto"]["type"] == "image/jpeg") {
+                        $aleatorio = mt_rand(100, 999);
+                        $ruta = "view/img/usuarios/" . $_POST["editarUsuario"] . "/" . $aleatorio . ".jpg";
+                        $origen = imagecreatefromjpeg($_FILES["editarFoto"]["tmp_name"]);
+                        $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+                        imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+                        imagejpeg($destino, $ruta);
+                    }
+
+                    if ($_FILES["editarFoto"]["type"] == "image/png") {
+                        $aleatorio = mt_rand(100, 999);
+                        $ruta = "view/img/usuarios/" . $_POST["editarUsuario"] . "/" . $aleatorio . ".png";
+                        $origen = imagecreatefrompng($_FILES["editarFoto"]["tmp_name"]);
+                        $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+                        imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+                        imagepng($destino, $ruta);
+                    }
+                }
+
+                $tablaBD = "usuarios";
+                if ($_POST["editarPassword"] != "") {
+                    if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarPassword"])) {
+                        $encriptado = hash('sha512', $_POST["editarPassword"]);
+                    } else {
+                        echo '<script>
+                            swal({
+                                    title: "Error al ingresar el usuario",
+                                    text: "La password no puede tener caracteres.",
+                                    type: "error",
+                                    confirmButtonText: "cerrar"
+                                });
+                        </script>';
+                    }
+                } else {
+                    $encriptado = $_POST["passwordActual"];
+                }
+
+                $arrayDatos = array(
+                    "nombre"   => $_POST["editarNombre"],
+                    "usuario"  => $_POST["editarUsuario"],
+                    "password" => $encriptado,
+                    "perfil"   => $_POST["editarPerfil"],
+                    "foto"     => $ruta
+                );
+
+                $respuesta = ModelUsuarios::modelEditarUsuarios($tablaBD, $arrayDatos);
+                if ($respuesta == "ok") {
+                    echo '<script>
+                        swal({
+                            type: "success",
+                            title: "El usuario ha sido modificado de forma correcta",
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar",
+                            closeOnConfirm: false
+                        }).then((result)=>{
+                            if(result.value)
+                            {
+                                window.location = "usuarios";
+                            }
+                        });
+                    </script>';
+                }
+            } else {
+                echo '<script>
+                        swal({
+                            type: "error",
+                            title: "El nombre no puede ir vacío o llevar caracteres especiales ",
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar",
+                            closeOnConfirm: false
+                        }).then((result)=>{
+                            if(result.value)
+                            {
+                                window.location = "usuarios";
+                            }
+                        });
+                    </script>';
+            }
+        }
+    }
+    //___________________________________________________________________________________________________________
+
+    //___________________________________________________________________________________________________________
+    // controller método que permite eliminar un usuario
+    public static function controllerEliminarUsuario()
+    {
+        if (isset($_GET["idUsuario"])) {
+            $tablaBD = "usuarios";
+            $datos = $_GET["idUsuario"];
+            if ($_GET["fotoUsuario"] != "") {
+                unlink($_GET["fotoUsuario"]);
+                rmdir('view/img/usuarios/' . $_GET["usuarioTipo"]);
+            }
+
+            $respuesta = ModelUsuarios::modelEliminarUsuario($tablaBD, $datos);
+
+            if ($respuesta == "ok") {
+                echo '<script>
+                        swal({
+                            type: "success",
+                            title: "El usuario ha sido borrado de forma correcta",
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar",
+                            closeOnConfirm: false
+                        }).then((result)=>{
+                            if(result.value)
+                            {
+                                window.location = "usuarios";
+                            }
+                        });
+                    </script>';
+            }
+        }
+    }
+    //___________________________________________________________________________________________________________
 }
