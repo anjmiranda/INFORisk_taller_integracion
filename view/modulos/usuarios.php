@@ -1,7 +1,7 @@
 <div class="container-fluid contenedor">
     <h1 class="mt-4">Usuarios</h1>
     <hr>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registrarUsuario">Agregar</button><br>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalRegistrarUsuario">Agregar</button><br>
     <br>
     <div class="tabla">
         <table id="tablaUser" class="display" style="width:100%">
@@ -58,26 +58,26 @@
                     echo '<td>' . $usuario["ultimolog_usuario"] . '</td>';
 
                     // estado usuario
-                    if ($usuario["estado_usuario"] != 0) {
+                    if ($usuario["estado_usuario"] == 1) {
                         echo '
                         <td>
-                            <span class="label btn-success btn-xs btnActivar" idUsuario="" estadoUsuario="0">Activado</span>
+                            <span class="btnEditarUsuario label btn-success btn-xs btnActivar" idUsuario="' . $usuario["id_usuario"] . '" estadoUsuario="2">Activado</span>
                         </td>';
-                    } else {
+                    } else if($usuario["estado_usuario"] == 2){
                         echo '
                         <td>
-                            <span class="label btn-success btn-xs btnActivar" idUsuario="" estadoUsuario="0">Activado</span>
+                            <span class="btnEditarUsuario label btn-danger btn-xs btnActivar" idUsuario="' . $usuario["id_usuario"] . '" estadoUsuario="1">Desactivado</span>
                         </td>';
                     }
 
                     // acciones de modificar o eliminar
                     echo '
                     <td>
-                        <button class="btn btn-warning btnEditarUsuario" idUsuario="" data-toggle="modal" data-target="#modalEditarUsuario">
+                        <button class="btn btn-warning btnEditarUsuario" idUsuario="' . $usuario["id_usuario"] . '" data-toggle="modal" data-target="#modalEditarUsuario">
                             <i class="fas fa-edit"></i>
                         </button>
-                        <button class="btn btn-danger btnEditarUsuario" idUsuario="" data-toggle="modal" data-target="#modalEditarUsuario">
-                            <i class="fas fa-user-times"></i>
+                        <button class="btn btn-danger btnEliminarUsuario" idUsuario="' . $usuario["id_usuario"] . '" fotoUsuario="' . $usuario["foto_usuario"] . '" aliasUsuario="' . $usuario["alias_usuario"] . '">
+                          <i class="fas fa-user-times"></i>
                         </button>
                     </td>
                     </tr>';
@@ -92,8 +92,8 @@
     </div>
 </div>
 
-<!-- Modal Editar Usuarios -->
-<div class="modal fade" id="registrarUsuario">
+<!-- Modal Registrar Usuarios -->
+<div class="modal fade" id="modalRegistrarUsuario">
     <div class="modal-dialog">
         <div class="modal-content">
 
@@ -190,14 +190,14 @@
     </div>
 </div>
 
-<!-- Modal Agregar Usuarios -->
-<div class="modal fade" id="editarUsuario">
+<!-- Modal Editar Usuarios -->
+<div class="modal fade" id="modalEditarUsuario">
     <div class="modal-dialog">
         <div class="modal-content">
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Agregar nuevo usuario</h4>
+                <h4 class="modal-title">Editar usuario</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -211,7 +211,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fas fa-user-plus"></i></div>
                             </div>
-                            <input type="text" class="form-control" name="nuevoNombre" id="nuevoNombre" placeholder="Ingrese su nombre">
+                            <input type="text" class="form-control" name="editarNombre" id="editarNombre">
                         </div>
                     </div>
 
@@ -221,7 +221,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fas fa-user-plus"></i></div>
                             </div>
-                            <input type="text" class="form-control" name="nuevoAlias" id="nuevoAlias" placeholder="Ingrese el alias">
+                            <input type="text" class="form-control" name="editarAlias" id="editarAlias" readonly>
                         </div>
                     </div>
 
@@ -231,7 +231,8 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fas fa-key"></i></div>
                             </div>
-                            <input type="password" class="form-control" name="nuevoPassword1" id="nuevoPassword1" autocomplete="new-password" placeholder="Ingrese su password">
+                            <input type="password" class="form-control" name="editarPassword1" id="editarPassword1" autocomplete="new-password" placeholder="Ingrese su password">
+                            <input type="hidden" id="passwordActual" name="passwordActual">
                         </div>
                     </div>
 
@@ -241,7 +242,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fas fa-key"></i></div>
                             </div>
-                            <input type="password" class="form-control" id="nuevoPassword2" autocomplete="new-password" placeholder="Reingrese su password">
+                            <input type="password" class="form-control" id="editarPassword2" autocomplete="new-password" placeholder="Reingrese su password">
                         </div>
                     </div>
 
@@ -251,8 +252,8 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fas fa-list-ul"></i></div>
                             </div>
-                            <select class="form-control input-lg" name="nuevoRol" id="nuevoRol">
-                                <option value="">Seleccione una opción</option>
+                            <select class="form-control input-lg" name="editarRol" id="editarRol">
+                                <option value="null" id="editarRolOpt">Seleccione el rol</option>
                                 <?php
                                 // foreach para rellenar la tabla de roles
                                 foreach ($rolesUsuario as $key => $rol) {
@@ -266,16 +267,17 @@
                     <!-- div fotografía -->
                     <div class="form-group">
                         <div class="panel">Subir Foto</div>
-                        <input type="file" name="nuevaFoto" id="nuevaFoto" class="nuevaFoto">
+                        <input type="file" name="editarFoto" class="nuevaFoto">
                         <p class="help-block">Peso máximo de la foto: 2 MB </p>
                         <img src="view/componentes/images/anonimo.jpg" alt="Anonimo" class="img-thumbnail previsualizar">
+                        <input type="hidden" id="fotoActual" name="fotoActual">
                     </div>
 
                     <!-- div de errores -->
-                    <div class="form-group" id="errorValidacion">
+                    <div class="form-group" id="errorValidacionEditar">
                     </div>
 
-                    <button type="submit" id="btnCrearUsuario" class="btn btn-primary">Crear Usuario</button>
+                    <button type="submit" id="btnEditarUsuario" class="btn btn-primary">Editar Usuario</button>
                 </form>
             </div>
 
@@ -292,4 +294,12 @@
 // controller: registrar usuario
 $regUsuario = new ControllerUsuarios();
 $regUsuario->controllerRegistrarUsuario();
+
+// controller: editar usuario
+$editUsuario = new ControllerUsuarios();
+$editUsuario->controllerEditarUsuario();
+
+// controller: eliminar usuario
+$elimUsuario = new ControllerUsuarios();
+$elimUsuario->controllerEliminarUsuario();
 ?>

@@ -45,7 +45,7 @@ class AjaxUsuarios
 
     public function ajaxValidarUsuario()
     {
-        $columnaBD = "usuario_tipo";
+        $columnaBD = "alias_usuario";
         $valorBD = $this->validarUsuario;
 
         $respuesta = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);

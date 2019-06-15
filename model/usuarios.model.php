@@ -47,4 +47,46 @@ class ModelUsuarios
         $stmt->close();
         $stmt = null;
     }
+    //___________________________________________________________________________________________________________
+
+    //___________________________________________________________________________________________________________
+    //  model método que permite editar usuarios
+    public static function modelEditarUsuarios($tablaBD, $arrayDatos)
+    {
+        $stmt = Conexion::conectar()->prepare("UPDATE $tablaBD SET nombre_usuario = :nombre, password_usuario = :pass, 
+        rol_usuario_fk = :rol, foto_usuario = :ruta WHERE alias_usuario = :alias");
+        $stmt->bindParam(":nombre", $arrayDatos["nombre"], PDO::PARAM_STR);
+        $stmt->bindParam(":pass", $arrayDatos["pass"], PDO::PARAM_STR);
+        $stmt->bindParam(":rol", $arrayDatos["rol"], PDO::PARAM_STR);
+        $stmt->bindParam(":ruta", $arrayDatos["ruta"], PDO::PARAM_STR);
+        $stmt->bindParam(":alias", $arrayDatos["alias"], PDO::PARAM_STR);
+
+        if ($stmt->execute()) {
+            return "ok";
+        } else {
+            return "error";
+        }
+
+        $stmt->close();
+        $stmt = null;
+    }
+    //___________________________________________________________________________________________________________
+
+    //___________________________________________________________________________________________________________    
+    // model método que permite eliminar usuario
+    public static function modelEliminarUsuario($tablaBD, $datos)
+    {
+        $stmt = Conexion::conectar()->prepare("DELETE FROM $tablaBD WHERE id_usuario = :id");
+        $stmt->bindParam(":id", $datos, PDO::PARAM_STR);
+
+        if ($stmt->execute()) {
+            return "ok";
+        } else {
+            return "error";
+        }
+
+        $stmt->close();
+        $stmt = null;
+    }
+    //___________________________________________________________________________________________________________
 }

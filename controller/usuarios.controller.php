@@ -35,8 +35,8 @@ class ControllerUsuarios
                     $respuesta["password_usuario"] == $password
                 ) {
                     // se verifica si el usuario está activado y si está, se pasan variables de sesión
-                    // activado = 1 / desactivado = 0
-                    if ($respuesta["estado_usuario" == "1"]) {
+                    // activado = 1 / desactivado = 2
+                    if ($respuesta["estado_usuario"] == 1) {
                         $_SESSION["iniciarSesion"] = "ok";
                         $_SESSION["id"] = $respuesta["id_usuario"];
                         $_SESSION["nombre"] = $respuesta["nombre_usuario"];
@@ -88,14 +88,14 @@ class ControllerUsuarios
                     list($ancho, $alto) = getimagesize($_FILES["nuevaFoto"]["tmp_name"]);
                     $nuevoAncho = 500;
                     $nuevoAlto = 500;
-                    $directorio = "view/componentes/images/usuarios/" . $_POST["nuevoNombre"];
+                    $directorio = "view/componentes/images/usuarios/" . $_POST["nuevoAlias"];
                     // try para la creación de directorio
                     try {
                         mkdir($directorio, 0755);
                         // valida si el formato es JPG y luego trata la imagen para guardarla en un nuevo directorio
                         if ($_FILES["nuevaFoto"]["type"] == "image/jpeg") {
                             $aleatorio = mt_rand(100, 999);
-                            $ruta = "view/componentes/images/usuarios/" . $_POST["nuevoNombre"] . "/" . $aleatorio . ".jpg";
+                            $ruta = "view/componentes/images/usuarios/" . $_POST["nuevoAlias"] . "/" . $aleatorio . ".jpg";
                             $origen = imagecreatefromjpeg($_FILES["nuevaFoto"]["tmp_name"]);
                             $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
                             imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
@@ -105,7 +105,7 @@ class ControllerUsuarios
                         // valida si el formato es PNG y luego trata la imagen para guardarla en un nuevo directorio
                         if ($_FILES["nuevaFoto"]["type"] == "image/png") {
                             $aleatorio = mt_rand(100, 999);
-                            $ruta = "view/img/usuarios/" . $_POST["nuevoNombre"] . "/" . $aleatorio . ".png";
+                            $ruta = "view/componentes/images/usuarios/" . $_POST["nuevoAlias"] . "/" . $aleatorio . ".png";
                             $origen = imagecreatefrompng($_FILES["nuevaFoto"]["tmp_name"]);
                             $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
                             imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
@@ -164,62 +164,67 @@ class ControllerUsuarios
     // controller método que permite modificar un usuario
     public static function controllerEditarUsuario()
     {
-        if (isset($_POST["editarUsuario"])) {
+        if (isset($_POST["editarNombre"])) {
             if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarNombre"])) {
                 $ruta = $_POST["fotoActual"];
+                // se verifica si la variable editarFoto no viene vacía para reemplazar. 
+                // si viene con datos se elimina la foto actual y se reemplaza
                 if (isset($_FILES["editarFoto"]["tmp_name"]) && !empty($_FILES["editarFoto"]["tmp_name"])) {
                     list($ancho, $alto) = getimagesize($_FILES["editarFoto"]["tmp_name"]);
                     $nuevoAncho = 500;
                     $nuevoAlto = 500;
-                    $directorio = "view/img/usuarios/" . $_POST["editarUsuario"];
+                    $directorio = "view/componentes/images/usuarios/" . $_POST["editarAlias"];
                     if (!empty($_POST["fotoActual"])) {
                         unlink($_POST["fotoActual"]);
                     } else {
                         mkdir($directorio, 0755);
                     }
+                    // en caso que la foto venga en formato jpeg
                     if ($_FILES["editarFoto"]["type"] == "image/jpeg") {
                         $aleatorio = mt_rand(100, 999);
-                        $ruta = "view/img/usuarios/" . $_POST["editarUsuario"] . "/" . $aleatorio . ".jpg";
+                        $ruta = "view/componentes/images/usuarios/" . $_POST["editarAlias"] . "/" . $aleatorio . ".jpg";
                         $origen = imagecreatefromjpeg($_FILES["editarFoto"]["tmp_name"]);
                         $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
                         imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
                         imagejpeg($destino, $ruta);
                     }
-
+                    // en caso que la foto venga en png
                     if ($_FILES["editarFoto"]["type"] == "image/png") {
                         $aleatorio = mt_rand(100, 999);
-                        $ruta = "view/img/usuarios/" . $_POST["editarUsuario"] . "/" . $aleatorio . ".png";
+                        $ruta = "view/componentes/images/usuarios/" . $_POST["editarAlias"] . "/" . $aleatorio . ".png";
                         $origen = imagecreatefrompng($_FILES["editarFoto"]["tmp_name"]);
                         $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
                         imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
                         imagepng($destino, $ruta);
                     }
                 }
-
+                // tabla de la BBDD
                 $tablaBD = "usuarios";
-                if ($_POST["editarPassword"] != "") {
-                    if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarPassword"])) {
-                        $encriptado = hash('sha512', $_POST["editarPassword"]);
+                // en caso que editarPassword venga con una nueva, se encripta nuevamente
+                if ($_POST["editarPassword1"] != "") {
+                    if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarPassword1"])) {
+                        $encriptado = hash('sha512', $_POST["editarPassword1"]);
                     } else {
                         echo '<script>
                             swal({
                                     title: "Error al ingresar el usuario",
-                                    text: "La password no puede tener caracteres.",
+                                    text: "La password no puede tener caracteres especiales.",
                                     type: "error",
                                     confirmButtonText: "cerrar"
                                 });
                         </script>';
                     }
                 } else {
+                    // si no, se pasa el passwordActual que está escondido en el html
                     $encriptado = $_POST["passwordActual"];
                 }
-
+                // array de datos para enviar al modelo
                 $arrayDatos = array(
                     "nombre"   => $_POST["editarNombre"],
-                    "usuario"  => $_POST["editarUsuario"],
-                    "password" => $encriptado,
-                    "perfil"   => $_POST["editarPerfil"],
-                    "foto"     => $ruta
+                    "alias"  => $_POST["editarAlias"],
+                    "pass" => $encriptado,
+                    "rol"   => $_POST["editarRol"],
+                    "ruta"     => $ruta
                 );
 
                 $respuesta = ModelUsuarios::modelEditarUsuarios($tablaBD, $arrayDatos);
@@ -264,15 +269,18 @@ class ControllerUsuarios
     public static function controllerEliminarUsuario()
     {
         if (isset($_GET["idUsuario"])) {
+            // enviar por parámetros el id del usuario 
             $tablaBD = "usuarios";
             $datos = $_GET["idUsuario"];
             if ($_GET["fotoUsuario"] != "") {
+                // eliminar la foto del usuario
                 unlink($_GET["fotoUsuario"]);
-                rmdir('view/img/usuarios/' . $_GET["usuarioTipo"]);
+                // eliminar el directorio del usuario (debe estar vacío)
+                rmdir('view/componentes/images/usuarios/' . $_GET["aliasUsuario"]);
             }
-
+            // petición al modelo para eliminar el usuario
             $respuesta = ModelUsuarios::modelEliminarUsuario($tablaBD, $datos);
-
+            // verificación de la respuesta del modelo
             if ($respuesta == "ok") {
                 echo '<script>
                         swal({
