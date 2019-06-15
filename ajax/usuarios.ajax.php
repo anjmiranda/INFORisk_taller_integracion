@@ -40,7 +40,7 @@ class AjaxUsuarios
     //_______________________________________________________________________________________________________
 
     //_______________________________________________________________________________________________________
-    // AJAX metodo para validar nombres repetidos
+    // AJAX metodo para validar alias repetidos
     public $validarUsuario;
 
     public function ajaxValidarUsuario()
@@ -76,7 +76,7 @@ if (isset($_POST["activarUsuario"])) {
 //___________________________________________________________________________________________________________
 
 //___________________________________________________________________________________________________________
-// recibir datos para ejecutar la funcion de validar nombres repetidos
+// recibir datos para ejecutar la funcion de validar alias repetidos
 if (isset($_POST["validarUsuario"])) {
     $valUsuario = new AjaxUsuarios();
     $valUsuario->validarUsuario = $_POST["validarUsuario"];

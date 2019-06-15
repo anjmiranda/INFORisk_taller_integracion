@@ -142,7 +142,7 @@ $(document).ready(function () {
   //___________________________________________________________________________________________________________
 
   //___________________________________________________________________________________________________________
-  // AJAX método que permite verificar si hay usuarios registrados para evitar id repetidos
+  // AJAX método que permite verificar si hay usuarios registrados con el mismo alias
   // esto evitará que los directorios de los usuarios sean únicos e irrepetibles
   $("#nuevoAlias").change(function () {
 
