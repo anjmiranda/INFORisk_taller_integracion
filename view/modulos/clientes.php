@@ -1,5 +1,5 @@
 <div class="container-fluid contenedor">
-    <h1 class="mt-4">Usuarios</h1>
+    <h1 class="mt-4">Clientes</h1>
     <hr>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalRegistrarUsuario">Agregar</button><br>
     <br>

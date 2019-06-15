@@ -1,44 +1,46 @@
 <div class="container-fluid contenedor">
-    <h1 class="mt-4">Usuarios</h1>
+    <h1 class="mt-4">Empresas</h1>
     <hr>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalRegistrarUsuario">Agregar</button><br>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalRegistrarEmpresa">Agregar</button><br>
     <br>
     <div class="tabla">
         <table id="tablaUser" class="display" style="width:100%">
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>RUT</th>
                     <th>Nombre</th>
                     <th>Alias</th>
+                    <th>Direccion</th>
+                    <th>Giro</th>
                     <th>Foto</th>
-                    <th>Rol</th>
-                    <th>Ultima Conexión</th>
-                    <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                // método del controller que consulta todos los usuarios de la BBDD
+                // método del controller que consulta todas las empresas de la BBDD
                 $columnaBD = null;
                 $valorBD = null;
-                $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
-                $rolesUsuario = ControllerRolesUsuario::controllerMostrarRolesUsuario($columnaBD, $valorBD);
+                $empresas = ControllerEmpresas::controllerMostrarEmpresas($columnaBD, $valorBD);
 
                 // foreach que permite el llenado automático de los usuarios en la tabla
-                foreach ($usuarios as $key => $usuario) {
+                foreach ($empresas as $key => $empresa) {
                     // id, nombre y alias
                     echo '
                         <tr>
-                        <td>' . $usuario["id_usuario"] . '</td>
-                        <td>' . $usuario["nombre_usuario"] . '</td>
-                        <td>' . $usuario["alias_usuario"] . '</td>';
+                        <td>' . $empresa["id_empresa"] . '</td>
+                        <td>' . $empresa["rut_empresa"] . '</td>
+                        <td>' . $empresa["nombre_empresa"] . '</td>
+                        <td>' . $empresa["alias_empresa"] . '</td>
+                        <td>' . $empresa["direccion_empresa"] . '</td>
+                        <td>' . $empresa["giro_empresa"] . '</td>';
 
                     // foto del usuario si muestra la información o no
-                    if ($usuario["foto_usuario"] != null) {
+                    if ($empresa["foto_empresa"] != null) {
                         echo
                             '<td>
-                              <img src="' . $usuario["foto_usuario"] . '" class="img-thumbnail" width="40px" alt="Usuario">
+                              <img src="' . $empresa["foto_empresa"] . '" class="img-thumbnail" width="40px" alt="Empresa">
                             </td>';
                     } else {
                         echo
@@ -46,37 +48,14 @@
                               <img src="view/componentes/images/anonimo.jpg" class="img-thumbnail" width="40px" alt="Usuario">
                             </td>';
                     }
-                    // rol usuario / foreach para recorrer la lista de roles
-                    foreach ($rolesUsuario as $key => $rol) {
-                        if ($rol["id_rol_usuario"] == $usuario["rol_usuario_fk"]) {
-                            echo '<td>' . $rol["nombre_rol_usuario"] . '</td>';
-                            break;
-                        }
-                    }
-
-                    // ultima conexion
-                    echo '<td>' . $usuario["ultimolog_usuario"] . '</td>';
-
-                    // estado usuario
-                    if ($usuario["estado_usuario"] == 1) {
-                        echo '
-                        <td>
-                            <span class="btnEditarUsuario label btn-success btn-xs btnActivar" idUsuario="' . $usuario["id_usuario"] . '" estadoUsuario="2">Activado</span>
-                        </td>';
-                    } else if ($usuario["estado_usuario"] == 2) {
-                        echo '
-                        <td>
-                            <span class="btnEditarUsuario label btn-danger btn-xs btnActivar" idUsuario="' . $usuario["id_usuario"] . '" estadoUsuario="1">Desactivado</span>
-                        </td>';
-                    }
-
+                    
                     // acciones de modificar o eliminar
                     echo '
                     <td>
-                        <button class="btn btn-warning btnEditarUsuario" idUsuario="' . $usuario["id_usuario"] . '" data-toggle="modal" data-target="#modalEditarUsuario">
+                        <button class="btn btn-warning btnEditarEmpresa" idEmpresa="' . $empresa["id_empresa"] . '" data-toggle="modal" data-target="#modalEditarEmpresa">
                             <i class="fas fa-edit"></i>
                         </button>
-                        <button class="btn btn-danger btnEliminarUsuario" idUsuario="' . $usuario["id_usuario"] . '" fotoUsuario="' . $usuario["foto_usuario"] . '" aliasUsuario="' . $usuario["alias_usuario"] . '">
+                        <button class="btn btn-danger btnEliminarEmpresa" idEmpresa="' . $empresa["id_empresa"] . '" fotoEmpresa="' . $empresa["foto_empresa"] . '" aliasEmpresa="' . $empresa["alias_empresa"] . '">
                           <i class="fas fa-user-times"></i>
                         </button>
                     </td>
@@ -93,13 +72,13 @@
 </div>
 
 <!-- Modal Registrar Usuarios -->
-<div class="modal fade" id="modalRegistrarUsuario">
+<div class="modal fade" id="modalRegistrarEmpresa">
     <div class="modal-dialog">
         <div class="modal-content">
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Agregar nuevo usuario</h4>
+                <h4 class="modal-title">Agregar nueva empresa</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -107,61 +86,53 @@
             <div class="modal-body">
 
                 <form action="" method="POST" role="form" enctype="multipart/form-data">
-                    <!-- Nombre usuario -->
+                    <!-- RUT empresa -->
                     <div class="form-group">
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fas fa-user-plus"></i></div>
+                                <div class="input-group-text"><i class="fas fa-industry"></i></div>
                             </div>
-                            <input type="text" class="form-control" name="nuevoNombre" id="nuevoNombre" placeholder="Ingrese su nombre">
+                            <input type="text" class="form-control" name="nuevoRut" id="nuevoRut" placeholder="Ingrese el rut de la empresa">
                         </div>
                     </div>
 
-                    <!-- Alias usuario -->
+                    <!-- nombre empresa -->
                     <div class="form-group">
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fas fa-user-plus"></i></div>
+                                <div class="input-group-text"><i class="fas fa-industry"></i></div>
+                            </div>
+                            <input type="text" class="form-control" name="nuevoNombre" id="nuevoNombre" placeholder="Ingrese el nombre">
+                        </div>
+                    </div>
+
+                    <!-- alias empresa -->
+                    <div class="form-group">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-industry"></i></div>
                             </div>
                             <input type="text" class="form-control" name="nuevoAlias" id="nuevoAlias" placeholder="Ingrese el alias">
                         </div>
                     </div>
 
-                    <!-- Password -->
+                    <!-- alias empresa -->
                     <div class="form-group">
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fas fa-key"></i></div>
+                                <div class="input-group-text"><i class="fas fa-industry"></i></div>
                             </div>
-                            <input type="password" class="form-control" name="nuevoPassword1" id="nuevoPassword1" autocomplete="new-password" placeholder="Ingrese su password">
+                            <input type="text" class="form-control" name="nuevaDireccion" id="nuevaDireccion" placeholder="Ingrese la dirección">
                         </div>
                     </div>
 
-                    <!-- Password 2 -->
+                    <!-- giro empresa -->
                     <div class="form-group">
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fas fa-key"></i></div>
+                                <div class="input-group-text"><i class="fas fa-industry"></i></div>
                             </div>
-                            <input type="password" class="form-control" id="nuevoPassword2" autocomplete="new-password" placeholder="Reingrese su password">
-                        </div>
-                    </div>
-
-                    <!-- Rol -->
-                    <div class="form-group">
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fas fa-list-ul"></i></div>
-                            </div>
-                            <select class="form-control input-lg" name="nuevoRol" id="nuevoRol">
-                                <option value="">Seleccione una opción</option>
-                                <?php
-                                // foreach para rellenar la tabla de roles
-                                foreach ($rolesUsuario as $key => $rol) {
-                                    echo '<option value="' . $rol["id_rol_usuario"] . '">' . $rol["nombre_rol_usuario"] . '</option>';
-                                }
-                                ?>
-                            </select>
+                            <input type="text" class="form-control" name="nuevoGiro" id="nuevoGiro" placeholder="Ingrese el giro">
                         </div>
                     </div>
 
@@ -177,7 +148,7 @@
                     <div class="form-group" id="errorValidacion">
                     </div>
 
-                    <button type="submit" id="btnCrearUsuario" class="btn btn-primary">Crear Usuario</button>
+                    <button type="submit" id="btnCrearUsuario" class="btn btn-primary">Crear empresa</button>
                 </form>
             </div>
 
@@ -256,9 +227,9 @@
                                 <option value="null" id="editarRolOpt">Seleccione el rol</option>
                                 <?php
                                 // foreach para rellenar la tabla de roles
-                                foreach ($rolesUsuario as $key => $rol) {
+                                /*foreach ($rolesUsuario as $key => $rol) {
                                     echo '<option value="' . $rol["id_rol_usuario"] . '">' . $rol["nombre_rol_usuario"] . '</option>';
-                                }
+                                }*/
                                 ?>
                             </select>
                         </div>
@@ -291,15 +262,15 @@
 </div>
 
 <?php
-// controller: registrar usuario
-$regUsuario = new ControllerUsuarios();
-$regUsuario->controllerRegistrarUsuario();
+// controller: registrar empresa
+$regUsuario = new ControllerEmpresas();
+$regUsuario->controllerRegistrarEmpresa();
 
 // controller: editar usuario
-$editUsuario = new ControllerUsuarios();
-$editUsuario->controllerEditarUsuario();
+//$editUsuario = new ControllerUsuarios();
+//$editUsuario->controllerEditarUsuario();
 
 // controller: eliminar usuario
-$elimUsuario = new ControllerUsuarios();
-$elimUsuario->controllerEliminarUsuario();
+//$elimUsuario = new ControllerUsuarios();
+//$elimUsuario->controllerEliminarUsuario();
 ?>

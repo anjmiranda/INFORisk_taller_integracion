@@ -69,6 +69,8 @@
       if(isset($_GET["ruta"])){
         if($_GET["ruta"] == "inicio"      ||
            $_GET["ruta"] == "usuarios"    ||
+           $_GET["ruta"] == "clientes"    ||
+           $_GET["ruta"] == "empresas"    ||
            $_GET["ruta"] == "salir"    )
         {
           include "modulos/".$_GET["ruta"].".php"; // se concatena la variable
