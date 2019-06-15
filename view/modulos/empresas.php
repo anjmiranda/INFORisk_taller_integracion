@@ -264,7 +264,7 @@ $regEmpresa->controllerRegistrarEmpresa();
 $editEmpresa = new ControllerEmpresas();
 $editEmpresa->controllerEditarEmpresa();
 
-// controller: eliminar usuario
-//$elimUsuario = new ControllerUsuarios();
-//$elimUsuario->controllerEliminarUsuario();
+// controller: eliminar empresa
+$elimEmpresa = new ControllerEmpresas();
+$elimEmpresa->controllerEliminarEmpresa();
 ?>

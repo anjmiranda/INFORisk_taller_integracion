@@ -199,7 +199,36 @@ class ControllerEmpresas
     // controller método que permite eliminar una empresa
     public static function controllerEliminarEmpresa()
     {
-        // código...
+        if (isset($_GET["idEmpresa"])) {
+            // enviar por parámetros el id de la empresa
+            $tablaBD = "empresas";
+            $datos = $_GET["idEmpresa"];
+            if ($_GET["fotoEmpresa"] != "") {
+                // eliminar la foto de la empresa
+                unlink($_GET["fotoEmpresa"]);
+                // eliminar el directorio de la empresa (debe estar vacío)
+                rmdir('view/componentes/images/empresas/' . $_GET["aliasEmpresa"]);
+            }
+            // petición al modelo para eliminar la empresa
+            $respuesta = ModelEmpresas::modelEliminarEmpresa($tablaBD, $datos);
+            // verificación de la respuesta del modelo
+            if ($respuesta == "ok") {
+                echo '<script>
+                        swal({
+                            type: "success",
+                            title: "La empresa ha sido borrada de forma correcta",
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar",
+                            closeOnConfirm: false
+                        }).then((result)=>{
+                            if(result.value)
+                            {
+                                window.location = "empresas";
+                            }
+                        });
+                    </script>';
+            }
+        }
     }
     //___________________________________________________________________________________________________________
 }

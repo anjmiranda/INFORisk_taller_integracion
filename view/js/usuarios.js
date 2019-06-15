@@ -80,8 +80,7 @@ $(document).ready(function () {
   //___________________________________________________________________________________________________________
   //  método que permite eliminar usuario
   $(document).on("click", ".btnEliminarUsuario", function () {
-    debugger;
-    // variables de id y ubicación de fotos
+    // variables de id, alias y ubicación de fotos
     var idUsuario = $(this).attr("idUsuario");
     var fotoUsuario = $(this).attr("fotoUsuario");
     var aliasUsuario = $(this).attr("aliasUsuario");

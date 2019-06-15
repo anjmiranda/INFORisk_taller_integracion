@@ -197,6 +197,32 @@ $(document).ready(function () {
     //___________________________________________________________________________________________________________
 
     //___________________________________________________________________________________________________________
+    //  método que permite eliminar empresa
+    $(document).on("click", ".btnEliminarEmpresa", function () {
+        // variables de id, alias y ubicación de fotos
+        var idEmpresa = $(this).attr("idEmpresa");
+        var fotoEmpresa = $(this).attr("fotoEmpresa");
+        var aliasEmpresa = $(this).attr("aliasEmpresa");
+
+        swal({
+            title: '¿Está seguro que desea eliminar esta empresa?',
+            text: 'el borrado será de forma permanente',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085D6',
+            cancelButtonColor: '#D33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Borrar'
+        }).then((result) => {
+            if (result.value) {
+                // envío de parametros por GET - idEmpresa + fotoEmpresa para eliminiar la empresa 
+                window.location = "index.php?ruta=empresas&idEmpresa=" + idEmpresa + "&fotoEmpresa=" + fotoEmpresa + "&aliasEmpresa=" + aliasEmpresa;
+            }
+        })
+    })
+    //___________________________________________________________________________________________________________
+
+    //___________________________________________________________________________________________________________
     // AJAX método que permite verificar si hay empresas registradas con el mismo alias
     // esto evitará que los directorios de las empresas sean únicos e irrepetibles
     $("#nuevoAlias").change(function () {
