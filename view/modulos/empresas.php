@@ -148,7 +148,7 @@
                     <div class="form-group" id="errorValidacion">
                     </div>
 
-                    <button type="submit" id="btnCrearUsuario" class="btn btn-primary">Crear empresa</button>
+                    <button type="submit" id="btnCrearEmpresa" class="btn btn-primary">Crear empresa</button>
                 </form>
             </div>
 
@@ -260,6 +260,9 @@
         </div>
     </div>
 </div>
+
+<!-- JS modulos -->  
+<script src="view/js/empresas.js"></script>
 
 <?php
 // controller: registrar empresa

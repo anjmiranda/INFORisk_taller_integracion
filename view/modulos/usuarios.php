@@ -290,6 +290,9 @@
     </div>
 </div>
 
+<!-- JS modulos -->  
+<script src="view/js/usuarios.js"></script>
+
 <?php
 // controller: registrar usuario
 $regUsuario = new ControllerUsuarios();
