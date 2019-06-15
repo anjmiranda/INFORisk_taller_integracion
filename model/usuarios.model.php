@@ -89,4 +89,23 @@ class ModelUsuarios
         $stmt = null;
     }
     //___________________________________________________________________________________________________________
+
+    //___________________________________________________________________________________________________________
+    // model método que permite actualizar estado activo/desactivo y último login
+    public static function modelActualizarUsuario($tablaBD, $columnaBD1, $columnaBD2, $valorBD1, $valorBD2)
+    {
+        $stmt = Conexion::conectar()->prepare("UPDATE $tablaBD SET $columnaBD1 = :$columnaBD1 WHERE $columnaBD2 = :$columnaBD2");
+        $stmt->bindParam(":" . $columnaBD1, $valorBD1, PDO::PARAM_STR);
+        $stmt->bindParam(":" . $columnaBD2, $valorBD2, PDO::PARAM_STR);
+
+        if ($stmt->execute()) {
+            return "ok";
+        } else {
+            return "error";
+        }
+
+        $stmt->close();
+        $stmt = null;
+    }
+    //___________________________________________________________________________________________________________
 }

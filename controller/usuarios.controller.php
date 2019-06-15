@@ -46,12 +46,28 @@ class ControllerUsuarios
                         $_SESSION["fecha_creacion"] = $respuesta["fechacreacion_usuario"];
                         $_SESSION["ultimo_log"] = $respuesta["ultimolog_usuario"];
 
+                        // actualizar el último acceso del usuario
+                        date_default_timezone_set('America/Santiago');
 
+                        $fecha = date('Y-m-d');
+                        $hora = date('H:i:s');
 
-                        if ($_SESSION["rol"] != "3") {
-                            echo '<script> window.location = "inicio"; </script>';
-                        } else {
-                            echo '<script> window.location = "usuarios"; </script>';
+                        $fechaActual = $fecha . " " . $hora;
+                        //$tablaBD, $columnaBD1, $columnaBD2, $valorBD1, $valorBD2
+                        $columnaBD1 = "ultimolog_usuario";
+                        $valorBD1 = $fechaActual;
+
+                        $columnaBD2 = "id_usuario";
+                        $valorBD2 = $respuesta["id_usuario"];
+
+                        $ultimoLogin = ModelUsuarios::modelActualizarUsuario($tablaBD, $columnaBD1, $columnaBD2, $valorBD1, $valorBD2);
+
+                        if($ultimoLogin == "ok"){
+                            if ($_SESSION["rol"] != "3") {
+                                echo '<script> window.location = "inicio"; </script>';
+                            } else {
+                                echo '<script> window.location = "usuarios"; </script>';
+                            } 
                         }
                     } else {
                         // alerta usuario desactivado

@@ -191,19 +191,22 @@ $(document).ready(function () {
       contentType: false,
       processData: false,
       success: function (respuesta) {
-        if (estadoUsuario == 0) {
-          $(this).removeClass('btn-success');
-          $(this).addClass('btn-danger');
-          $(this).html('Desactivado');
-          $(this).attr('estadoUsuario', 1);
-        } else {
-          $(this).addClass('btn-success');
-          $(this).removeClass('btn-danger');
-          $(this).html('Activado');
-          $(this).attr('estadoUsuario', 0)
-        }
+        
       }
+      
     })
+    // si estado usuario es 2, quiere decir que está activado y se desea desactivar
+    if (estadoUsuario == 2) {
+      $(this).removeClass('btn-success');
+      $(this).addClass('btn-danger');
+      $(this).html('Desactivado');
+      $(this).attr('estadoUsuario', 1);
+    } else {
+      $(this).addClass('btn-success');
+      $(this).removeClass('btn-danger');
+      $(this).html('Activado');
+      $(this).attr('estadoUsuario', 2)
+    }
   })
   //___________________________________________________________________________________________________________
 });
