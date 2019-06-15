@@ -84,7 +84,7 @@ class ControllerEmpresas
                         }).then((result)=>{
                             if(result.value)
                             {
-                                window.location = "usuarios";
+                                window.location = "empresas";
                             }
                         });
                     </script>';
@@ -107,7 +107,91 @@ class ControllerEmpresas
     // controller método que permite editar una empresa
     public static function controllerEditarEmpresa()
     {
-        // código...
+        if (isset($_POST["editarNombre"])) {
+            if (
+                preg_match('/^(\d{2}\.\d{3}\.\d{3}-)([a-zA-Z]{1}$|\d{1}$)/', $_POST["editarRut"]) &&
+                preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarNombre"]) &&
+                preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarDireccion"]) &&
+                preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarGiro"])
+            ) {
+                $ruta = $_POST["fotoActual"];
+                // se verifica si la variable editarFoto no viene vacía para reemplazar. 
+                // si viene con datos se elimina la foto actual y se reemplaza
+                if (isset($_FILES["editarFoto"]["tmp_name"]) && !empty($_FILES["editarFoto"]["tmp_name"])) {
+                    list($ancho, $alto) = getimagesize($_FILES["editarFoto"]["tmp_name"]);
+                    $nuevoAncho = 500;
+                    $nuevoAlto = 500;
+                    $directorio = "view/componentes/images/empresas/" . $_POST["editarAlias"];
+                    if (!empty($_POST["fotoActual"])) {
+                        unlink($_POST["fotoActual"]);
+                    } else {
+                        mkdir($directorio, 0755);
+                    }
+                    // en caso que la foto venga en formato jpeg
+                    if ($_FILES["editarFoto"]["type"] == "image/jpeg") {
+                        $aleatorio = mt_rand(100, 999);
+                        $ruta = "view/componentes/images/empresas/" . $_POST["editarAlias"] . "/" . $aleatorio . ".jpg";
+                        $origen = imagecreatefromjpeg($_FILES["editarFoto"]["tmp_name"]);
+                        $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+                        imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+                        imagejpeg($destino, $ruta);
+                    }
+                    // en caso que la foto venga en png
+                    if ($_FILES["editarFoto"]["type"] == "image/png") {
+                        $aleatorio = mt_rand(100, 999);
+                        $ruta = "view/componentes/images/empresas/" . $_POST["editarAlias"] . "/" . $aleatorio . ".png";
+                        $origen = imagecreatefrompng($_FILES["editarFoto"]["tmp_name"]);
+                        $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+                        imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+                        imagepng($destino, $ruta);
+                    }
+                }
+                // tabla de la BBDD
+                $tablaBD = "empresas";
+                // array de datos para enviar al modelo
+                $arrayDatos = array(
+                    "rut" => $_POST["editarRut"],
+                    "nombre" => $_POST["editarNombre"],
+                    "alias" => $_POST["editarAlias"],
+                    "direccion" => $_POST["editarDireccion"],
+                    "giro" => $_POST["editarGiro"],
+                    "foto" => $ruta
+                );
+
+                $respuesta = ModelEmpresas::modelEditarEmpresa($tablaBD, $arrayDatos);
+                if ($respuesta == "ok") {
+                    echo '<script>
+                        swal({
+                            type: "success",
+                            title: "La empresa ha sido modificada de forma correcta",
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar",
+                            closeOnConfirm: false
+                        }).then((result)=>{
+                            if(result.value)
+                            {
+                                window.location = "empresas";
+                            }
+                        });
+                    </script>';
+                }
+            } else {
+                echo '<script>
+                        swal({
+                            type: "error",
+                            title: "Las variables no puede ir vacías o llevar caracteres especiales ",
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar",
+                            closeOnConfirm: false
+                        }).then((result)=>{
+                            if(result.value)
+                            {
+                                window.location = "empresas";
+                            }
+                        });
+                    </script>';
+            }
+        }
     }
     //___________________________________________________________________________________________________________
 

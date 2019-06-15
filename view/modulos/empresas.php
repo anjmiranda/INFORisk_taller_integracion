@@ -162,13 +162,13 @@
 </div>
 
 <!-- Modal Editar Usuarios -->
-<div class="modal fade" id="modalEditarUsuario">
+<div class="modal fade" id="modalEditarEmpresa">
     <div class="modal-dialog">
         <div class="modal-content">
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Editar usuario</h4>
+                <h4 class="modal-title">Editar empresa</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -176,62 +176,53 @@
             <div class="modal-body">
 
                 <form action="" method="POST" role="form" enctype="multipart/form-data">
-                    <!-- Nombre usuario -->
+                    <!-- RUT empresa -->
                     <div class="form-group">
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fas fa-user-plus"></i></div>
+                                <div class="input-group-text"><i class="fas fa-industry"></i></div>
+                            </div>
+                            <input type="text" class="form-control" name="editarRut" id="editarRut">
+                        </div>
+                    </div>
+
+                    <!-- nombre empresa -->
+                    <div class="form-group">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-industry"></i></div>
                             </div>
                             <input type="text" class="form-control" name="editarNombre" id="editarNombre">
                         </div>
                     </div>
 
-                    <!-- Alias usuario -->
+                    <!-- alias empresa -->
                     <div class="form-group">
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fas fa-user-plus"></i></div>
+                                <div class="input-group-text"><i class="fas fa-industry"></i></div>
                             </div>
                             <input type="text" class="form-control" name="editarAlias" id="editarAlias" readonly>
                         </div>
                     </div>
 
-                    <!-- Password -->
+                    <!-- direccion empresa -->
                     <div class="form-group">
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fas fa-key"></i></div>
+                                <div class="input-group-text"><i class="fas fa-industry"></i></div>
                             </div>
-                            <input type="password" class="form-control" name="editarPassword1" id="editarPassword1" autocomplete="new-password" placeholder="Ingrese su password">
-                            <input type="hidden" id="passwordActual" name="passwordActual">
+                            <input type="text" class="form-control" name="editarDireccion" id="editarDireccion">
                         </div>
                     </div>
 
-                    <!-- Password 2 -->
+                    <!-- giro empresa -->
                     <div class="form-group">
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fas fa-key"></i></div>
+                                <div class="input-group-text"><i class="fas fa-industry"></i></div>
                             </div>
-                            <input type="password" class="form-control" id="editarPassword2" autocomplete="new-password" placeholder="Reingrese su password">
-                        </div>
-                    </div>
-
-                    <!-- Rol -->
-                    <div class="form-group">
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fas fa-list-ul"></i></div>
-                            </div>
-                            <select class="form-control input-lg" name="editarRol" id="editarRol">
-                                <option value="null" id="editarRolOpt">Seleccione el rol</option>
-                                <?php
-                                // foreach para rellenar la tabla de roles
-                                /*foreach ($rolesUsuario as $key => $rol) {
-                                    echo '<option value="' . $rol["id_rol_usuario"] . '">' . $rol["nombre_rol_usuario"] . '</option>';
-                                }*/
-                                ?>
-                            </select>
+                            <input type="text" class="form-control" name="editarGiro" id="editarGiro">
                         </div>
                     </div>
 
@@ -248,7 +239,7 @@
                     <div class="form-group" id="errorValidacionEditar">
                     </div>
 
-                    <button type="submit" id="btnEditarUsuario" class="btn btn-primary">Editar Usuario</button>
+                    <button type="submit" id="btnEditarEmpresa" class="btn btn-primary">Editar Empresa</button>
                 </form>
             </div>
 
@@ -261,17 +252,17 @@
     </div>
 </div>
 
-<!-- JS modulos -->  
+<!-- JS modulo empresas -->  
 <script src="view/js/empresas.js"></script>
 
 <?php
 // controller: registrar empresa
-$regUsuario = new ControllerEmpresas();
-$regUsuario->controllerRegistrarEmpresa();
+$regEmpresa = new ControllerEmpresas();
+$regEmpresa->controllerRegistrarEmpresa();
 
 // controller: editar usuario
-//$editUsuario = new ControllerUsuarios();
-//$editUsuario->controllerEditarUsuario();
+$editEmpresa = new ControllerEmpresas();
+$editEmpresa->controllerEditarEmpresa();
 
 // controller: eliminar usuario
 //$elimUsuario = new ControllerUsuarios();

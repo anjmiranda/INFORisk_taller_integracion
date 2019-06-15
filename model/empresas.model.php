@@ -49,4 +49,28 @@ class ModelEmpresas
         $stmt = null;
     }
     //___________________________________________________________________________________________________________
+
+    //___________________________________________________________________________________________________________
+    //  model método que permite editar empresa
+    public static function modelEditarEmpresa($tablaBD, $arrayDatos)
+    {
+        $stmt = Conexion::conectar()->prepare("UPDATE $tablaBD SET rut_empresa = :rut, nombre_empresa = :nombre, 
+        direccion_empresa = :direccion, giro_empresa = :giro, foto_empresa = :foto WHERE alias_empresa = :alias");
+        $stmt->bindParam(":rut", $arrayDatos["rut"], PDO::PARAM_STR);
+        $stmt->bindParam(":nombre", $arrayDatos["nombre"], PDO::PARAM_STR);
+        $stmt->bindParam(":direccion", $arrayDatos["direccion"], PDO::PARAM_STR);
+        $stmt->bindParam(":giro", $arrayDatos["giro"], PDO::PARAM_STR);
+        $stmt->bindParam(":foto", $arrayDatos["foto"], PDO::PARAM_STR);
+        $stmt->bindParam(":alias", $arrayDatos["alias"], PDO::PARAM_STR);
+
+        if ($stmt->execute()) {
+            return "ok";
+        } else {
+            return "error";
+        }
+
+        $stmt->close();
+        $stmt = null;
+    }
+    //___________________________________________________________________________________________________________
 }
