@@ -23,23 +23,35 @@
                 // método del controller que consulta todos los clientes de la BBDD
                 $columnaBD = null;
                 $valorBD = null;
-                //$usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
+                $clientes = ControllerClientes::controllerMostrarClientes($columnaBD, $valorBD);
                 $empresas = ControllerEmpresas::controllerMostrarEmpresas($columnaBD, $valorBD);
 
-                // foreach que permite el llenado automático de los usuarios en la tabla
-                /*foreach ($usuarios as $key => $usuario) {
+                // foreach que permite el llenado automático de los usuarios en la tabla                
+                foreach ($clientes as $key => $cliente) {
                     // id, nombre y alias
                     echo '
                         <tr>
-                        <td>' . $usuario["id_usuario"] . '</td>
-                        <td>' . $usuario["nombre_usuario"] . '</td>
-                        <td>' . $usuario["alias_usuario"] . '</td>';
+                        <td>' . $cliente["id_cliente"] . '</td>
+                        <td>' . $cliente["nombre_cliente"] . '</td>
+                        <td>' . $cliente["alias_cliente"] . '</td>
+                        <td>' . $cliente["email_cliente"] . '</td>';
+
+                    // empresas / foreach para recorrer la lista de empresas
+                    foreach ($empresas as $key => $empresa) {
+                        if ($empresa["id_empresa"] == $cliente["empresa_cliente_fk"]) {
+                            echo '<td>' . $empresa["nombre_empresa"] . '</td>';
+                            break;
+                        }
+                    }
+
+                    // teléfono
+                    echo '<td>' . $cliente["telefono_cliente"] . '</td>';
 
                     // foto del usuario si muestra la información o no
-                    if ($usuario["foto_usuario"] != null) {
+                    if ($cliente["foto_cliente"] != null) {
                         echo
                             '<td>
-                              <img src="' . $usuario["foto_usuario"] . '" class="img-thumbnail" width="40px" alt="Usuario">
+                              <img src="' . $cliente["foto_cliente"] . '" class="img-thumbnail" width="40px" alt="Cliente">
                             </td>';
                     } else {
                         echo
@@ -47,42 +59,32 @@
                               <img src="view/componentes/images/anonimo.jpg" class="img-thumbnail" width="40px" alt="Usuario">
                             </td>';
                     }
-                    // rol usuario / foreach para recorrer la lista de roles
-                    foreach ($rolesUsuario as $key => $rol) {
-                        if ($rol["id_rol_usuario"] == $usuario["rol_usuario_fk"]) {
-                            echo '<td>' . $rol["nombre_rol_usuario"] . '</td>';
-                            break;
-                        }
-                    }
-
-                    // ultima conexion
-                    echo '<td>' . $usuario["ultimolog_usuario"] . '</td>';
 
                     // estado usuario
-                    if ($usuario["estado_usuario"] == 1) {
+                    if ($cliente["estado_cliente"] == 1) {
                         echo '
                         <td>
-                            <span class="btnEditarUsuario label btn-success btn-xs btnActivar" idUsuario="' . $usuario["id_usuario"] . '" estadoUsuario="2">Activado</span>
+                            <span class="btnEditarCliente label btn-success btn-xs btnActivar" idCliente="' . $cliente["id_cliente"] . '" estadoCliente="2">Activado</span>
                         </td>';
-                    } else if ($usuario["estado_usuario"] == 2) {
+                    } else if ($cliente["estado_cliente"] == 2) {
                         echo '
                         <td>
-                            <span class="btnEditarUsuario label btn-danger btn-xs btnActivar" idUsuario="' . $usuario["id_usuario"] . '" estadoUsuario="1">Desactivado</span>
+                            <span class="btnEditarCliente label btn-danger btn-xs btnActivar" idCliente="' . $cliente["id_cliente"] . '" estadoCliente="1">Desactivado</span>
                         </td>';
                     }
 
                     // acciones de modificar o eliminar
                     echo '
                     <td>
-                        <button class="btn btn-warning btnEditarUsuario" idUsuario="' . $usuario["id_usuario"] . '" data-toggle="modal" data-target="#modalEditarUsuario">
+                        <button class="btn btn-warning btnEditarCliente" idCliente="' . $cliente["id_cliente"] . '" data-toggle="modal" data-target="#modalEditarCliente">
                             <i class="fas fa-edit"></i>
                         </button>
-                        <button class="btn btn-danger btnEliminarUsuario" idUsuario="' . $usuario["id_usuario"] . '" fotoUsuario="' . $usuario["foto_usuario"] . '" aliasUsuario="' . $usuario["alias_usuario"] . '">
+                        <button class="btn btn-danger btnEliminarCliente" idCliente="' . $cliente["id_cliente"] . '" fotoCliente="' . $cliente["foto_cliente"] . '" aliasCliente="' . $cliente["alias_cliente"] . '">
                           <i class="fas fa-user-times"></i>
                         </button>
                     </td>
                     </tr>';
-                }*/
+                }
                 // fin foreach
                 ?>
             </tbody>
@@ -291,7 +293,7 @@
     </div>
 </div>
 
-<!-- JS modulo empresas -->  
+<!-- JS modulo empresas -->
 <script src="view/js/clientes.js"></script>
 
 <?php

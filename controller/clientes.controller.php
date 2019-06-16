@@ -4,7 +4,7 @@ class ControllerClientes
 {
     //___________________________________________________________________________________________________________
     // controller método que permite mostrar clientes
-    public static function controllerMostrarCiente($columnaBD, $valorBD)
+    public static function controllerMostrarClientes($columnaBD, $valorBD)
     {
         $tablaBD = "clientes";
         $respuesta = ModelClientes::modelMostrarClientes($tablaBD, $columnaBD, $valorBD);
