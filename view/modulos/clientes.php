@@ -208,62 +208,61 @@
             <div class="modal-body">
 
                 <form action="" method="POST" role="form" enctype="multipart/form-data">
-                    <!-- Nombre usuario -->
+                    <!-- Nombre cliente -->
                     <div class="form-group">
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fas fa-user-plus"></i></div>
+                                <div class="input-group-text"><i class="fas fa-user-tie"></i></div>
                             </div>
-                            <input type="text" class="form-control" name="editarNombre" id="editarNombre">
+                            <input type="text" class="form-control" name="nuevoNombre" id="nuevoNombre" placeholder="Ingrese nombre del cliente">
                         </div>
                     </div>
 
-                    <!-- Alias usuario -->
+                    <!-- Alias cliente -->
                     <div class="form-group">
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fas fa-user-plus"></i></div>
+                                <div class="input-group-text"><i class="fas fa-user-tie"></i></div>
                             </div>
-                            <input type="text" class="form-control" name="editarAlias" id="editarAlias" readonly>
+                            <input type="text" class="form-control" name="nuevoAlias" id="nuevoAlias" placeholder="Ingrese el alias del cliente">
                         </div>
                     </div>
 
-                    <!-- Password -->
+                    <!-- Email cliente -->
                     <div class="form-group">
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fas fa-key"></i></div>
+                                <div class="input-group-text"><i class="fas fa-at"></i></div>
                             </div>
-                            <input type="password" class="form-control" name="editarPassword1" id="editarPassword1" autocomplete="new-password" placeholder="Ingrese su password">
-                            <input type="hidden" id="passwordActual" name="passwordActual">
+                            <input type="email" class="form-control" name="nuevoEmail" id="nuevoEmail" placeholder="Ingrese el email del cliente">
                         </div>
                     </div>
 
-                    <!-- Password 2 -->
+                    <!-- Empresa -->
                     <div class="form-group">
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fas fa-key"></i></div>
+                                <div class="input-group-text"><i class="far fa-building"></i></div>
                             </div>
-                            <input type="password" class="form-control" id="editarPassword2" autocomplete="new-password" placeholder="Reingrese su password">
-                        </div>
-                    </div>
-
-                    <!-- Rol -->
-                    <div class="form-group">
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fas fa-list-ul"></i></div>
-                            </div>
-                            <select class="form-control input-lg" name="editarRol" id="editarRol">
-                                <option value="null" id="editarRolOpt">Seleccione el rol</option>
+                            <select class="form-control input-lg" name="nuevaEmpresa" id="nuevaEmpresa">
+                                <option value="">Seleccione una empresa</option>
                                 <?php
-                                // foreach para rellenar la tabla de roles
-                                /*foreach ($rolesUsuario as $key => $rol) {
-                                    echo '<option value="' . $rol["id_rol_usuario"] . '">' . $rol["nombre_rol_usuario"] . '</option>';
-                                }*/
+                                // foreach para rellenar la tabla de empresas
+                                foreach ($empresas as $key => $empresa) {
+                                    echo '<option value="' . $empresa["id_empresa"] . '">' . $empresa["nombre_empresa"] . '</option>';
+                                }
                                 ?>
                             </select>
+                        </div>
+                    </div>
+
+                    <!-- Teléfono cliente -->
+                    <div class="form-group">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-mobile-alt"></i></div>
+                            </div>
+                            <input type="number" class="form-control" name="nuevoTelefono" id="nuevoTelefono" placeholder="Ingrese el teléfono del cliente">
                         </div>
                     </div>
 
