@@ -1,7 +1,7 @@
 <div class="container-fluid contenedor">
     <h1 class="mt-4">Clientes</h1>
     <hr>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalRegistrarUsuario">Agregar</button><br>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalRegistrarCliente">Agregar</button><br>
     <br>
     <div class="tabla">
         <table id="tablaUser" class="display" style="width:100%">
@@ -10,23 +10,24 @@
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Alias</th>
+                    <th>Email</th>
+                    <th>Empresa</th>
+                    <th>Teléfono</th>
                     <th>Foto</th>
-                    <th>Rol</th>
-                    <th>Ultima Conexión</th>
                     <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                // método del controller que consulta todos los usuarios de la BBDD
+                // método del controller que consulta todos los clientes de la BBDD
                 $columnaBD = null;
                 $valorBD = null;
-                $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
-                $rolesUsuario = ControllerRolesUsuario::controllerMostrarRolesUsuario($columnaBD, $valorBD);
+                //$usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
+                $empresas = ControllerEmpresas::controllerMostrarEmpresas($columnaBD, $valorBD);
 
                 // foreach que permite el llenado automático de los usuarios en la tabla
-                foreach ($usuarios as $key => $usuario) {
+                /*foreach ($usuarios as $key => $usuario) {
                     // id, nombre y alias
                     echo '
                         <tr>
@@ -81,7 +82,7 @@
                         </button>
                     </td>
                     </tr>';
-                }
+                }*/
                 // fin foreach
                 ?>
             </tbody>
@@ -92,14 +93,14 @@
     </div>
 </div>
 
-<!-- Modal Registrar Usuarios -->
-<div class="modal fade" id="modalRegistrarUsuario">
+<!-- Modal Registrar Clientes -->
+<div class="modal fade" id="modalRegistrarCliente">
     <div class="modal-dialog">
         <div class="modal-content">
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Agregar nuevo usuario</h4>
+                <h4 class="modal-title">Agregar nuevo cliente</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -107,61 +108,61 @@
             <div class="modal-body">
 
                 <form action="" method="POST" role="form" enctype="multipart/form-data">
-                    <!-- Nombre usuario -->
+                    <!-- Nombre cliente -->
                     <div class="form-group">
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fas fa-user-plus"></i></div>
+                                <div class="input-group-text"><i class="fas fa-user-tie"></i></div>
                             </div>
-                            <input type="text" class="form-control" name="nuevoNombre" id="nuevoNombre" placeholder="Ingrese su nombre">
+                            <input type="text" class="form-control" name="nuevoNombre" id="nuevoNombre" placeholder="Ingrese nombre del cliente">
                         </div>
                     </div>
 
-                    <!-- Alias usuario -->
+                    <!-- Alias cliente -->
                     <div class="form-group">
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fas fa-user-plus"></i></div>
+                                <div class="input-group-text"><i class="fas fa-user-tie"></i></div>
                             </div>
-                            <input type="text" class="form-control" name="nuevoAlias" id="nuevoAlias" placeholder="Ingrese el alias">
+                            <input type="text" class="form-control" name="nuevoAlias" id="nuevoAlias" placeholder="Ingrese el alias del cliente">
                         </div>
                     </div>
 
-                    <!-- Password -->
+                    <!-- Email cliente -->
                     <div class="form-group">
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fas fa-key"></i></div>
+                                <div class="input-group-text"><i class="fas fa-at"></i></div>
                             </div>
-                            <input type="password" class="form-control" name="nuevoPassword1" id="nuevoPassword1" autocomplete="new-password" placeholder="Ingrese su password">
+                            <input type="email" class="form-control" name="nuevoEmail" id="nuevoEmail" placeholder="Ingrese el email del cliente">
                         </div>
                     </div>
 
-                    <!-- Password 2 -->
+                    <!-- Empresa -->
                     <div class="form-group">
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fas fa-key"></i></div>
+                                <div class="input-group-text"><i class="far fa-building"></i></div>
                             </div>
-                            <input type="password" class="form-control" id="nuevoPassword2" autocomplete="new-password" placeholder="Reingrese su password">
-                        </div>
-                    </div>
-
-                    <!-- Rol -->
-                    <div class="form-group">
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fas fa-list-ul"></i></div>
-                            </div>
-                            <select class="form-control input-lg" name="nuevoRol" id="nuevoRol">
-                                <option value="">Seleccione una opción</option>
+                            <select class="form-control input-lg" name="nuevaEmpresa" id="nuevaEmpresa">
+                                <option value="">Seleccione una empresa</option>
                                 <?php
-                                // foreach para rellenar la tabla de roles
-                                foreach ($rolesUsuario as $key => $rol) {
-                                    echo '<option value="' . $rol["id_rol_usuario"] . '">' . $rol["nombre_rol_usuario"] . '</option>';
+                                // foreach para rellenar la tabla de empresas
+                                foreach ($empresas as $key => $empresa) {
+                                    echo '<option value="' . $empresa["id_empresa"] . '">' . $empresa["nombre_empresa"] . '</option>';
                                 }
                                 ?>
                             </select>
+                        </div>
+                    </div>
+
+                    <!-- Teléfono cliente -->
+                    <div class="form-group">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-mobile-alt"></i></div>
+                            </div>
+                            <input type="number" class="form-control" name="nuevoTelefono" id="nuevoTelefono" placeholder="Ingrese el teléfono del cliente">
                         </div>
                     </div>
 
@@ -177,7 +178,7 @@
                     <div class="form-group" id="errorValidacion">
                     </div>
 
-                    <button type="submit" id="btnCrearUsuario" class="btn btn-primary">Crear Usuario</button>
+                    <button type="submit" id="btnCrearCliente" class="btn btn-primary">Crear Usuario</button>
                 </form>
             </div>
 
@@ -191,7 +192,7 @@
 </div>
 
 <!-- Modal Editar Usuarios -->
-<div class="modal fade" id="modalEditarUsuario">
+<div class="modal fade" id="modalEditarCliente">
     <div class="modal-dialog">
         <div class="modal-content">
 
@@ -256,9 +257,9 @@
                                 <option value="null" id="editarRolOpt">Seleccione el rol</option>
                                 <?php
                                 // foreach para rellenar la tabla de roles
-                                foreach ($rolesUsuario as $key => $rol) {
+                                /*foreach ($rolesUsuario as $key => $rol) {
                                     echo '<option value="' . $rol["id_rol_usuario"] . '">' . $rol["nombre_rol_usuario"] . '</option>';
-                                }
+                                }*/
                                 ?>
                             </select>
                         </div>
@@ -290,16 +291,19 @@
     </div>
 </div>
 
+<!-- JS modulo empresas -->  
+<script src="view/js/clientes.js"></script>
+
 <?php
-// controller: registrar usuario
-$regUsuario = new ControllerUsuarios();
-$regUsuario->controllerRegistrarUsuario();
+// controller: registrar cliente
+$regCliente = new ControllerClientes();
+$regCliente->controllerRegistrarCliente();
 
-// controller: editar usuario
-$editUsuario = new ControllerUsuarios();
-$editUsuario->controllerEditarUsuario();
+// controller: editar cliente
+//$editCliente = new ControllerUsuarios();
+//$editCliente->controllerEditarUsuario();
 
-// controller: eliminar usuario
-$elimUsuario = new ControllerUsuarios();
-$elimUsuario->controllerEliminarUsuario();
+// controller: eliminar cliente
+//$elimCliente = new ControllerUsuarios();
+//$elimCliente->controllerEliminarUsuario();
 ?>

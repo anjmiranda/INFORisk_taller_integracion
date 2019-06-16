@@ -4,7 +4,7 @@ class ControllerClientes
 {
     //___________________________________________________________________________________________________________
     // controller método que permite mostrar clientes
-    public static function controllerMostrarCiente()
+    public static function controllerMostrarCiente($columnaBD, $valorBD)
     {
         $tablaBD = "clientes";
         $respuesta = ModelClientes::modelMostrarClientes($tablaBD, $columnaBD, $valorBD);
@@ -14,13 +14,16 @@ class ControllerClientes
 
     //___________________________________________________________________________________________________________
     // controller método que permite registrar un cliente
-    public static function controllerRegistrarCiente()
+    public static function controllerRegistrarCliente()
     {
-        if (isset($_POST["nuevoCliente"])) {
+        if (isset($_POST["nuevoNombre"])) {
             // expreg para validar nombre del cliente y alias
             if (
-                preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nombreCliente"]) &&
-                preg_match('/^[a-zA-Z0-9]+$/', $_POST["aliasCliente"])
+                preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoNombre"]) &&
+                preg_match('/^[a-zA-Z0-9]+$/', $_POST["nuevoAlias"]) &&
+                preg_match('/^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/', $_POST["nuevoEmail"]) &&
+                preg_match('/^[0-9]+$/', $_POST["nuevaEmpresa"]) &&
+                preg_match('/^[0-9]+$/', $_POST["nuevoTelefono"])
             ) {
 
                 // si no viene foto de cliente, la ruta estará vacía
@@ -30,14 +33,14 @@ class ControllerClientes
                     list($ancho, $alto) = getimagesize($_FILES["nuevaFoto"]["tmp_name"]);
                     $nuevoAncho = 500;
                     $nuevoAlto = 500;
-                    $directorio = "view/componentes/images/usuarios/" . $_POST["nuevoNombre"];
+                    $directorio = "view/componentes/images/clientes/" . $_POST["nuevoAlias"];
                     // try para la creación de directorio
                     try {
                         mkdir($directorio, 0755);
                         // valida si el formato es JPG y luego trata la imagen para guardarla en un nuevo directorio
                         if ($_FILES["nuevaFoto"]["type"] == "image/jpeg") {
                             $aleatorio = mt_rand(100, 999);
-                            $ruta = "view/componentes/images/usuarios/" . $_POST["nuevoNombre"] . "/" . $aleatorio . ".jpg";
+                            $ruta = "view/componentes/images/clientes/" . $_POST["nuevoAlias"] . "/" . $aleatorio . ".jpg";
                             $origen = imagecreatefromjpeg($_FILES["nuevaFoto"]["tmp_name"]);
                             $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
                             imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
@@ -47,7 +50,7 @@ class ControllerClientes
                         // valida si el formato es PNG y luego trata la imagen para guardarla en un nuevo directorio
                         if ($_FILES["nuevaFoto"]["type"] == "image/png") {
                             $aleatorio = mt_rand(100, 999);
-                            $ruta = "view/img/usuarios/" . $_POST["nuevoNombre"] . "/" . $aleatorio . ".png";
+                            $ruta = "view/componentes/images/clientes/" . $_POST["nuevoAlias"] . "/" . $aleatorio . ".png";
                             $origen = imagecreatefrompng($_FILES["nuevaFoto"]["tmp_name"]);
                             $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
                             imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
@@ -57,16 +60,16 @@ class ControllerClientes
                         $ruta = "";
                     }
                 }
-                $tablaBD = "usuarios";
-                // $encriptado captura la variable $_POST["nuevoPassword1"]
-                // y la transforma en una contraseña cifrada
-                $encriptado = hash('sha512', $_POST["nuevoPassword1"]);
+                $tablaBD = "clientes";
                 $arrayDatos = array(
                     "nombre" => $_POST["nuevoNombre"],
                     "alias" => $_POST["nuevoAlias"],
-                    "password" => $encriptado,
-                    "rol" => $_POST["nuevoRol"],
-                    "ruta" => $ruta
+                    "email" => $_POST["nuevoEmail"],
+                    "empresa" => $_POST["nuevaEmpresa"],
+                    "telefono" => $_POST["nuevoTelefono"],
+                    "foto" => $ruta, 
+                    // 2 significa usuario desactivado
+                    "estado" => "2", 
                 );
                 // envío de información al modelo
                 $respuesta = ModelClientes::modelRegistrarCliente($tablaBD, $arrayDatos);
@@ -83,7 +86,7 @@ class ControllerClientes
                         }).then((result)=>{
                             if(result.value)
                             {
-                                window.location = "usuarios";
+                                window.location = "clientes";
                             }
                         });
                     </script>';
