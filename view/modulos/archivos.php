@@ -8,10 +8,11 @@
             <div class="container-fluid contenedor">
                 <h1 class="mt-4">Documentación</h1>
                 <hr>
-                <select class="selectpicker" data-live-search="" data-style="btn-info">
-                    <option data-tokens="ketchup mustard">--Seleccione trabajador--</option>
-                    <option data-tokens="mustard">Hambuerguesa</option>
-                    <option data-tokens="frosting">Pollo con papas fritas</option>
+                <select class="custom-select" id="inputGroupSelect01">
+                    <option selected>Seleccione trabajador</option>
+                    <option value="1">Trabajador 1</option>
+                    <option value="2">Trabajador 2</option>
+                    <option value="3">Trabajador 3</option>
                 </select>
                 <br><br>
                 <!-- <div class="container">
@@ -77,69 +78,144 @@
                 </div> -->
 
                 <div class="row" id="ads">
-                    <!-- Category Card -->
-                    <div class="col-md-4">
+                    <!-- Documentos -->
+                    <div class="col-sm-12 col-md-3">
                         <div class="card rounded">
                             <div class="card-image">
-                                <span class="card-notify-badge">Low KMS</span>
+                                <span class="card-notify-badge">Card</span>
                                 <span class="card-notify-year">2018</span>
                                 <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
                             </div>
-                            <div class="card-image-overlay m-auto">
-                                <span class="card-detail-badge">Used</span>
-                                <span class="card-detail-badge">$28,000.00</span>
-                                <span class="card-detail-badge">13000 Kms</span>
-                            </div>
                             <div class="card-body text-center">
-                                <div class="ad-title m-auto">
-                                    <h5>Honda Accord LX</h5>
-                                </div>
-                                <a class="ad-btn" href="#">View</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card rounded">
-                            <div class="card-image">
-                                <span class="card-notify-badge">Fully-Loaded</span>
-                                <span class="card-notify-year">2017</span>
-                                <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
-                            </div>
-                            <div class="card-image-overlay m-auto">
-                                <span class="card-detail-badge">Used</span>
-                                <span class="card-detail-badge">$28,000.00</span>
-                                <span class="card-detail-badge">13000 Kms</span>
-                            </div>
-                            <div class="card-body text-center">
-                                <div class="ad-title m-auto">
-                                    <h5>Honda CIVIC HATCHBACK LS</h5>
-                                </div>
+                                <button type="button" class="btn btn-success" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
+                                <button type="button" class="btn btn-secondary" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
+                                <button type="button" class="btn btn-warning" title="Modificar archivo"><i class="fas fa-folder-plus"></i></button>
+                                <button type="button" class="btn btn-danger" title="Eliminar archivo"><i class="fas fa-folder-plus"></i></button>
                                 <a class="ad-btn" href="#">View</a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-sm-12 col-md-3">
                         <div class="card rounded">
                             <div class="card-image">
-                                <span class="card-notify-badge">Price Reduced</span>
+                                <span class="card-notify-badge">Card</span>
                                 <span class="card-notify-year">2018</span>
                                 <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
                             </div>
-                            <div class="card-image-overlay m-auto">
-                                <span class="card-detail-badge">Used</span>
-                                <span class="card-detail-badge">$22,000.00</span>
-                                <span class="card-detail-badge">8000 Kms</span>
-                            </div>
                             <div class="card-body text-center">
-                                <div class="ad-title m-auto">
-                                    <h5>Honda Accord Hybrid LT</h5>
-                                </div>
+                                <button type="button" class="btn btn-success" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
+                                <button type="button" class="btn btn-secondary" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
+                                <button type="button" class="btn btn-warning" title="Modificar archivo"><i class="fas fa-folder-plus"></i></button>
+                                <button type="button" class="btn btn-danger" title="Eliminar archivo"><i class="fas fa-folder-plus"></i></button>
                                 <a class="ad-btn" href="#">View</a>
                             </div>
                         </div>
                     </div>
 
+                    <div class="col-sm-12 col-md-3">
+                        <div class="card rounded">
+                            <div class="card-image">
+                                <span class="card-notify-badge">Card</span>
+                                <span class="card-notify-year">2018</span>
+                                <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
+                            </div>
+                            <div class="card-body text-center">
+                                <button type="button" class="btn btn-success" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
+                                <button type="button" class="btn btn-secondary" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
+                                <button type="button" class="btn btn-warning" title="Modificar archivo"><i class="fas fa-folder-plus"></i></button>
+                                <button type="button" class="btn btn-danger" title="Eliminar archivo"><i class="fas fa-folder-plus"></i></button>
+                                <a class="ad-btn" href="#">View</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-3">
+                        <div class="card rounded">
+                            <div class="card-image">
+                                <span class="card-notify-badge">Card</span>
+                                <span class="card-notify-year">2018</span>
+                                <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
+                            </div>
+                            <div class="card-body text-center">
+                                <button type="button" class="btn btn-success" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
+                                <button type="button" class="btn btn-secondary" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
+                                <button type="button" class="btn btn-warning" title="Modificar archivo"><i class="fas fa-folder-plus"></i></button>
+                                <button type="button" class="btn btn-danger" title="Eliminar archivo"><i class="fas fa-folder-plus"></i></button>
+                                <a class="ad-btn" href="#">View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" id="ads">
+                    <div class="col-sm-12 col-md-3">
+                        <div class="card rounded">
+                            <div class="card-image">
+                                <span class="card-notify-badge">Card</span>
+                                <span class="card-notify-year">2018</span>
+                                <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
+                            </div>
+                            <div class="card-body text-center">
+                                <button type="button" class="btn btn-success" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
+                                <button type="button" class="btn btn-secondary" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
+                                <button type="button" class="btn btn-warning" title="Modificar archivo"><i class="fas fa-folder-plus"></i></button>
+                                <button type="button" class="btn btn-danger" title="Eliminar archivo"><i class="fas fa-folder-plus"></i></button>
+                                <a class="ad-btn" href="#">View</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-3">
+                        <div class="card rounded">
+                            <div class="card-image">
+                                <span class="card-notify-badge">Card</span>
+                                <span class="card-notify-year">2018</span>
+                                <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
+                            </div>
+                            <div class="card-body text-center">
+                                <button type="button" class="btn btn-success" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
+                                <button type="button" class="btn btn-secondary" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
+                                <button type="button" class="btn btn-warning" title="Modificar archivo"><i class="fas fa-folder-plus"></i></button>
+                                <button type="button" class="btn btn-danger" title="Eliminar archivo"><i class="fas fa-folder-plus"></i></button>
+                                <a class="ad-btn" href="#">View</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-3">
+                        <div class="card rounded">
+                            <div class="card-image">
+                                <span class="card-notify-badge">Card</span>
+                                <span class="card-notify-year">2018</span>
+                                <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
+                            </div>
+                            <div class="card-body text-center">
+                                <button type="button" class="btn btn-success" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
+                                <button type="button" class="btn btn-secondary" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
+                                <button type="button" class="btn btn-warning" title="Modificar archivo"><i class="fas fa-folder-plus"></i></button>
+                                <button type="button" class="btn btn-danger" title="Eliminar archivo"><i class="fas fa-folder-plus"></i></button>
+                                <a class="ad-btn" href="#">View</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-3">
+                        <div class="card rounded">
+                            <div class="card-image">
+                                <span class="card-notify-badge">Card</span>
+                                <span class="card-notify-year">2018</span>
+                                <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
+                            </div>
+                            <div class="card-body text-center">
+                                <button type="button" class="btn btn-success" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
+                                <button type="button" class="btn btn-secondary" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
+                                <button type="button" class="btn btn-warning" title="Modificar archivo"><i class="fas fa-folder-plus"></i></button>
+                                <button type="button" class="btn btn-danger" title="Eliminar archivo"><i class="fas fa-folder-plus"></i></button>
+                                <a class="ad-btn" href="#">View</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div>
