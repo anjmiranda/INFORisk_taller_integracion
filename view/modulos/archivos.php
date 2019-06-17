@@ -15,67 +15,6 @@
                     <option value="3">Trabajador 3</option>
                 </select>
                 <br><br>
-                <!-- <div class="container">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-4">
-                            <p>Contrato de trabajo</p>
-                            <img src="view/componentes/images/docs.png" class="imgDocs">
-                            <div>
-                                <button type="button" class="btn btn-success">Agregar</button>
-                                <button type="button" class="btn btn-warning">Modificar</button>
-                                <button type="button" class="btn btn-danger">Eliminar</button><br>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-4">
-                            <p>Derecho a saber 'DAS'</p>
-                            <img src="view/componentes/images/docs.png" class="imgDocs">
-                            <div>
-                                <button type="button" class="btn btn-success">Agregar</button>
-                                <button type="button" class="btn btn-warning">Modificar</button>
-                                <button type="button" class="btn btn-danger">Eliminar</button><br>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-4">
-                            <p>Entrega EPP</p>
-                            <img src="view/componentes/images/docs.png" class="imgDocs">
-                            <div>
-                                <button type="button" class="btn btn-success">Agregar</button>
-                                <button type="button" class="btn btn-warning">Modificar</button>
-                                <button type="button" class="btn btn-danger">Eliminar</button><br>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-sm col-md-4">
-                            <p>Procedimientos de trabajo</p>
-                            <img src="view/componentes/images/docs.png" class="imgDocs">
-                            <div>
-                                <button type="button" class="btn btn-success">Agregar</button>
-                                <button type="button" class="btn btn-warning">Modificar</button>
-                                <button type="button" class="btn btn-danger">Eliminar</button><br>
-                            </div>
-                        </div>
-                        <div class="col-sm col-md-4">
-                            <p>Manejo manual de carga</p>
-                            <img src="view/componentes/images/docs.png" class="imgDocs">
-                            <div>
-                                <button type="button" class="btn btn-success">Agregar</button>
-                                <button type="button" class="btn btn-warning">Modificar</button>
-                                <button type="button" class="btn btn-danger">Eliminar</button><br>
-                            </div>
-                        </div>
-                        <div class="col-sm col-md-4">
-                            <p>Uso de extintores</p>
-                            <img src="view/componentes/images/docs.png" class="imgDocs">
-                            <div>
-                                <button type="button" class="btn btn-success">Agregar</button>
-                                <button type="button" class="btn btn-warning">Modificar</button>
-                                <button type="button" class="btn btn-danger">Eliminar</button><br>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
 
                 <div class="row" id="ads">
                     <!-- Documentos -->
@@ -89,8 +28,8 @@
                             <div class="card-body text-center">
                                 <button type="button" class="btn btn-success" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
                                 <button type="button" class="btn btn-secondary" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
-                                <button type="button" class="btn btn-warning" title="Modificar archivo"><i class="fas fa-folder-plus"></i></button>
-                                <button type="button" class="btn btn-danger" title="Eliminar archivo"><i class="fas fa-folder-plus"></i></button>
+                                <button type="button" class="btn btn-warning" title="Modificar archivo"><i class="fas fa-cut"></i></button>
+                                <button type="button" class="btn btn-danger" title="Eliminar archivo"><i class="far fa-trash-alt"></i></button>
                                 <a class="ad-btn" href="#">View</a>
                             </div>
                         </div>

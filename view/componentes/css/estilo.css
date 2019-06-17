@@ -265,6 +265,11 @@ img {
     margin: 2px;
 }
 
+#ads .card .card-body button i:hover {
+    transition: all .3s ease;
+    transform: scale(1.5) rotate(360deg);
+}
+
 #ads .card-image-overlay {
     font-size: 20px;
 }
