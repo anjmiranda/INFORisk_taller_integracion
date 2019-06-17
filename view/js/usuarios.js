@@ -163,7 +163,7 @@ $(document).ready(function () {
       success: function (respuesta) {
         if (respuesta) {
           // si no encuentra un match, la respuesta vendrá false por lo tanto no hará nada
-          $("#nuevoAlias").parent().after('<div class="alert alert-danger alert-dismissible">Este usuario ya existe en la base de datos</div>');
+          $("#nuevoAlias").parent().after('<div class="alert alert-danger alert-dismissible">Este alias ya existe en la base de datos</div>');
           $("#nuevoAlias").val("");
         }
       }

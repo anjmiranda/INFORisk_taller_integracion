@@ -202,7 +202,51 @@ class ControllerClientes
     // controller método que permite eliminar un cliente
     public static function controllerEliminarCliente()
     {
-        // código...
+        if (isset($_GET["idCliente"])) {
+            // enviar por parámetros el id del cliente 
+            $tablaBD = "clientes";
+            $datos = $_GET["idCliente"];
+            if ($_GET["fotoCliente"] != "") {
+                // eliminar la foto del cliente
+                unlink($_GET["fotoCliente"]);
+                // eliminar el directorio del cliente (debe estar vacío primero)
+                rmdir('view/componentes/images/clientes/' . $_GET["aliasCliente"]);
+            }
+            // petición al modelo para eliminar el cliente
+            $respuesta = ModelClientes::modelEliminarCliente($tablaBD, $datos);
+            // verificación de la respuesta del modelo
+            if ($respuesta == "ok") {
+                echo '<script>
+                        swal({
+                            type: "success",
+                            title: "El cliente ha sido borrado de forma correcta",
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar",
+                            closeOnConfirm: false
+                        }).then((result)=>{
+                            if(result.value)
+                            {
+                                window.location = "clientes";
+                            }
+                        });
+                    </script>';
+            } else {
+                echo '<script>
+                        swal({
+                            type: "error",
+                            title: "Error! Consulte con el administrador de sistemas",
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar",
+                            closeOnConfirm: false
+                        }).then((result)=>{
+                            if(result.value)
+                            {
+                                window.location = "clientes";
+                            }
+                        });
+                    </script>';
+            }
+        }
     }
     //___________________________________________________________________________________________________________
 }

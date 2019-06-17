@@ -77,15 +77,38 @@ class ModelClientes
 
     //___________________________________________________________________________________________________________
     // model método que pernite eliminar un cliente
-    public static function modelEliminarCliente()
+    public static function modelEliminarCliente($tablaBD, $datos)
     {
-        // código...
+        $stmt = Conexion::conectar()->prepare("DELETE FROM $tablaBD WHERE id_cliente = :id");
+        $stmt->bindParam(":id", $datos, PDO::PARAM_STR);
+
+        if ($stmt->execute()) {
+            return "ok";
+        } else {
+            return "error";
+        }
+
+        $stmt->close();
+        $stmt = null;
     }
     //___________________________________________________________________________________________________________
 
     //___________________________________________________________________________________________________________
     // model método que pernite activar/desactivar un cliente
     public static function modelActualizarCliente($tablaBD, $columnaBD1, $columnaBD2, $valorBD1, $valorBD2)
-    { }
+    {
+        $stmt = Conexion::conectar()->prepare("UPDATE $tablaBD SET $columnaBD1 = :$columnaBD1 WHERE $columnaBD2 = :$columnaBD2");
+        $stmt->bindParam(":" . $columnaBD1, $valorBD1, PDO::PARAM_STR);
+        $stmt->bindParam(":" . $columnaBD2, $valorBD2, PDO::PARAM_STR);
+
+        if ($stmt->execute()) {
+            return "ok";
+        } else {
+            return "error";
+        }
+
+        $stmt->close();
+        $stmt = null;
+    }
     //___________________________________________________________________________________________________________
 }

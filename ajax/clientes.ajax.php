@@ -30,7 +30,7 @@ class AjaxClientes
     public function ajaxActivarCliente()
     {
         // $tablaBD, $columnaBD, $valorBD
-        $tablaBD = "Cliente";
+        $tablaBD = "clientes";
         $columnaBD1 = "estado_cliente";
         $valorBD1 = $this->activarCliente;
         $columnaBD2 = "id_cliente";
@@ -80,7 +80,7 @@ if (isset($_POST["activarCliente"])) {
 // recibir datos para ejecutar la funcion de validar alias repetidos
 if (isset($_POST["validarCliente"])) {
     $valCliente = new AjaxClientes();
-    $valCliente->validarUsuario = $_POST["validarUsuario"];
+    $valCliente->validarCliente = $_POST["validarCliente"];
     $valCliente->ajaxValidarCliente();
 }
 //___________________________________________________________________________________________________________

@@ -305,6 +305,6 @@ $editCliente = new ControllerClientes();
 $editCliente->controllerEditarCliente();
 
 // controller: eliminar cliente
-//$elimCliente = new ControllerUsuarios();
-//$elimCliente->controllerEliminarUsuario();
+$elimCliente = new ControllerClientes();
+$elimCliente->controllerEliminarCliente();
 ?>
