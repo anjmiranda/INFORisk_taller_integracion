@@ -60,6 +60,7 @@ class ControllerUsuarios
                         $columnaBD2 = "id_usuario";
                         $valorBD2 = $respuesta["id_usuario"];
 
+                        // actualizar último ingreso
                         $ultimoLogin = ModelUsuarios::modelActualizarUsuario($tablaBD, $columnaBD1, $columnaBD2, $valorBD1, $valorBD2);
 
                         if($ultimoLogin == "ok"){
@@ -145,6 +146,16 @@ class ControllerUsuarios
                 );
                 // envío de información al modelo
                 $respuesta = ModelUsuarios::modelRegistrarUsuario($tablaBD, $arrayDatos);
+
+                // rescatar el id del usuario nuevo para crear los registros
+                $columnaBD = "alias_usuario";
+                $valorBD = $_POST["nuevoAlias"];
+                $consulta = controllerMostrarUsuarios($columnaBD, $valorBD);
+                $idUsuario = $consulta["id_usuario"];
+
+                // crear registros de archivos para el usuario
+                $regArchivos = ControllerArchivos::controllerCrearRegArchivos($idUsuario);
+
 
                 // si viene una respuesta "ok" del modelo, quiere decir que se agregó los datos
                 if ($respuesta == "ok") {

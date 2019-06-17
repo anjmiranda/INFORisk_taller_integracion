@@ -265,8 +265,11 @@ img {
     margin: 2px;
 }
 
+#ads .card .card-body button i {
+    transition: all .4s ease;
+}
+
 #ads .card .card-body button i:hover {
-    transition: all .3s ease;
     transform: scale(1.5) rotate(360deg);
 }
 
