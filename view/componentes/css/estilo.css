@@ -4,212 +4,304 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/master/LICENSE)
  */
 
- /*
+
+/*
 -----> DATATABLES
  */
+
 body {
-  overflow-x: hidden;
+    overflow-x: hidden;
 }
 
 #sidebar-wrapper {
-  min-height: 100vh;
-  margin-left: -15rem;
-  -webkit-transition: margin .25s ease-out;
-  -moz-transition: margin .25s ease-out;
-  -o-transition: margin .25s ease-out;
-  transition: margin .25s ease-out;
-
+    min-height: 100vh;
+    margin-left: -15rem;
+    -webkit-transition: margin .25s ease-out;
+    -moz-transition: margin .25s ease-out;
+    -o-transition: margin .25s ease-out;
+    transition: margin .25s ease-out;
 }
 
 #sidebar-wrapper .sidebar-heading {
-  padding: 0.875rem 1.25rem;
-  font-size: 1.2rem;
-  background-color: #2a2a2a;
-  color: #fff;
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+    background-color: #2a2a2a;
+    color: #fff;
 }
 
 #sidebar-wrapper .list-group {
-  width: 15rem;
+    width: 15rem;
 }
 
 #page-content-wrapper {
-  min-width: 100vw;
+    min-width: 100vw;
 }
 
 #wrapper.toggled #sidebar-wrapper {
-  margin-left: 0;
+    margin-left: 0;
 }
 
 @media (min-width: 768px) {
-  #sidebar-wrapper {
-    margin-left: 0;
-  }
-
-  #page-content-wrapper {
-    min-width: 0;
-    width: 100%;
-  }
-
-  #wrapper.toggled #sidebar-wrapper {
-    margin-left: -15rem;
-  }
+    #sidebar-wrapper {
+        margin-left: 0;
+    }
+    #page-content-wrapper {
+        min-width: 0;
+        width: 100%;
+    }
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: -15rem;
+    }
 }
+
 .navbar {
-  background-color: #2a2a2a;
-  color: #fff;
+    background-color: #2a2a2a;
+    color: #fff;
 }
 
-hr{
-
+hr {
     width: 1200px;
     border: 0;
     background-color: #fff;
 }
 
-.contenedor{
-  margin: 0px auto;
-  background-color: #acbed3;
-  color: #fff;
-  padding: 10px;
+.contenedor {
+    margin: 0px auto;
+    background-color: #acbed3;
+    color: #fff;
+    padding: 10px;
 }
 
-.tabla{
-  background-color: #acbed3;
-  color: #fff;/*#2680e3;*/
+.tabla {
+    background-color: #acbed3;
+    color: #fff;
+    /*#2680e3;*/
 }
 
-.display{
-  color:   #111;
+.display {
+    color: #111;
 }
+
 
 /*-----> cabecera <-----*/
-#cabecera nav{
-  background-color: #0c5379;
+
+#cabecera nav {
+    background-color: #0c5379;
 }
+
 
 /*
 -----> email.php 
 */
 
-.contEmail{
-  margin: 0px auto;
-  /*padding: 10px;
+.contEmail {
+    margin: 0px auto;
+    /*padding: 10px;
   width: 600px;
   border: solid 2px;
   border-radius: 8px;*/
-  display: inline-block;
-  text-align: center;
-  background-color: #acbed3;
-  color: #fff;
-  padding: 10px;
-  width: 100%;
+    display: inline-block;
+    text-align: center;
+    background-color: #acbed3;
+    color: #fff;
+    padding: 10px;
+    width: 100%;
 }
 
-.label{
-  margin: 2px auto;
-  padding: 5px;
-  display: inline-block;
-  text-align: left;
-  vertical-align: top;
+.label {
+    margin: 2px auto;
+    padding: 5px;
+    display: inline-block;
+    text-align: left;
+    vertical-align: top;
 }
 
-#form1{
-  margin: 10px auto;
-  display: inline-block;
-  text-align: right;
+#form1 {
+    margin: 10px auto;
+    display: inline-block;
+    text-align: right;
 }
 
-#form1 textarea{
-  width: 400px;
-  height: 150px;
+#form1 textarea {
+    width: 400px;
+    height: 150px;
 }
 
-.boton{
-  display: block;
-  text-align: center;
-  padding: 2px;
+.boton {
+    display: block;
+    text-align: center;
+    padding: 2px;
 }
+
 
 /*
 -----> documentos.php
 */
 
-.imgDocs
-{
-  width: 300px;
-  height: 250px;
-  display: block;
-  border-radius: 5px;
+.imgDocs {
+    width: 300px;
+    height: 250px;
+    display: block;
+    border-radius: 5px;
 }
 
-.container{
-  background-color:#acbed3;
-  color: #fff;
+.container {
+    background-color: #acbed3;
+    color: #fff;
 }
+
 
 /*
 -----> login.php
 */
 
-#ingreso{
-  text-align: center;
-  background-color: #0c5379;
-  position: 100%;
+#ingreso {
+    text-align: center;
+    background-color: #0c5379;
+    position: 100%;
 }
 
-.contelogin{
-  margin: 100px auto;
-  padding: 10px;
-  width: 600px;
-  display: inline-block;
-  text-align: center;
-  border: solid 2px;
-  border-radius: 8px;
-  background-color: #acbed3;
-
+.contelogin {
+    margin: 100px auto;
+    padding: 10px;
+    width: 600px;
+    display: inline-block;
+    text-align: center;
+    border: solid 2px;
+    border-radius: 8px;
+    background-color: #acbed3;
 }
 
-#form2 h1{
-  text-align: center;
+#form2 h1 {
+    text-align: center;
 }
 
-#form2 div{
-  display: inline-block;
-  text-align: center;
+#form2 div {
+    display: inline-block;
+    text-align: center;
 }
 
-#form2{
-  margin: 0px auto;
-  width: 500px;
-  display: block;
-  text-align: center;
+#form2 {
+    margin: 0px auto;
+    width: 500px;
+    display: block;
+    text-align: center;
 }
+
 
 /*-----> index <-----*/
-.contenido-img{
-  /*width: 100%;
+
+.contenido-img {
+    /*width: 100%;
   height: 100%;
   position: absolute;*/
-  padding: 10px;
-  transition: all 0.3s;
+    padding: 10px;
+    transition: all 0.3s;
 }
 
-.contenido{
-  /*width: 100%;
+.contenido {
+    /*width: 100%;
   height: 100%;
   position: absolute;*/
-  padding: 10px;
-  transition: all 0.3s;
+    padding: 10px;
+    transition: all 0.3s;
 }
 
-#menu-icono{
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
+#menu-icono {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
 }
 
 img {
-  cursor: pointer;
-  width: 45px;
-  height: 45px;
+    cursor: pointer;
+}
+
+
+/* cards */
+
+#ads {
+    margin: 30px 0 30px 0;
+}
+
+#ads .card-notify-badge {
+    position: absolute;
+    left: -10px;
+    top: -20px;
+    background: #f2d900;
+    text-align: center;
+    border-radius: 30px 30px 30px 30px;
+    color: #000;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+#ads .card-notify-year {
+    position: absolute;
+    right: -10px;
+    top: -20px;
+    background: #ff4444;
+    border-radius: 50%;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    width: 50px;
+    height: 50px;
+    padding: 15px 0 0 0;
+}
+
+#ads .card-detail-badge {
+    background: #f2d900;
+    text-align: center;
+    border-radius: 30px 30px 30px 30px;
+    color: #000;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+#ads .card:hover {
+    background: #fff;
+    box-shadow: 12px 15px 20px 0px rgba(46, 61, 73, 0.15);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+#ads .card-image-overlay {
+    font-size: 20px;
+}
+
+#ads .card-image-overlay span {
+    display: inline-block;
+}
+
+#ads .ad-btn {
+    text-transform: uppercase;
+    width: 150px;
+    height: 40px;
+    border-radius: 80px;
+    font-size: 16px;
+    line-height: 35px;
+    text-align: center;
+    border: 3px solid #e6de08;
+    display: block;
+    text-decoration: none;
+    margin: 20px auto 1px auto;
+    color: #000;
+    overflow: hidden;
+    position: relative;
+    background-color: #e6de08;
+}
+
+#ads .ad-btn:hover {
+    background-color: #e6de08;
+    color: #1e1717;
+    border: 2px solid #e6de08;
+    background: transparent;
+    transition: all 0.3s ease;
+    box-shadow: 12px 15px 20px 0px rgba(46, 61, 73, 0.15);
+}
+
+#ads .ad-title h5 {
+    text-transform: uppercase;
+    font-size: 18px;
 }

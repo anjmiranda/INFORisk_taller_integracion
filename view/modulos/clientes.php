@@ -173,7 +173,7 @@
                         <div class="panel">Subir Foto</div>
                         <input type="file" name="nuevaFoto" id="nuevaFoto" class="nuevaFoto">
                         <p class="help-block">Peso máximo de la foto: 2 MB </p>
-                        <img src="view/componentes/images/anonimo.jpg" alt="Anonimo" class="img-thumbnail previsualizar">
+                        <img src="view/componentes/images/anonimo.jpg" alt="Anonimo" class="img-thumbnail previsualizar" width="150px">
                     </div>
 
                     <!-- div de errores -->
@@ -271,7 +271,7 @@
                         <div class="panel">Subir Foto</div>
                         <input type="file" name="editarFoto" class="nuevaFoto">
                         <p class="help-block">Peso máximo de la foto: 2 MB </p>
-                        <img src="view/componentes/images/anonimo.jpg" alt="Anonimo" class="img-thumbnail previsualizar">
+                        <img src="view/componentes/images/anonimo.jpg" alt="Anonimo" class="img-thumbnail previsualizar" width="150px">
                         <input type="hidden" id="fotoActual" name="fotoActual">
                     </div>
 

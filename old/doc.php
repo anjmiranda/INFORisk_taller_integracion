@@ -23,7 +23,7 @@
   <!-- DATATABLES -->
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 
-  
+
 
 
 </head>
@@ -79,77 +79,77 @@
         <h1 class="mt-4">Documentación</h1>
         <hr>
         <select class="selectpicker" data-live-search="" data-style="btn-info">
-            <option data-tokens="ketchup mustard">--Seleccione trabajador--</option>
-            <option data-tokens="mustard">Hambuerguesa</option>
-            <option data-tokens="frosting">Pollo con papas fritas</option>
+          <option data-tokens="ketchup mustard">--Seleccione trabajador--</option>
+          <option data-tokens="mustard">Hambuerguesa</option>
+          <option data-tokens="frosting">Pollo con papas fritas</option>
         </select>
-<br><br>
-  <div class="container" >
-    <div class="row">
-      <div class="col-sm-12 col-md-4">
-        <p>Contrato de trabajo</p>
-        <img src="images/docs.png" class="imgDocs" >
-        <div>
-          <button type="button" class="btn btn-success">Agregar</button>
-          <button type="button" class="btn btn-warning">Modificar</button>
-          <button type="button" class="btn btn-danger">Eliminar</button><br>
+        <br><br>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 col-md-4">
+              <p>Contrato de trabajo</p>
+              <img src="images/docs.png" class="imgDocs">
+              <div>
+                <button type="button" class="btn btn-success">Agregar</button>
+                <button type="button" class="btn btn-warning">Modificar</button>
+                <button type="button" class="btn btn-danger">Eliminar</button><br>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+              <p>Derecho a saber 'DAS'</p>
+              <img src="images/docs.png" class="imgDocs">
+              <div>
+                <button type="button" class="btn btn-success">Agregar</button>
+                <button type="button" class="btn btn-warning">Modificar</button>
+                <button type="button" class="btn btn-danger">Eliminar</button><br>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+              <p>Entrega EPP</p>
+              <img src="images/docs.png" class="imgDocs">
+              <div>
+                <button type="button" class="btn btn-success">Agregar</button>
+                <button type="button" class="btn btn-warning">Modificar</button>
+                <button type="button" class="btn btn-danger">Eliminar</button><br>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm col-md-4">
+              <p>Procedimientos de trabajo</p>
+              <img src="images/docs.png" class="imgDocs">
+              <div>
+                <button type="button" class="btn btn-success">Agregar</button>
+                <button type="button" class="btn btn-warning">Modificar</button>
+                <button type="button" class="btn btn-danger">Eliminar</button><br>
+              </div>
+            </div>
+            <div class="col-sm col-md-4">
+              <p>Manejo manual de carga</p>
+              <img src="images/docs.png" class="imgDocs">
+              <div>
+                <button type="button" class="btn btn-success">Agregar</button>
+                <button type="button" class="btn btn-warning">Modificar</button>
+                <button type="button" class="btn btn-danger">Eliminar</button><br>
+              </div>
+            </div>
+            <div class="col-sm col-md-4">
+              <p>Uso de extintores</p>
+              <img src="images/docs.png" class="imgDocs">
+              <div>
+                <button type="button" class="btn btn-success">Agregar</button>
+                <button type="button" class="btn btn-warning">Modificar</button>
+                <button type="button" class="btn btn-danger">Eliminar</button><br>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="col-sm-12 col-md-4">
-        <p>Derecho a saber 'DAS'</p>
-        <img src="images/docs.png" class="imgDocs" >
         <div>
-          <button type="button" class="btn btn-success">Agregar</button>
-          <button type="button" class="btn btn-warning">Modificar</button>
-          <button type="button" class="btn btn-danger">Eliminar</button><br>
+          <hr>
         </div>
-      </div>
-      <div class="col-sm-12 col-md-4">
-        <p>Entrega EPP</p>
-        <img src="images/docs.png" class="imgDocs" >
-        <div>
-          <button type="button" class="btn btn-success">Agregar</button>
-          <button type="button" class="btn btn-warning">Modificar</button>
-          <button type="button" class="btn btn-danger">Eliminar</button><br>
-        </div>
-      </div>
-    </div>
-    <hr>
-    <div class="row">
-      <div class="col-sm col-md-4">
-        <p>Procedimientos de trabajo</p>
-        <img src="images/docs.png" class="imgDocs" >
-        <div>
-          <button type="button" class="btn btn-success">Agregar</button>
-          <button type="button" class="btn btn-warning">Modificar</button>
-          <button type="button" class="btn btn-danger">Eliminar</button><br>
-        </div>
-      </div>
-      <div class="col-sm col-md-4">
-        <p>Manejo manual de carga</p>
-        <img src="images/docs.png" class="imgDocs" >
-        <div>
-          <button type="button" class="btn btn-success">Agregar</button>
-          <button type="button" class="btn btn-warning">Modificar</button>
-          <button type="button" class="btn btn-danger">Eliminar</button><br>
-        </div>
-      </div>
-      <div class="col-sm col-md-4">
-        <p>Uso de extintores</p>
-        <img src="images/docs.png" class="imgDocs" >
-        <div>
-          <button type="button" class="btn btn-success">Agregar</button>
-          <button type="button" class="btn btn-warning">Modificar</button>
-          <button type="button" class="btn btn-danger">Eliminar</button><br>
-        </div>
-      </div>
-    </div>  
-  </div>
-<div>
-  <hr>
-</div>
 
-        
+
       </div>
     </div>
     <!-- /#page-content-wrapper -->
@@ -161,8 +161,8 @@
   <script src="view/jquery/jquery.js"></script>
   <script src="view/js/bootstrap.bundle.js"></script>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.js" ></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" ></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
 
   <!-- Menu Toggle Script -->
@@ -172,10 +172,11 @@
       $("#wrapper").toggleClass("toggled");
     });
 
-  $(document).ready(function() {
-    $('#tablaUser').DataTable();
-  }); 
-</script>
+    $(document).ready(function() {
+      $('#tablaUser').DataTable();
+    });
+  </script>
 
 </body>
+
 </html>

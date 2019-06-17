@@ -140,7 +140,8 @@ class ControllerUsuarios
                     "alias" => $_POST["nuevoAlias"],
                     "password" => $encriptado,
                     "rol" => $_POST["nuevoRol"],
-                    "ruta" => $ruta
+                    "ruta" => $ruta,
+                    "estado" => "2"
                 );
                 // envío de información al modelo
                 $respuesta = ModelUsuarios::modelRegistrarUsuario($tablaBD, $arrayDatos);

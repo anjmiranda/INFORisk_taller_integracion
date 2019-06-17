@@ -30,13 +30,14 @@ class ModelUsuarios
     // model método que pernite registrar un usuario
     public static function modelRegistrarUsuario($tablaBD, $arrayDatos)
     {
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tablaBD(nombre_usuario, alias_usuario, password_usuario, rol_usuario_fk, foto_usuario) 
-            VALUES(:nombre, :alias, :pass, :rol, :ruta)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tablaBD(nombre_usuario, alias_usuario, password_usuario, 
+        rol_usuario_fk, foto_usuario, estado_usuario) VALUES(:nombre, :alias, :pass, :rol, :ruta, :estado)");
         $stmt->bindParam(":nombre", $arrayDatos["nombre"], PDO::PARAM_STR);
         $stmt->bindParam(":alias", $arrayDatos["alias"], PDO::PARAM_STR);
         $stmt->bindParam(":pass", $arrayDatos["password"], PDO::PARAM_STR);
         $stmt->bindParam(":rol", $arrayDatos["rol"], PDO::PARAM_STR);
         $stmt->bindParam(":ruta", $arrayDatos["ruta"], PDO::PARAM_STR);
+        $stmt->bindParam(":estado", $arrayDatos["estado"], PDO::PARAM_STR);
         $mensaje = "";
         if ($stmt->execute()) {
             $mensaje = "ok";

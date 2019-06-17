@@ -69,6 +69,7 @@
            $_GET["ruta"] == "usuarios"    ||
            $_GET["ruta"] == "clientes"    ||
            $_GET["ruta"] == "empresas"    ||
+           $_GET["ruta"] == "archivos"    ||
            $_GET["ruta"] == "salir"    )
         {
           include "modulos/".$_GET["ruta"].".php"; // se concatena la variable
