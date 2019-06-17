@@ -259,6 +259,12 @@ img {
     transition: all 0.3s ease;
 }
 
+#ads .card .card-body button {
+    width: 40px;
+    height: 40px;
+    margin: 2px;
+}
+
 #ads .card-image-overlay {
     font-size: 20px;
 }
