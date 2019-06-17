@@ -193,14 +193,14 @@
     </div>
 </div>
 
-<!-- Modal Editar Usuarios -->
+<!-- Modal Editar Clientes -->
 <div class="modal fade" id="modalEditarCliente">
     <div class="modal-dialog">
         <div class="modal-content">
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Editar usuario</h4>
+                <h4 class="modal-title">Editar cliente</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -214,7 +214,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fas fa-user-tie"></i></div>
                             </div>
-                            <input type="text" class="form-control" name="nuevoNombre" id="nuevoNombre" placeholder="Ingrese nombre del cliente">
+                            <input type="text" class="form-control" name="editarNombre" id="editarNombre">
                         </div>
                     </div>
 
@@ -224,7 +224,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fas fa-user-tie"></i></div>
                             </div>
-                            <input type="text" class="form-control" name="nuevoAlias" id="nuevoAlias" placeholder="Ingrese el alias del cliente">
+                            <input type="text" class="form-control" name="editarAlias" id="editarAlias" readonly>
                         </div>
                     </div>
 
@@ -234,7 +234,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fas fa-at"></i></div>
                             </div>
-                            <input type="email" class="form-control" name="nuevoEmail" id="nuevoEmail" placeholder="Ingrese el email del cliente">
+                            <input type="email" class="form-control" name="editarEmail" id="editarEmail">
                         </div>
                     </div>
 
@@ -244,8 +244,8 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="far fa-building"></i></div>
                             </div>
-                            <select class="form-control input-lg" name="nuevaEmpresa" id="nuevaEmpresa">
-                                <option value="">Seleccione una empresa</option>
+                            <select class="form-control input-lg" name="editarEmpresa" id="editarEmpresa">
+                                <option id="editarEmpresaOpt" value="">Seleccione una empresa</option>
                                 <?php
                                 // foreach para rellenar la tabla de empresas
                                 foreach ($empresas as $key => $empresa) {
@@ -262,7 +262,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fas fa-mobile-alt"></i></div>
                             </div>
-                            <input type="number" class="form-control" name="nuevoTelefono" id="nuevoTelefono" placeholder="Ingrese el teléfono del cliente">
+                            <input type="number" class="form-control" name="editarTelefono" id="editarTelefono">
                         </div>
                     </div>
 
@@ -279,7 +279,7 @@
                     <div class="form-group" id="errorValidacionEditar">
                     </div>
 
-                    <button type="submit" id="btnEditarUsuario" class="btn btn-primary">Editar Usuario</button>
+                    <button type="submit" id="btnEditarCliente" class="btn btn-primary">Editar cliente</button>
                 </form>
             </div>
 
@@ -301,8 +301,8 @@ $regCliente = new ControllerClientes();
 $regCliente->controllerRegistrarCliente();
 
 // controller: editar cliente
-//$editCliente = new ControllerUsuarios();
-//$editCliente->controllerEditarUsuario();
+$editCliente = new ControllerClientes();
+$editCliente->controllerEditarCliente();
 
 // controller: eliminar cliente
 //$elimCliente = new ControllerUsuarios();

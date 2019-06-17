@@ -2,10 +2,12 @@
 
 require_once "Conexion.php";
 
-class ModelClientes{
+class ModelClientes
+{
     //___________________________________________________________________________________________________________
     // model método que permite mostrar un cliente / varios clientes dependiendo de la consulta
-    public static function modelMostrarClientes($tablaBD, $columnaBD, $valorBD){
+    public static function modelMostrarClientes($tablaBD, $columnaBD, $valorBD)
+    {
         if ($columnaBD != null) {
             // si se pasa como argumento $columnaBD con info, quiere decir que la busqueda es a un cliente
             $columna = "";
@@ -51,22 +53,39 @@ class ModelClientes{
 
     //___________________________________________________________________________________________________________
     // model método que pernite editar un cliente
-    public static function modelEditarCliente(){
-        // código...
+    public static function modelEditarCliente($tablaBD, $arrayDatos)
+    {
+        $stmt = Conexion::conectar()->prepare("UPDATE $tablaBD SET nombre_cliente = :nombre, email_cliente = :email, 
+        empresa_cliente_fk = :empresa, telefono_cliente = :telefono, foto_cliente = :foto WHERE alias_cliente = :alias");
+        $stmt->bindParam(":nombre", $arrayDatos["nombre"], PDO::PARAM_STR);
+        $stmt->bindParam(":email", $arrayDatos["email"], PDO::PARAM_STR);
+        $stmt->bindParam(":empresa", $arrayDatos["empresa"], PDO::PARAM_STR);
+        $stmt->bindParam(":telefono", $arrayDatos["telefono"], PDO::PARAM_STR);
+        $stmt->bindParam(":foto", $arrayDatos["foto"], PDO::PARAM_STR);
+        $stmt->bindParam(":alias", $arrayDatos["alias"], PDO::PARAM_STR);
+
+        if ($stmt->execute()) {
+            return "ok";
+        } else {
+            return "error";
+        }
+
+        $stmt->close();
+        $stmt = null;
     }
     //___________________________________________________________________________________________________________
 
     //___________________________________________________________________________________________________________
     // model método que pernite eliminar un cliente
-    public static function modelEliminarCliente(){
+    public static function modelEliminarCliente()
+    {
         // código...
     }
     //___________________________________________________________________________________________________________
 
     //___________________________________________________________________________________________________________
     // model método que pernite activar/desactivar un cliente
-    public static function modelActualizarCliente($tablaBD, $columnaBD1, $columnaBD2, $valorBD1, $valorBD2){
-
-    }
+    public static function modelActualizarCliente($tablaBD, $columnaBD1, $columnaBD2, $valorBD1, $valorBD2)
+    { }
     //___________________________________________________________________________________________________________
 }
