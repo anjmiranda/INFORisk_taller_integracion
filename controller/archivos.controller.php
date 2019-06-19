@@ -1,22 +1,23 @@
 <?php
 
+require "model/tiposarchivos.model.php";
+
 class ControllerArchivos{
     //___________________________________________________________________________________________________________
     // controller método que permite crear registros de archivos
-    public static function controllerCrearRegArchivos($idUsuario){
-        // valores para modelo
-        $tablaBD = "registro_archivos";
-        $valorBD = $idUsuario;
+    public static function controllerCrearRegArchivos($idUsuario, $horaCreacion){
+        // se llaman a los tipos de arhcivos almacenados en la BBDD
+        $tablaBD = "tipos_archivos";
+        $columnaBD = null;
+        $valorBD = null;
+        // obtener los tipos de archivos 
+        $tiposArchivos = ModelTiposArchivos::modelMostrarTiposArchivos($tablaBD, $columnaBD, $valorBD);
+        return $tiposArchivos;
 
-        // tomar la hora de creación de registro
-        date_default_timezone_set('America/Santiago');
+        // foreach para crear 8 registros de usuarios
+        foreach($archivos as $key => $archivo){
 
-        $fecha = date('Y-m-d');
-        $hora = date('H:i:s');
-
-        $fechaActual = $fecha . " " . $hora;
-
-        $respuesta = ModelArchivos::modelCrearRegArchivos($tablaBD, $valorBD, $fechaActual);
+        }
     }
     //___________________________________________________________________________________________________________
 }

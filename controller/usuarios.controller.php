@@ -46,16 +46,10 @@ class ControllerUsuarios
                         $_SESSION["fecha_creacion"] = $respuesta["fechacreacion_usuario"];
                         $_SESSION["ultimo_log"] = $respuesta["ultimolog_usuario"];
 
-                        // actualizar el último acceso del usuario
-                        date_default_timezone_set('America/Santiago');
 
-                        $fecha = date('Y-m-d');
-                        $hora = date('H:i:s');
-
-                        $fechaActual = $fecha . " " . $hora;
                         //$tablaBD, $columnaBD1, $columnaBD2, $valorBD1, $valorBD2
                         $columnaBD1 = "ultimolog_usuario";
-                        $valorBD1 = $fechaActual;
+                        $valorBD1 = ControllerUsuarios::toolsObtenerHora();
 
                         $columnaBD2 = "id_usuario";
                         $valorBD2 = $respuesta["id_usuario"];
@@ -63,12 +57,12 @@ class ControllerUsuarios
                         // actualizar último ingreso
                         $ultimoLogin = ModelUsuarios::modelActualizarUsuario($tablaBD, $columnaBD1, $columnaBD2, $valorBD1, $valorBD2);
 
-                        if($ultimoLogin == "ok"){
+                        if ($ultimoLogin == "ok") {
                             if ($_SESSION["rol"] != "3") {
                                 echo '<script> window.location = "inicio"; </script>';
                             } else {
                                 echo '<script> window.location = "usuarios"; </script>';
-                            } 
+                            }
                         }
                     } else {
                         // alerta usuario desactivado
@@ -147,16 +141,6 @@ class ControllerUsuarios
                 // envío de información al modelo
                 $respuesta = ModelUsuarios::modelRegistrarUsuario($tablaBD, $arrayDatos);
 
-                // rescatar el id del usuario nuevo para crear los registros
-                $columnaBD = "alias_usuario";
-                $valorBD = $_POST["nuevoAlias"];
-                $consulta = controllerMostrarUsuarios($columnaBD, $valorBD);
-                $idUsuario = $consulta["id_usuario"];
-
-                // crear registros de archivos para el usuario
-                $regArchivos = ControllerArchivos::controllerCrearRegArchivos($idUsuario);
-
-
                 // si viene una respuesta "ok" del modelo, quiere decir que se agregó los datos
                 if ($respuesta == "ok") {
                     echo '<script>
@@ -173,6 +157,16 @@ class ControllerUsuarios
                             }
                         });
                     </script>';
+                    // además hacer registro de archivos para los usuarios
+                    // rescatar el id del usuario nuevo para crear los registros
+                    $columnaBD = "alias_usuario";
+                    $valorBD = $_POST["nuevoAlias"];
+                    $consulta = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
+                    $idUsuario = $consulta["id_usuario"];
+                    $registrar = ControllerArchivos::controllerCrearRegArchivos($idUsuario, ControllerUsuarios::toolsObtenerHora());
+
+                    // crear registros de archivos para el usuario
+                    //$regArchivos = ControllerArchivos::controllerCrearRegArchivos($idUsuario, Tools::toolsObtenerHora());
                 }
             } else {
                 echo '<script>
@@ -328,4 +322,20 @@ class ControllerUsuarios
         }
     }
     //___________________________________________________________________________________________________________
+
+    //___________________________________________________________________________________________________________
+    // metodo para obtener hora
+    public static function toolsObtenerHora()
+    {
+        // Herramienta obtener zona horaria
+        date_default_timezone_set('America/Santiago');
+
+        $fecha = date('Y-m-d');
+        $hora = date('H:i:s');
+
+        $fechaActual = $fecha . " " . $hora;
+        return $fechaActual;
+    }
+    //___________________________________________________________________________________________________________
+
 }

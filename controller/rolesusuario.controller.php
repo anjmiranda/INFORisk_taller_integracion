@@ -9,4 +9,5 @@ class ControllerRolesUsuario{
         $respuesta = ModelRolesUsuario::modelMostrarRolesUsuario($tablaBD, $columnaBD, $valorBD);
         return $respuesta;
     }
+    //___________________________________________________________________________________________________________
 }
