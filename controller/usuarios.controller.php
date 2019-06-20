@@ -164,9 +164,6 @@ class ControllerUsuarios
                     $consulta = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
                     $idUsuario = $consulta["id_usuario"];
                     $registrar = ControllerArchivos::controllerCrearRegArchivos($idUsuario, ControllerUsuarios::toolsObtenerHora());
-
-                    // crear registros de archivos para el usuario
-                    //$regArchivos = ControllerArchivos::controllerCrearRegArchivos($idUsuario, Tools::toolsObtenerHora());
                 }
             } else {
                 echo '<script>

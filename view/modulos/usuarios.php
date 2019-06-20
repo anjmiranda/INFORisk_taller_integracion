@@ -290,7 +290,7 @@
     </div>
 </div>
 
-<!-- JS modulo usuarios -->  
+<!-- JS modulo usuarios -->
 <script src="view/js/usuarios.js"></script>
 
 <?php
