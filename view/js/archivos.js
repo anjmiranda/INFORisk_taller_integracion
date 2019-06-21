@@ -16,7 +16,22 @@ $(document).ready(function(){
             processData: false,
             dataType: "json",
             success: function (respuesta){
-                console.log(respuesta);
+                //console.log(respuesta);
+                //debugger;
+
+                $.each( respuesta, function( llave, objeto ) {
+                    //console.log(llave + ": " + respuesta[llave]["id_registro"]);
+                    if(objeto['ubicacion_archivo'] == null){
+                        $('.descargar'+llave).addClass('disabled');
+                        $('.modificar'+llave).addClass('disabled');
+                        $('.eliminar'+llave).addClass('disabled');
+                    }else{
+                        $('.cargar'+llave).addClass('disabled');
+                    }
+                });
+
+                
+                
             }
         });
     })

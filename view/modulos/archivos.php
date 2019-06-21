@@ -22,152 +22,154 @@ $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
             </select>
             <br><br>
 
-            <div class="row" id="ads">
-                <!-- Documentos -->
+            <div id="divArchivos">
+                <div class="row" id="ads">
+                    <!-- Documentos -->
 
-                <!-- Contrato de trabajo -->
-                <div class="col-sm-12 col-md-3">
-                    <div class="card rounded">
-                        <div class="card-image">
-                            <span class="card-notify-badge">Card</span>
-                            <span class="card-notify-year">2018</span>
-                            <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
+                    <!-- Contrato de trabajo -->
+                    <div class="col-sm-12 col-md-3">
+                        <div class="card rounded">
+                            <div class="card-image">
+                                <span class="card-notify-badge">Card</span>
+                                <span class="card-notify-year">2018</span>
+                                <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
+                            </div>
+                            <div class="card-body text-center">
+                                <button type="button" class="btn btn-success cargar0" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
+                                <button type="button" class="btn btn-secondary descargar0" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
+                                <button type="button" class="btn btn-warning modificar0" title="Modificar archivo"><i class="fas fa-cut"></i></button>
+                                <button type="button" class="btn btn-danger eliminar0" title="Eliminar archivo"><i class="far fa-trash-alt"></i></button>
+                                <a class="ad-btn" href="#">View</a>
+                            </div>
                         </div>
-                        <div class="card-body text-center">
-                            <button type="button" class="btn btn-success" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
-                            <button type="button" class="btn btn-secondary" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
-                            <button type="button" class="btn btn-warning" title="Modificar archivo"><i class="fas fa-cut"></i></button>
-                            <button type="button" class="btn btn-danger" title="Eliminar archivo"><i class="far fa-trash-alt"></i></button>
-                            <a class="ad-btn" href="#">View</a>
+                    </div>
+
+                    <!-- Entrega EPPS -->
+                    <div class="col-sm-12 col-md-3">
+                        <div class="card rounded">
+                            <div class="card-image">
+                                <span class="card-notify-badge">Card</span>
+                                <span class="card-notify-year">2018</span>
+                                <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
+                            </div>
+                            <div class="card-body text-center">
+                                <button type="button" class="btn btn-success cargar1" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
+                                <button type="button" class="btn btn-secondary descargar1" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
+                                <button type="button" class="btn btn-warning modificar1" title="Modificar archivo"><i class="fas fa-cut"></i></button>
+                                <button type="button" class="btn btn-danger eliminar1" title="Eliminar archivo"><i class="far fa-trash-alt"></i></button>
+                                <a class="ad-btn" href="#">View</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Examenes Psicosensotecnicos -->
+                    <div class="col-sm-12 col-md-3">
+                        <div class="card rounded">
+                            <div class="card-image">
+                                <span class="card-notify-badge">Card</span>
+                                <span class="card-notify-year">2018</span>
+                                <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
+                            </div>
+                            <div class="card-body text-center">
+                                <button type="button" class="btn btn-success cargar2" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
+                                <button type="button" class="btn btn-secondary descargar2" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
+                                <button type="button" class="btn btn-warning modificar2" title="Modificar archivo"><i class="fas fa-cut"></i></button>
+                                <button type="button" class="btn btn-danger eliminar2" title="Eliminar archivo"><i class="far fa-trash-alt"></i></button>
+                                <a class="ad-btn" href="#">View</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Procedimientos trabajos -->
+                    <div class="col-sm-12 col-md-3">
+                        <div class="card rounded">
+                            <div class="card-image">
+                                <span class="card-notify-badge">Card</span>
+                                <span class="card-notify-year">2018</span>
+                                <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
+                            </div>
+                            <div class="card-body text-center">
+                                <button type="button" class="btn btn-success cargar3" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
+                                <button type="button" class="btn btn-secondary descargar3" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
+                                <button type="button" class="btn btn-warning modificar3" title="Modificar archivo"><i class="fas fa-cut"></i></button>
+                                <button type="button" class="btn btn-danger eliminar3" title="Eliminar archivo"><i class="far fa-trash-alt"></i></button>
+                                <a class="ad-btn" href="#">View</a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Entrega EPPS -->
-                <div class="col-sm-12 col-md-3">
-                    <div class="card rounded">
-                        <div class="card-image">
-                            <span class="card-notify-badge">Card</span>
-                            <span class="card-notify-year">2018</span>
-                            <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
-                        </div>
-                        <div class="card-body text-center">
-                            <button type="button" class="btn btn-success" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
-                            <button type="button" class="btn btn-secondary" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
-                            <button type="button" class="btn btn-warning" title="Modificar archivo"><i class="fas fa-folder-plus"></i></button>
-                            <button type="button" class="btn btn-danger" title="Eliminar archivo"><i class="fas fa-folder-plus"></i></button>
-                            <a class="ad-btn" href="#">View</a>
+                <div class="row" id="ads">
+
+                    <!-- Examenes ocupacionales -->
+                    <div class="col-sm-12 col-md-3">
+                        <div class="card rounded">
+                            <div class="card-image">
+                                <span class="card-notify-badge">Card</span>
+                                <span class="card-notify-year">2018</span>
+                                <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
+                            </div>
+                            <div class="card-body text-center">
+                                <button type="button" class="btn btn-success cargar4" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
+                                <button type="button" class="btn btn-secondary descargar4" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
+                                <button type="button" class="btn btn-warning modificar4" title="Modificar archivo"><i class="fas fa-cut"></i></button>
+                                <button type="button" class="btn btn-danger eliminar4" title="Eliminar archivo"><i class="far fa-trash-alt"></i></button>
+                                <a class="ad-btn" href="#">View</a>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Examenes Psicosensotecnicos -->
-                <div class="col-sm-12 col-md-3">
-                    <div class="card rounded">
-                        <div class="card-image">
-                            <span class="card-notify-badge">Card</span>
-                            <span class="card-notify-year">2018</span>
-                            <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
-                        </div>
-                        <div class="card-body text-center">
-                            <button type="button" class="btn btn-success" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
-                            <button type="button" class="btn btn-secondary" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
-                            <button type="button" class="btn btn-warning" title="Modificar archivo"><i class="fas fa-folder-plus"></i></button>
-                            <button type="button" class="btn btn-danger" title="Eliminar archivo"><i class="fas fa-folder-plus"></i></button>
-                            <a class="ad-btn" href="#">View</a>
+                    <!-- Reglamento interno -->
+                    <div class="col-sm-12 col-md-3">
+                        <div class="card rounded">
+                            <div class="card-image">
+                                <span class="card-notify-badge">Card</span>
+                                <span class="card-notify-year">2018</span>
+                                <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
+                            </div>
+                            <div class="card-body text-center">
+                                <button type="button" class="btn btn-success cargar5" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
+                                <button type="button" class="btn btn-secondary descargar5" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
+                                <button type="button" class="btn btn-warning modificar5" title="Modificar archivo"><i class="fas fa-cut"></i></button>
+                                <button type="button" class="btn btn-danger eliminar5" title="Eliminar archivo"><i class="far fa-trash-alt"></i></button>
+                                <a class="ad-btn" href="#">View</a>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Procedimientos trabajos -->
-                <div class="col-sm-12 col-md-3">
-                    <div class="card rounded">
-                        <div class="card-image">
-                            <span class="card-notify-badge">Card</span>
-                            <span class="card-notify-year">2018</span>
-                            <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
-                        </div>
-                        <div class="card-body text-center">
-                            <button type="button" class="btn btn-success" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
-                            <button type="button" class="btn btn-secondary" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
-                            <button type="button" class="btn btn-warning" title="Modificar archivo"><i class="fas fa-folder-plus"></i></button>
-                            <button type="button" class="btn btn-danger" title="Eliminar archivo"><i class="fas fa-folder-plus"></i></button>
-                            <a class="ad-btn" href="#">View</a>
+                    <!-- Derecho a saber -->
+                    <div class="col-sm-12 col-md-3">
+                        <div class="card rounded">
+                            <div class="card-image">
+                                <span class="card-notify-badge">Card</span>
+                                <span class="card-notify-year">2018</span>
+                                <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
+                            </div>
+                            <div class="card-body text-center">
+                                <button type="button" class="btn btn-success cargar6" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
+                                <button type="button" class="btn btn-secondary descargar6" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
+                                <button type="button" class="btn btn-warning modificar6" title="Modificar archivo"><i class="fas fa-cut"></i></button>
+                                <button type="button" class="btn btn-danger eliminar6" title="Eliminar archivo"><i class="far fa-trash-alt"></i></button>
+                                <a class="ad-btn" href="#">View</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="row" id="ads">
-                
-                <!-- Examenes ocupacionales -->
-                <div class="col-sm-12 col-md-3">
-                    <div class="card rounded">
-                        <div class="card-image">
-                            <span class="card-notify-badge">Card</span>
-                            <span class="card-notify-year">2018</span>
-                            <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
-                        </div>
-                        <div class="card-body text-center">
-                            <button type="button" class="btn btn-success" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
-                            <button type="button" class="btn btn-secondary" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
-                            <button type="button" class="btn btn-warning" title="Modificar archivo"><i class="fas fa-folder-plus"></i></button>
-                            <button type="button" class="btn btn-danger" title="Eliminar archivo"><i class="fas fa-folder-plus"></i></button>
-                            <a class="ad-btn" href="#">View</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Reglamento interno -->
-                <div class="col-sm-12 col-md-3">
-                    <div class="card rounded">
-                        <div class="card-image">
-                            <span class="card-notify-badge">Card</span>
-                            <span class="card-notify-year">2018</span>
-                            <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
-                        </div>
-                        <div class="card-body text-center">
-                            <button type="button" class="btn btn-success" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
-                            <button type="button" class="btn btn-secondary" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
-                            <button type="button" class="btn btn-warning" title="Modificar archivo"><i class="fas fa-folder-plus"></i></button>
-                            <button type="button" class="btn btn-danger" title="Eliminar archivo"><i class="fas fa-folder-plus"></i></button>
-                            <a class="ad-btn" href="#">View</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Derecho a saber -->
-                <div class="col-sm-12 col-md-3">
-                    <div class="card rounded">
-                        <div class="card-image">
-                            <span class="card-notify-badge">Card</span>
-                            <span class="card-notify-year">2018</span>
-                            <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
-                        </div>
-                        <div class="card-body text-center">
-                            <button type="button" class="btn btn-success" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
-                            <button type="button" class="btn btn-secondary" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
-                            <button type="button" class="btn btn-warning" title="Modificar archivo"><i class="fas fa-folder-plus"></i></button>
-                            <button type="button" class="btn btn-danger" title="Eliminar archivo"><i class="fas fa-folder-plus"></i></button>
-                            <a class="ad-btn" href="#">View</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Hoja de vida de conductor -->
-                <div class="col-sm-12 col-md-3">
-                    <div class="card rounded">
-                        <div class="card-image">
-                            <span class="card-notify-badge">Card</span>
-                            <span class="card-notify-year">2018</span>
-                            <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
-                        </div>
-                        <div class="card-body text-center">
-                            <button type="button" class="btn btn-success" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
-                            <button type="button" class="btn btn-secondary" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
-                            <button type="button" class="btn btn-warning" title="Modificar archivo"><i class="fas fa-folder-plus"></i></button>
-                            <button type="button" class="btn btn-danger" title="Eliminar archivo"><i class="fas fa-folder-plus"></i></button>
-                            <a class="ad-btn" href="#">View</a>
+                    <!-- Hoja de vida de conductor -->
+                    <div class="col-sm-12 col-md-3">
+                        <div class="card rounded">
+                            <div class="card-image">
+                                <span class="card-notify-badge">Card</span>
+                                <span class="card-notify-year">2018</span>
+                                <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
+                            </div>
+                            <div class="card-body text-center">
+                                <button type="button" class="btn btn-success cargar7" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
+                                <button type="button" class="btn btn-secondary descargar7" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
+                                <button type="button" class="btn btn-warning modificar7" title="Modificar archivo"><i class="fas fa-cut"></i></button>
+                                <button type="button" class="btn btn-danger eliminar7" title="Eliminar archivo"><i class="far fa-trash-alt"></i></button>
+                                <a class="ad-btn" href="#">View</a>
+                            </div>
                         </div>
                     </div>
                 </div>
