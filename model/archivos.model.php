@@ -48,15 +48,14 @@ class ModelArchivos
 
     //___________________________________________________________________________________________________________
     //  model método que permite editar un archivo
-    public static function modelEditarUsuarios($tablaBD, $arrayDatos)
+    public static function modelEditarRegArchivo($tablaBD, $arrayDatos)
     {
         $stmt = Conexion::conectar()->prepare("UPDATE $tablaBD SET estado_asignacion = :estado, 
         ubicacion_archivo = :ubicacion, fecha_asignacion = :fecha WHERE id_registro = :idRegistro");
-        $stmt->bindParam(":nombre", $arrayDatos["nombre"], PDO::PARAM_STR);
-        $stmt->bindParam(":pass", $arrayDatos["pass"], PDO::PARAM_STR);
-        $stmt->bindParam(":rol", $arrayDatos["rol"], PDO::PARAM_STR);
-        $stmt->bindParam(":ruta", $arrayDatos["ruta"], PDO::PARAM_STR);
-        $stmt->bindParam(":alias", $arrayDatos["alias"], PDO::PARAM_STR);
+        $stmt->bindParam(":estado", $arrayDatos["estado"], PDO::PARAM_STR);
+        $stmt->bindParam(":ubicacion", $arrayDatos["ubicacion"], PDO::PARAM_STR);
+        $stmt->bindParam(":fecha", $arrayDatos["fecha"], PDO::PARAM_STR);
+        $stmt->bindParam(":idRegistro", $arrayDatos["idRegistro"], PDO::PARAM_STR);
 
         if ($stmt->execute()) {
             return "ok";

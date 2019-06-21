@@ -53,21 +53,21 @@ class ControllerArchivos
             $nombreArchivo;
 
             // verificacion de los archivos por id del archivo
-            if($idArchivo == "0"){
+            if ($idArchivo == "0") {
                 $nombreArchivo = "contrato_trabajo.pdf";
-            }else if($nombreArchivo == "1"){
+            } else if ($nombreArchivo == "1") {
                 $nombreArchivo = "entrega_epps.pdf";
-            }else if($nombreArchivo == "2"){
+            } else if ($nombreArchivo == "2") {
                 $nombreArchivo = "examenes_psicosentotecnicos.pdf";
-            }else if($nombreArchivo == "3"){
+            } else if ($nombreArchivo == "3") {
                 $nombreArchivo = "procedimientos_trabajos.pdf";
-            }else if($nombreArchivo == "4"){
+            } else if ($nombreArchivo == "4") {
                 $nombreArchivo = "examen_ocupacional.pdf";
-            }else if($nombreArchivo == "5"){
+            } else if ($nombreArchivo == "5") {
                 $nombreArchivo = "reglamento_interno.pdf";
-            }else if($nombreArchivo == "6"){
+            } else if ($nombreArchivo == "6") {
                 $nombreArchivo = "derecho_saber.pdf";
-            }else if($nombreArchivo == "7"){
+            } else if ($nombreArchivo == "7") {
                 $nombreArchivo = "hojavida_conductor.pdf";
             };
 
@@ -89,19 +89,16 @@ class ControllerArchivos
                     $rutaArchivo = "files/archivos/archivos_" . $respuesta["alias_usuario"] . "/" . $nombreArchivo;
                     move_uploaded_file($_FILES["registrarArchivo"]["tmp_name"], $rutaArchivo);
 
-                    // parametros para actualizar la BBDD
-                    $columnaBD2 = $_POST["upld_tipoArchivo"];
-                    $columnaBD = $_SESSION["proyecto"]["id_proyecto"];
-                    $valorBD = $rutaArchivo;
-
+                    // array con datos de modificacion
                     $arrayDatos = array(
                         "estado" => "1",
                         "ubicacion" => $rutaArchivo,
                         "fecha" => ControllerArchivos::toolsObtenerHora(),
-                        "idRegistro" => $_POST["nuevoRol"],
+                        "idRegistro" => $_POST["upld_registro"]
                     );
+                    $tablaBD = "registro_archivos";
 
-                    $respuesta = ModelProyecto::modelActualizarRegistroTra($tablaBD, $columnaBD2, $columnaBD, $valorBD);
+                    $respuesta = ModelArchivos::modelEditarRegArchivo($tablaBD, $arrayDatos);
 
                     if ($respuesta == "ok") {
                         echo '<script>
@@ -114,7 +111,7 @@ class ControllerArchivos
                                 }).then((result)=>{
                                     if(result.value)
                                     {
-                                        window.location = "proyecto";
+                                        window.location = "archivos";
                                     }
                                 });
                             </script>';
@@ -139,6 +136,114 @@ class ControllerArchivos
                                 swal({
                                         title: "Error!",
                                         text: "Por favor revise nuevamente los datos",
+                                        type: "error",
+                                        confirmButtonText: "cerrar"
+                                    });
+                            </script>';
+                    }
+                } else {
+                    echo '<script>
+                            swal({
+                                    title: "Error al agregar el archivo",
+                                    text: "Revise que tipo de extensión es y vuelva a subirlo",
+                                    type: "error",
+                                    confirmButtonText: "cerrar"
+                                });
+                            </script>';
+                }
+            } else {
+                echo '<script>
+                    swal({
+                            title: "Error al agregar el archivo",
+                            text: "El archivo no puede pesar mas de 20 mb.",
+                            type: "error",
+                            confirmButtonText: "cerrar"
+                        });
+                    </script>';
+            }
+        }
+    }
+    //___________________________________________________________________________________________________________
+
+    //___________________________________________________________________________________________________________
+    // controller método que permite registrar un archivo
+    public static function controllerEditarArchivo()
+    {
+        if (isset($_FILES["editarArchivo"]["tmp_name"])) {
+            $tablaBD = "registro_archivos";
+            $idUsuario = $_POST["edit_usuario"];
+            $idArchivo = $_POST["edit_archivo"];
+            $idRegistro = $_POST["edit_registro"];
+            $nombreArchivo;
+
+            // verificacion de los archivos por id del archivo
+            if ($idArchivo == "0") {
+                $nombreArchivo = "contrato_trabajo.pdf";
+            } else if ($nombreArchivo == "1") {
+                $nombreArchivo = "entrega_epps.pdf";
+            } else if ($nombreArchivo == "2") {
+                $nombreArchivo = "examenes_psicosentotecnicos.pdf";
+            } else if ($nombreArchivo == "3") {
+                $nombreArchivo = "procedimientos_trabajos.pdf";
+            } else if ($nombreArchivo == "4") {
+                $nombreArchivo = "examen_ocupacional.pdf";
+            } else if ($nombreArchivo == "5") {
+                $nombreArchivo = "reglamento_interno.pdf";
+            } else if ($nombreArchivo == "6") {
+                $nombreArchivo = "derecho_saber.pdf";
+            } else if ($nombreArchivo == "7") {
+                $nombreArchivo = "hojavida_conductor.pdf";
+            };
+
+            // evaluación del peso del archivo
+            if ($_FILES["editarArchivo"]["size"] < 20000000) {
+
+                // evaluación de la extesión [PDF]
+                if ($_FILES["editarArchivo"]["type"] == "application/pdf") {
+
+                    // obtener el alias del usuario para modificar archivos en directorios
+                    $columnaBD = "id_usuario";
+                    $valorBD = $idUsuario;
+                    $respuesta = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
+                    
+                    // eliminar el archivo anterior
+                    unlink("files/archivos/archivos_" . $respuesta["alias_usuario"] . "/" . $nombreArchivo);
+
+                    // ruta para guardar el archivo en la carpeta, no sirve para guardar en la BBDD
+                    $rutaArchivo = "files/archivos/archivos_" . $respuesta["alias_usuario"] . "/" . $nombreArchivo;
+                    move_uploaded_file($_FILES["editarArchivo"]["tmp_name"], $rutaArchivo);
+
+                    // array con datos de modificacion
+                    $arrayDatos = array(
+                        "estado" => "1",
+                        "ubicacion" => $rutaArchivo,
+                        "fecha" => ControllerArchivos::toolsObtenerHora(),
+                        "idRegistro" => $_POST["edit_registro"]
+                    );
+                    $tablaBD = "registro_archivos";
+
+                    $respuesta = ModelArchivos::modelEditarRegArchivo($tablaBD, $arrayDatos);
+
+                    if ($respuesta == "ok") {
+                        echo '<script>
+                                swal({
+                                    type: "success",
+                                    title: "El archivo ha sido modificado de forma correcta",
+                                    showConfirmButton: true,
+                                    confirmButtonText: "Cerrar",
+                                    closeOnConfirm: false
+                                }).then((result)=>{
+                                    if(result.value)
+                                    {
+                                        window.location = "archivos";
+                                    }
+                                });
+                            </script>';
+                    } else {
+                        echo '<script>
+                                swal({
+                                        title: "Error!",
+                                        text: "Hubo un error al editar el archivo.",
                                         type: "error",
                                         confirmButtonText: "cerrar"
                                     });
