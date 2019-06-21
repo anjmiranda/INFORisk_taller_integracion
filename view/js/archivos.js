@@ -22,19 +22,58 @@ $(document).ready(function(){
                 $.each( respuesta, function( llave, objeto ) {
                     //console.log(llave + ": " + respuesta[llave]["id_registro"]);
                     if(objeto['ubicacion_archivo'] == null){
-                        $('.descargar'+llave).addClass('disabled');
-                        $('.modificar'+llave).addClass('disabled');
-                        $('.eliminar'+llave).addClass('disabled');
+                        $('.cargar'+llave).attr('idRegistro', objeto["id_registro"]).attr('idArchivo', llave).attr('idUsuario', idUsuario).removeClass('disabled').attr('data-toggle', 'modal').attr('data-target', '#modaRegistrarArchivo');
                     }else{
-                        $('.cargar'+llave).addClass('disabled');
+                        $('.cargar'+llave).addClass('disabled').removeAttr('data-toggle', 'modal').removeAttr('data-target', '#modaRegistrarArchivo');
+                        $('.descargar'+llave).attr('idRegistro', objeto["id_registro"]).attr('idArchivo', llave).attr('idUsuario', idUsuario).removeClass('disabled');
+                        $('.modificar'+llave).attr('idRegistro', objeto["id_registro"]).attr('idArchivo', llave).attr('idUsuario', idUsuario).removeClass('disabled').attr('data-toggle', 'modal').attr('data-target', '#modalModificarUsuario');
+                        $('.eliminar'+llave).attr('idRegistro', objeto["id_registro"]).attr('idArchivo', llave).attr('idUsuario', idUsuario).removeClass('disabled');
                     }
                 });
-
-                
-                
             }
         });
     })
 
+    // funcion que permite heredar al formulario de agrega y modificar archivo los valores de usuario y tipo de archivo
+    $('.botones').click(function(){
+        var usuario = $(this).attr("idUsuario");
+        var archivo = $(this).attr("idArchivo");
+        var registro = $(this).attr("idRegistro");
+        
+        // herencia de los valores a los formularios
+        $('#upld_usuario').val(usuario);
+        $('#upld_archivo').val(archivo);
+        $('#upld_registro').val(registro);
+    });
 
+    $("#registrarArchivo").change(function () {
+        var archivo = this.files[0];
+        var extension = archivo['name'].substr(archivo['name'].lastIndexOf('.')+1);
+
+        // verificar que la imagen solo sea JPEG o PNG
+        if (extension != "pdf") {
+            //limpiar la variable
+            $(".registrarArchivo").val("");
+    
+            swal({
+                title: "Error al subir el archivo",
+                text: "El archivo solo puede ser formato pdf",
+                type: "error",
+                confirmButtonText: "cerrar"
+            });
+        } else if (archivo["size"] > 20000000) {
+            // verificar que archivo no sea superior a 20.000.000 -> 20 mb
+    
+            //limpiar la variable
+            $(".registrarArchivo").val("");
+    
+            // mensaje de error
+            swal({
+                title: "Error al subir el archivo",
+                text: "El archivo no puede pesar mas de 20mb",
+                type: "error",
+                confirmButtonText: "cerrar"
+            });
+        }
+    })
 });

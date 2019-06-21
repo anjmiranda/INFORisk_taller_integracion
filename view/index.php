@@ -37,6 +37,7 @@ session_start();
   <script src="view/componentes/sweetalert2/sweetalert2.all.js"></script>
   <script src="view/js/main.js"></script>
   <script src="view/js/loader.js"></script>
+  
   <!-- Menu Toggle Script -->
   <script>
     $("#menu-toggle").click(function(e) {
