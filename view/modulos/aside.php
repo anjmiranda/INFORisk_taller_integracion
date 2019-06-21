@@ -8,6 +8,7 @@
             <a href="empresas" class="list-group-item list-group-item-action bg-light">Empresas</a>
             <a href="archivos" class="list-group-item list-group-item-action bg-light">Archivos</a>
             <a href="#" class="list-group-item list-group-item-action bg-light">Email</a>
+            <a href="accidentes" class="list-group-item list-group-item-action bg-light">Registro Accidentes</a>
             <a href="#" class="list-group-item list-group-item-action bg-light"></a>
         </div>
     </div>

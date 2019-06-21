@@ -52,8 +52,11 @@ $(document).ready(function(){
         $('#edit_usuario').val(usuario);
         $('#edit_archivo').val(archivo);
         $('#edit_registro').val(registro);
-        //$('#descargarUrl').attr("href", url);
-        //$('#descargarUrl').attr("download", "documento");
+
+        // herencia de los valores a los formularios para eliminar
+        $('#elim_usuario').val(usuario);
+        $('#elim_archivo').val(archivo);
+        $('#elim_registro').val(registro);
     });
 
     $("#registrarArchivo").change(function () {
@@ -85,7 +88,7 @@ $(document).ready(function(){
                 confirmButtonText: "cerrar"
             });
         }
-    })
+    });
 
     $("#editarArchivo").change(function () {
         var archivo = this.files[0];
@@ -115,6 +118,31 @@ $(document).ready(function(){
                 type: "error",
                 confirmButtonText: "cerrar"
             });
+        }
+    })
+
+    $(document).on("click", "#btnEliminarArchivo", function(){
+
+        if($('#elim_registro').val() != ""){
+            // variables de id y ubicación de fotos
+            var idUsuario = $('#elim_usuario').val();
+            var idArchivo = $('#elim_archivo').val();
+            var idRegistro = $('#elim_registro').val();
+        
+            swal({
+                title              : '¿Está seguro que desea eliminar el archivo?',
+                type               : 'warning',
+                showCancelButton   : true,
+                confirmButtonColor : '#3085D6',
+                cancelButtonColor  : '#D33',
+                cancelButtonText   : 'Cancelar',
+                confirmButtonText  : 'Borrar'
+            }).then((result)=>{
+                if(result.value){
+                    // envío de parametros por GET - idUsuario + fotoUsuario para eliminiar el usuario 
+                    window.location = "index.php?ruta=archivos&idUsuario="+idUsuario+"&idArchivo="+idArchivo+"&idRegistro="+idRegistro;
+                }
+            })
         }
     })
 });

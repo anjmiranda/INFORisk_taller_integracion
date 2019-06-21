@@ -50,26 +50,9 @@ class ControllerArchivos
             $idUsuario = $_POST["upld_usuario"];
             $idArchivo = $_POST["upld_archivo"];
             $idRegistro = $_POST["upld_registro"];
-            $nombreArchivo;
 
             // verificacion de los archivos por id del archivo
-            if ($idArchivo == "0") {
-                $nombreArchivo = "contrato_trabajo.pdf";
-            } else if ($nombreArchivo == "1") {
-                $nombreArchivo = "entrega_epps.pdf";
-            } else if ($nombreArchivo == "2") {
-                $nombreArchivo = "examenes_psicosentotecnicos.pdf";
-            } else if ($nombreArchivo == "3") {
-                $nombreArchivo = "procedimientos_trabajos.pdf";
-            } else if ($nombreArchivo == "4") {
-                $nombreArchivo = "examen_ocupacional.pdf";
-            } else if ($nombreArchivo == "5") {
-                $nombreArchivo = "reglamento_interno.pdf";
-            } else if ($nombreArchivo == "6") {
-                $nombreArchivo = "derecho_saber.pdf";
-            } else if ($nombreArchivo == "7") {
-                $nombreArchivo = "hojavida_conductor.pdf";
-            };
+            $nombreArchivo = ControllerArchivos::toolsVerificarArchivo($idArchivo);
 
             // evaluación del peso del archivo
             if ($_FILES["registrarArchivo"]["size"] < 20000000) {
@@ -94,7 +77,7 @@ class ControllerArchivos
                         "estado" => "1",
                         "ubicacion" => $rutaArchivo,
                         "fecha" => ControllerArchivos::toolsObtenerHora(),
-                        "idRegistro" => $_POST["upld_registro"]
+                        "idRegistro" => $idRegistro
                     );
                     $tablaBD = "registro_archivos";
 
@@ -115,22 +98,6 @@ class ControllerArchivos
                                     }
                                 });
                             </script>';
-
-                        // tiempo registro de la subida        
-                        date_default_timezone_set('America/Santiago');
-                        $fecha = date('Y-m-d');
-                        $hora = date('H:i:s');
-                        $fechaCreacionProReg = $fecha . " " . $hora;
-
-                        // crear registro de la subida
-                        $tablaBDReg = "registro_data";
-                        $proyectoDataReg = $_SESSION["proyecto"]["id_proyecto"];
-                        $usuarioDataReg = $_SESSION["id"];
-                        $tipoInputDataReg = "subirArchivo";
-                        $infoDataReg = "subió el archivo " . $_POST["upld_tipoArchivo"] . ".pdf" . " de forma correcta";
-                        $tipoUsuario = $_SESSION["perfil"];
-
-                        $respuesta = ModelProyecto::modelCrearRegistroData($tablaBDReg, $proyectoDataReg, $usuarioDataReg, $tipoInputDataReg, $infoDataReg, $fechaCreacionProReg, $tipoUsuario);
                     } else {
                         echo '<script>
                                 swal({
@@ -174,26 +141,9 @@ class ControllerArchivos
             $idUsuario = $_POST["edit_usuario"];
             $idArchivo = $_POST["edit_archivo"];
             $idRegistro = $_POST["edit_registro"];
-            $nombreArchivo;
 
             // verificacion de los archivos por id del archivo
-            if ($idArchivo == "0") {
-                $nombreArchivo = "contrato_trabajo.pdf";
-            } else if ($nombreArchivo == "1") {
-                $nombreArchivo = "entrega_epps.pdf";
-            } else if ($nombreArchivo == "2") {
-                $nombreArchivo = "examenes_psicosentotecnicos.pdf";
-            } else if ($nombreArchivo == "3") {
-                $nombreArchivo = "procedimientos_trabajos.pdf";
-            } else if ($nombreArchivo == "4") {
-                $nombreArchivo = "examen_ocupacional.pdf";
-            } else if ($nombreArchivo == "5") {
-                $nombreArchivo = "reglamento_interno.pdf";
-            } else if ($nombreArchivo == "6") {
-                $nombreArchivo = "derecho_saber.pdf";
-            } else if ($nombreArchivo == "7") {
-                $nombreArchivo = "hojavida_conductor.pdf";
-            };
+            $nombreArchivo = ControllerArchivos::toolsVerificarArchivo($idArchivo);
 
             // evaluación del peso del archivo
             if ($_FILES["editarArchivo"]["size"] < 20000000) {
@@ -205,7 +155,7 @@ class ControllerArchivos
                     $columnaBD = "id_usuario";
                     $valorBD = $idUsuario;
                     $respuesta = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
-                    
+
                     // eliminar el archivo anterior
                     unlink("files/archivos/archivos_" . $respuesta["alias_usuario"] . "/" . $nombreArchivo);
 
@@ -218,7 +168,7 @@ class ControllerArchivos
                         "estado" => "1",
                         "ubicacion" => $rutaArchivo,
                         "fecha" => ControllerArchivos::toolsObtenerHora(),
-                        "idRegistro" => $_POST["edit_registro"]
+                        "idRegistro" => $idRegistro
                     );
                     $tablaBD = "registro_archivos";
 
@@ -274,6 +224,52 @@ class ControllerArchivos
     //___________________________________________________________________________________________________________
 
     //___________________________________________________________________________________________________________
+    // controller método que permite la evaluación para borrar un usuario
+    public static function controllerBorrarArchivo()
+    {
+        if (isset($_GET["idUsuario"])) {
+            $nombreArchivo = ControllerArchivos::toolsVerificarArchivo($_GET["idArchivo"]);
+
+            // obtener el alias del usuario para modificar archivos en directorios
+            $columnaBD = "id_usuario";
+            $valorBD = $_GET["idUsuario"];
+            $respuesta = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
+
+            // eliminar primero archivo pero no el directorio ya que seguirá operativo
+            unlink("files/archivos/archivos_" . $respuesta["alias_usuario"] . "/" . $nombreArchivo);  
+
+            // array con datos de modificacion
+            $tablaBD = "registro_archivos";
+            $arrayDatos = array(
+                "estado" => "0",
+                "ubicacion" => null,
+                "fecha" => ControllerArchivos::toolsObtenerHora(),
+                "idRegistro" => $_GET["idRegistro"]
+            );
+
+            $respuesta = ModelArchivos::modelEditarRegArchivo($tablaBD, $arrayDatos);
+
+            if ($respuesta == "ok") {
+                echo '<script>
+                        swal({
+                            type: "success",
+                            title: "El archivo ha sido borrado de forma correcta",
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar",
+                            closeOnConfirm: false
+                        }).then((result)=>{
+                            if(result.value)
+                            {
+                                window.location = "archivos";
+                            }
+                        });
+                    </script>';
+            }
+        }
+    }
+    //___________________________________________________________________________________________________________
+
+    //___________________________________________________________________________________________________________
     // metodo para obtener hora
     public static function toolsObtenerHora()
     {
@@ -285,6 +281,32 @@ class ControllerArchivos
 
         $fechaActual = $fecha . " " . $hora;
         return $fechaActual;
+    }
+    //___________________________________________________________________________________________________________
+
+    //___________________________________________________________________________________________________________
+    // metodo que permite saber el nombre del archivo segun el id proporcionado
+    public static function toolsVerificarArchivo($idArchivo)
+    {
+        // verificacion de los archivos por id del archivo
+        if ($idArchivo == "0") {
+            $nombreArchivo = "contrato_trabajo.pdf";
+        } else if ($nombreArchivo == "1") {
+            $nombreArchivo = "entrega_epps.pdf";
+        } else if ($nombreArchivo == "2") {
+            $nombreArchivo = "examenes_psicosentotecnicos.pdf";
+        } else if ($nombreArchivo == "3") {
+            $nombreArchivo = "procedimientos_trabajos.pdf";
+        } else if ($nombreArchivo == "4") {
+            $nombreArchivo = "examen_ocupacional.pdf";
+        } else if ($nombreArchivo == "5") {
+            $nombreArchivo = "reglamento_interno.pdf";
+        } else if ($nombreArchivo == "6") {
+            $nombreArchivo = "derecho_saber.pdf";
+        } else if ($nombreArchivo == "7") {
+            $nombreArchivo = "hojavida_conductor.pdf";
+        };
+        return $nombreArchivo;
     }
     //___________________________________________________________________________________________________________
 }

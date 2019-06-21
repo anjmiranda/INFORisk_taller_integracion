@@ -71,6 +71,7 @@ session_start();
     if (isset($_GET["ruta"])) {
       if (
         $_GET["ruta"] == "inicio"      ||
+        $_GET["ruta"] == "accidentes"      ||
         $_GET["ruta"] == "usuarios"    ||
         $_GET["ruta"] == "clientes"    ||
         $_GET["ruta"] == "empresas"    ||

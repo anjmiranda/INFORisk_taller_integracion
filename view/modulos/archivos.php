@@ -38,7 +38,7 @@ $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
                                 <button type="button" class="botones btn btn-success cargar0 disabled" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
                                 <button type="button" class="botones btn btn-secondary descargar0 disabled" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
                                 <button type="button" class="botones btn btn-warning modificar0 disabled" title="Modificar archivo"><i class="fas fa-cut"></i></button>
-                                <button type="button" class="botones btn btn-danger eliminar0 disabled" title="Eliminar archivo"><i class="far fa-trash-alt"></i></button>
+                                <button type="button" id="btnEliminarArchivo" class="botones btn btn-danger eliminar0 disabled" title="Eliminar archivo"><i class="far fa-trash-alt"></i></button>
                                 <a class="ad-btn" href="#">View</a>
                             </div>
                         </div>
@@ -56,7 +56,7 @@ $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
                                 <button type="button" class="botones btn btn-success cargar1 disabled" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
                                 <button type="button" class="botones btn btn-secondary descargar1 disabled" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
                                 <button type="button" class="botones btn btn-warning modificar1 disabled" title="Modificar archivo"><i class="fas fa-cut"></i></button>
-                                <button type="button" class="botones btn btn-danger eliminar1 disabled" title="Eliminar archivo"><i class="far fa-trash-alt"></i></button>
+                                <button type="button" id="btnEliminarArchivo" class="botones btn btn-danger eliminar1 disabled" title="Eliminar archivo"><i class="far fa-trash-alt"></i></button>
                                 <a class="ad-btn" href="#">View</a>
                             </div>
                         </div>
@@ -71,10 +71,10 @@ $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
                                 <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
                             </div>
                             <div class="card-body text-center">
-                                <button type="button" class="btn btn-success cargar2" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
-                                <button type="button" class="btn btn-secondary descargar2" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
-                                <button type="button" class="btn btn-warning modificar2" title="Modificar archivo"><i class="fas fa-cut"></i></button>
-                                <button type="button" class="btn btn-danger eliminar2" title="Eliminar archivo"><i class="far fa-trash-alt"></i></button>
+                                <button type="button" class="botones btn btn-success cargar2 disabled" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
+                                <button type="button" class="botones btn btn-secondary descargar2 disabled" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
+                                <button type="button" class="botones btn btn-warning modificar2 disabled" title="Modificar archivo"><i class="fas fa-cut"></i></button>
+                                <button type="button" id="btnEliminarArchivo" class="botones btn btn-danger eliminar2 disabled" title="Eliminar archivo"><i class="far fa-trash-alt"></i></button>
                                 <a class="ad-btn" href="#">View</a>
                             </div>
                         </div>
@@ -89,10 +89,10 @@ $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
                                 <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
                             </div>
                             <div class="card-body text-center">
-                                <button type="button" class="btn btn-success cargar3" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
-                                <button type="button" class="btn btn-secondary descargar3" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
-                                <button type="button" class="btn btn-warning modificar3" title="Modificar archivo"><i class="fas fa-cut"></i></button>
-                                <button type="button" class="btn btn-danger eliminar3" title="Eliminar archivo"><i class="far fa-trash-alt"></i></button>
+                                <button type="button" class="botones btn btn-success cargar3 disabled" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
+                                <button type="button" class="botones btn btn-secondary descargar3 disabled" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
+                                <button type="button" class="botones btn btn-warning modificar3 disabled" title="Modificar archivo"><i class="fas fa-cut"></i></button>
+                                <button type="button" id="btnEliminarArchivo" class="botones btn btn-danger eliminar3 disabled" title="Eliminar archivo"><i class="far fa-trash-alt"></i></button>
                                 <a class="ad-btn" href="#">View</a>
                             </div>
                         </div>
@@ -110,10 +110,10 @@ $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
                                 <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
                             </div>
                             <div class="card-body text-center">
-                                <button type="button" class="btn btn-success cargar4" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
-                                <button type="button" class="btn btn-secondary descargar4" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
-                                <button type="button" class="btn btn-warning modificar4" title="Modificar archivo"><i class="fas fa-cut"></i></button>
-                                <button type="button" class="btn btn-danger eliminar4" title="Eliminar archivo"><i class="far fa-trash-alt"></i></button>
+                                <button type="button" class="botones btn btn-success cargar4 disabled" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
+                                <button type="button" class="botones btn btn-secondary descargar4 disabled" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
+                                <button type="button" class="botones btn btn-warning modificar4 disabled" title="Modificar archivo"><i class="fas fa-cut"></i></button>
+                                <button type="button" id="btnEliminarArchivo" class="botones btn btn-danger eliminar4 disabled" title="Eliminar archivo"><i class="far fa-trash-alt"></i></button>
                                 <a class="ad-btn" href="#">View</a>
                             </div>
                         </div>
@@ -128,10 +128,10 @@ $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
                                 <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
                             </div>
                             <div class="card-body text-center">
-                                <button type="button" class="btn btn-success cargar5" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
-                                <button type="button" class="btn btn-secondary descargar5" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
-                                <button type="button" class="btn btn-warning modificar5" title="Modificar archivo"><i class="fas fa-cut"></i></button>
-                                <button type="button" class="btn btn-danger eliminar5" title="Eliminar archivo"><i class="far fa-trash-alt"></i></button>
+                                <button type="button" class="botones btn btn-success cargar5 disabled" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
+                                <button type="button" class="botones btn btn-secondary descargar5 disabled" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
+                                <button type="button" class="botones btn btn-warning modificar5 disabled" title="Modificar archivo"><i class="fas fa-cut"></i></button>
+                                <button type="button" id="btnEliminarArchivo" class="botones btn btn-danger eliminar5 disabled" title="Eliminar archivo"><i class="far fa-trash-alt"></i></button>
                                 <a class="ad-btn" href="#">View</a>
                             </div>
                         </div>
@@ -146,10 +146,10 @@ $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
                                 <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
                             </div>
                             <div class="card-body text-center">
-                                <button type="button" class="btn btn-success cargar6" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
-                                <button type="button" class="btn btn-secondary descargar6" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
-                                <button type="button" class="btn btn-warning modificar6" title="Modificar archivo"><i class="fas fa-cut"></i></button>
-                                <button type="button" class="btn btn-danger eliminar6" title="Eliminar archivo"><i class="far fa-trash-alt"></i></button>
+                                <button type="button" class="botones btn btn-success cargar6 disabled" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
+                                <button type="button" class="botones btn btn-secondary descargar6 disabled" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
+                                <button type="button" class="botones btn btn-warning modificar6 disabled" title="Modificar archivo"><i class="fas fa-cut"></i></button>
+                                <button type="button" id="btnEliminarArchivo" class="botones btn btn-danger eliminar6 disabled" title="Eliminar archivo"><i class="far fa-trash-alt"></i></button>
                                 <a class="ad-btn" href="#">View</a>
                             </div>
                         </div>
@@ -164,20 +164,24 @@ $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
                                 <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
                             </div>
                             <div class="card-body text-center">
-                                <button type="button" class="btn btn-success cargar7" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
-                                <button type="button" class="btn btn-secondary descargar7" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
-                                <button type="button" class="btn btn-warning modificar7" title="Modificar archivo"><i class="fas fa-cut"></i></button>
-                                <button type="button" class="btn btn-danger eliminar7" title="Eliminar archivo"><i class="far fa-trash-alt"></i></button>
+                                <button type="button" class="botones btn btn-success cargar7 disabled" title="Subir archivo"><i class="fas fa-folder-plus"></i></button>
+                                <button type="button" class="botones btn btn-secondary descargar7 disabled" title="Descargar archivo"><i class="fas fa-file-download"></i></button>
+                                <button type="button" class="botones btn btn-warning modificar7 disabled" title="Modificar archivo"><i class="fas fa-cut"></i></button>
+                                <button type="button" id="btnEliminarArchivo" class="botones btn btn-danger eliminar7 disabled" title="Eliminar archivo"><i class="far fa-trash-alt"></i></button>
                                 <a class="ad-btn" href="#">View</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
+
+    <!-- input ocultos para eliminar archivos -->
+    <input type="hidden" id="elim_usuario" name="elim_usuario">
+    <input type="hidden" id="elim_archivo" name="elim_archivo">
+    <input type="hidden" id="elim_registro" name="elim_registro">
+
     <!-- /#page-content-wrapper -->
 
 </div>
@@ -197,7 +201,7 @@ $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
             <div class="modal-body">
 
                 <form action="" method="POST" role="form" enctype="multipart/form-data">
-                    
+
                     <!-- div Archivo -->
                     <div class="form-group">
                         <input type="file" name="registrarArchivo" id="registrarArchivo" class="registrarArchivo">
@@ -238,17 +242,17 @@ $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
 
             <!-- Modal body -->
             <div class="modal-body">
-                    
-                    <!-- div Archivo -->
-                    <div class="form-group">
-                        <a id="descargarUrl">
-                            <img src="view/componentes/images/pdf.png" alt="Anonimo" class="img-thumbnail previsualizar" width="150px">
-                        </a>
-                    </div>
 
-                    <!-- div de errores -->
-                    <div class="form-group" id="errorValidacion">
-                    </div>
+                <!-- div Archivo -->
+                <div class="form-group">
+                    <a id="descargarUrl">
+                        <img src="view/componentes/images/pdf.png" alt="Anonimo" class="img-thumbnail previsualizar" width="150px">
+                    </a>
+                </div>
+
+                <!-- div de errores -->
+                <div class="form-group" id="errorValidacion">
+                </div>
             </div>
 
             <!-- Modal footer -->
@@ -275,7 +279,7 @@ $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
             <div class="modal-body">
 
                 <form action="" method="POST" role="form" enctype="multipart/form-data">
-                    
+
                     <!-- div Archivo -->
                     <div class="form-group">
                         <input type="file" name="editarArchivo" id="editarArchivo" class="editarArchivo">
@@ -303,7 +307,6 @@ $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
     </div>
 </div>
 
-
 <!-- JS modulo usuarios -->
 <script src="view/js/archivos.js"></script>
 
@@ -317,6 +320,6 @@ $editArchivo = new ControllerArchivos();
 $editArchivo->controllerEditarArchivo();
 
 // controller: eliminar usuario
-//$elimArchivo = new ControllerUsuarios();
-//$elimArchivo->controllerEliminarUsuario();
+$elimArchivo = new ControllerArchivos();
+$elimArchivo->controllerBorrarArchivo();
 ?>
