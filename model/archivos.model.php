@@ -5,6 +5,19 @@ require_once "Conexion.php";
 class ModelArchivos
 {
     //___________________________________________________________________________________________________________
+    // model método que permite mostrar registros de archivos
+    public static function modelMostrarRegArchivos($tablaBD, $columnaBD, $valorBD)
+    {
+        // en este caso siempre el select será en función de los 8 tipos de archivos del usuario
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tablaBD WHERE $columnaBD = $valorBD");
+        $stmt->execute();
+        return $stmt->fetchall();
+        $stmt->close();
+        $stmt = null;
+    }
+    //___________________________________________________________________________________________________________
+
+    //___________________________________________________________________________________________________________
     // model método que permite crear los 8 registros correspondientes a cada usuario
     public static function modelCrearRegArchivos($tablaBD, $idNombreFk, $estado, $fecha, $a1, $a2, $a3, $a4, $a5, $a6, $a7, $a8)
     {

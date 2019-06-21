@@ -12,7 +12,7 @@ $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
         <div class="container-fluid contenedor">
             <h1 class="mt-4">Documentación</h1>
             <hr>
-            <select class="custom-select" id="inputGroupSelect01">
+            <select class="custom-select" id="idUsuario">
                 <option selected>Seleccione trabajador</option>
                 <?php
                 foreach ($usuarios as $key => $usuario) {
@@ -24,6 +24,8 @@ $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
 
             <div class="row" id="ads">
                 <!-- Documentos -->
+
+                <!-- Contrato de trabajo -->
                 <div class="col-sm-12 col-md-3">
                     <div class="card rounded">
                         <div class="card-image">
@@ -41,6 +43,7 @@ $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
                     </div>
                 </div>
 
+                <!-- Entrega EPPS -->
                 <div class="col-sm-12 col-md-3">
                     <div class="card rounded">
                         <div class="card-image">
@@ -58,6 +61,7 @@ $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
                     </div>
                 </div>
 
+                <!-- Examenes Psicosensotecnicos -->
                 <div class="col-sm-12 col-md-3">
                     <div class="card rounded">
                         <div class="card-image">
@@ -75,6 +79,7 @@ $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
                     </div>
                 </div>
 
+                <!-- Procedimientos trabajos -->
                 <div class="col-sm-12 col-md-3">
                     <div class="card rounded">
                         <div class="card-image">
@@ -94,6 +99,8 @@ $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
             </div>
 
             <div class="row" id="ads">
+                
+                <!-- Examenes ocupacionales -->
                 <div class="col-sm-12 col-md-3">
                     <div class="card rounded">
                         <div class="card-image">
@@ -111,6 +118,7 @@ $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
                     </div>
                 </div>
 
+                <!-- Reglamento interno -->
                 <div class="col-sm-12 col-md-3">
                     <div class="card rounded">
                         <div class="card-image">
@@ -128,6 +136,7 @@ $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
                     </div>
                 </div>
 
+                <!-- Derecho a saber -->
                 <div class="col-sm-12 col-md-3">
                     <div class="card rounded">
                         <div class="card-image">
@@ -145,6 +154,7 @@ $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
                     </div>
                 </div>
 
+                <!-- Hoja de vida de conductor -->
                 <div class="col-sm-12 col-md-3">
                     <div class="card rounded">
                         <div class="card-image">

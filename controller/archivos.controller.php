@@ -1,9 +1,17 @@
 <?php
 
-require "model/tiposarchivos.model.php";
-
 class ControllerArchivos
 {
+    //___________________________________________________________________________________________________________
+    // controller método que permite mostrar un archivo/varios archivos
+    public static function controllerMostrarRegArchivos($columnaBD, $valorBD)
+    {
+        $tablaBD = "registro_archivos";
+        $respuesta = ModelArchivos::modelMostrarRegArchivos($tablaBD, $columnaBD, $valorBD);
+        return $respuesta;
+    }
+    //___________________________________________________________________________________________________________
+
     //___________________________________________________________________________________________________________
     // controller método que permite crear registros de archivos
     public static function controllerCrearRegArchivos($idUsuario, $fechaCreacion)
