@@ -7,7 +7,7 @@ class ControllerIncidentes
     public static function controllerMostrarIncidentes($columnaBD, $valorBD)
     {
         $tablaBD = "registro_incidentes";
-        $respuesta = ModelEmpresas::modelMostrarEmpresas($tablaBD, $columnaBD, $valorBD);
+        $respuesta = ModelIncidentes::modelMostrarIncidentes($tablaBD, $columnaBD, $valorBD);
         return $respuesta;
     }
     //___________________________________________________________________________________________________________
@@ -87,7 +87,7 @@ class ControllerIncidentes
                     "comentarios" => $_POST["editarComentario"]
                 );
 
-                $respuesta = ModelEmpresas::modelEditarEmpresa($tablaBD, $arrayDatos);
+                $respuesta = ModelIncidentes::modelEditarIncidente($tablaBD, $arrayDatos);
                 if ($respuesta == "ok") {
                     echo '<script>
                         swal({

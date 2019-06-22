@@ -23,67 +23,55 @@
                 $valorBD = null;
                 $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
                 $tipoIncidentes = ControllerTiposIncidentes::controllerMostrarTiposIncidentes($columnaBD, $valorBD);
+                $regIncidentes = ControllerIncidentes::controllerMostrarIncidentes($columnaBD, $valorBD);
 
                 // foreach que permite el llenado automático de los usuarios en la tabla
-                /*foreach ($usuarios as $key => $usuario) {
+                foreach ($regIncidentes as $key => $regIncidente) {
                     // id, nombre y alias
                     echo '
                         <tr>
-                        <td>' . $usuario["id_usuario"] . '</td>
-                        <td>' . $usuario["nombre_usuario"] . '</td>
-                        <td>' . $usuario["alias_usuario"] . '</td>';
+                        <td>' . $regIncidente["id_registro_incidente"] . '</td>
+                        <td>' . $regIncidente["titulo_registro_incidente"] . '</td>';
 
-                    // foto del usuario si muestra la información o no
-                    if ($usuario["foto_usuario"] != null) {
-                        echo
-                            '<td>
-                              <img src="' . $usuario["foto_usuario"] . '" class="img-thumbnail" width="40px" alt="Usuario">
-                            </td>';
-                    } else {
-                        echo
-                            '<td>
-                              <img src="view/componentes/images/anonimo.jpg" class="img-thumbnail" width="40px" alt="Usuario">
-                            </td>';
-                    }
-                    // rol usuario / foreach para recorrer la lista de roles
-                    foreach ($rolesUsuario as $key => $rol) {
-                        if ($rol["id_rol_usuario"] == $usuario["rol_usuario_fk"]) {
-                            echo '<td>' . $rol["nombre_rol_usuario"] . '</td>';
+                    // tipo de accidente
+                    foreach ($tipoIncidentes as $key => $tipoIncidente) {
+                        if ($regIncidente["tipo_registro_incidente_fk"] == $tipoIncidente["id_tipo_incidente"]) {
+                            echo '<td>' . $tipoIncidente["nombre_tipo_incidente"] . '</td>';
                             break;
                         }
                     }
 
-                    // ultima conexion
-                    echo '<td>' . $usuario["ultimolog_usuario"] . '</td>';
+                    // fecha
+                    echo '<td>' . $regIncidente["fecha_registro_incidente"] . '</td>';
 
-                    // estado usuario
-                    if ($usuario["estado_usuario"] == 1) {
-                        echo '
-                        <td>
-                            <span class="btnEditarUsuario label btn-success btn-xs btnActivar" idUsuario="' . $usuario["id_usuario"] . '" estadoUsuario="2">Activado</span>
-                        </td>';
-                    } else if ($usuario["estado_usuario"] == 2) {
-                        echo '
-                        <td>
-                            <span class="btnEditarUsuario label btn-danger btn-xs btnActivar" idUsuario="' . $usuario["id_usuario"] . '" estadoUsuario="1">Desactivado</span>
-                        </td>';
+                    // afectado
+                    foreach ($usuarios as $key => $usuario) {
+                        if ($regIncidente["afectado_registro_incidente_fk"] == $usuario["id_usuario"]) {
+                            echo '<td>' . $usuario["nombre_usuario"] . '</td>';
+                            break;
+                        }
+                    }
+
+                    // prevencionista
+                    foreach ($usuarios as $key => $usuario) {
+                        if ($_SESSION["id"] == $usuario["id_usuario"]) {
+                            echo '<td>' . $usuario["nombre_usuario"] . '</td>';
+                            break;
+                        }
                     }
 
                     // acciones de modificar o eliminar
                     echo '
                     <td>
-                        <button class="btn btn-success btnConsultarUsuario" idUsuario="' . $usuario["id_usuario"] . '" data-toggle="modal" data-target="#modalConsultarUsuario">
+                        <button class="btn btn-warning btnEditarIncidente" idIncidente="' . $regIncidente["id_registro_incidente"] . '" data-toggle="modal" data-target="#modalEditarIncidente">
                             <i class="fas fa-edit"></i>
                         </button>
-                        <button class="btn btn-warning btnEditarUsuario" idUsuario="' . $usuario["id_usuario"] . '" data-toggle="modal" data-target="#modalEditarUsuario">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button class="btn btn-danger btnEliminarUsuario" idUsuario="' . $usuario["id_usuario"] . '" fotoUsuario="' . $usuario["foto_usuario"] . '" aliasUsuario="' . $usuario["alias_usuario"] . '">
+                        <button class="btn btn-danger btnEliminarIncidente" idIncidente="' . $regIncidente["id_registro_incidente"] . '">
                           <i class="fas fa-user-times"></i>
                         </button>
                     </td>
                     </tr>';
-                }*/
+                }
                 // fin foreach
                 ?>
             </tbody>
@@ -95,7 +83,7 @@
 </div>
 
 <!-- Modal Registrar incidente -->
-<div class="modal fade" id="modalRegistrarUsuario">
+<div class="modal fade" id="modalRegistrarIncidente">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
 
@@ -276,14 +264,14 @@
 
 <?php
 // controller: registrar usuario
-$regIncidente = new ControllerUsuarios();
-$regUsuario->controllerRegistrarUsuario();
+$regIncidente = new ControllerIncidentes();
+$regUsuario->controllerRegistrarIncidente();
 
 // controller: editar usuario
-$editUsuario = new ControllerUsuarios();
-$editUsuario->controllerEditarUsuario();
+$editIncidente = new ControllerIncidentes();
+$editIncidente->controllerEditarIncidente();
 
 // controller: eliminar usuario
-$elimUsuario = new ControllerUsuarios();
-$elimUsuario->controllerEliminarUsuario();
+$elimIncidente = new ControllerIncidentes();
+$elimIncidente->controllerEliminarIncidente();
 ?>
