@@ -1,7 +1,7 @@
 <div class="container-fluid contenedor">
     <h1 class="mt-4">Registro de accidentes</h1>
     <hr>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalRegistrarUsuario">Agregar</button><br>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalRegistrarIncidente">Agregar</button><br>
     <br>
     <div class="tabla">
         <table id="tablaUser" class="display" style="width:100%">
@@ -18,14 +18,14 @@
             </thead>
             <tbody>
                 <?php
-                // método del controller que consulta todos los usuarios de la BBDD
+                // método del controller que consulta todos los incidentes de la BBDD
                 $columnaBD = null;
                 $valorBD = null;
                 $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
                 $tipoIncidentes = ControllerTiposIncidentes::controllerMostrarTiposIncidentes($columnaBD, $valorBD);
                 $regIncidentes = ControllerIncidentes::controllerMostrarIncidentes($columnaBD, $valorBD);
 
-                // foreach que permite el llenado automático de los usuarios en la tabla
+                // foreach que permite el llenado automático de los incidentes en la tabla
                 foreach ($regIncidentes as $key => $regIncidente) {
                     // id, nombre y alias
                     echo '
@@ -263,15 +263,15 @@
 <script src="view/js/incidentes.js"></script>
 
 <?php
-// controller: registrar usuario
+// controller: registrar incidente
 $regIncidente = new ControllerIncidentes();
-$regUsuario->controllerRegistrarIncidente();
+$regIncidente->controllerRegistrarIncidente();
 
-// controller: editar usuario
+// controller: editar incidente
 $editIncidente = new ControllerIncidentes();
 $editIncidente->controllerEditarIncidente();
 
-// controller: eliminar usuario
+// controller: eliminar incidente
 $elimIncidente = new ControllerIncidentes();
 $elimIncidente->controllerEliminarIncidente();
 ?>
