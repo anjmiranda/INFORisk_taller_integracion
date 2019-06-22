@@ -22,10 +22,10 @@ class ControllerIncidentes
                 preg_match('/^(\d{2}\.\d{3}\.\d{3}-)([a-zA-Z]{1}$|\d{1}$)/', $_POST["nombreIncidente"]) &&
                 preg_match('/^(\d{2}\.\d{3}\.\d{3}-)([a-zA-Z]{1}$|\d{1}$)/', $_POST["comentariosIncidente"])
             ) {
-                $tablaBD = "empresas";
+                $tablaBD = "registro_incidentes";
                 // array de datos: debe incluir rut, nombre, alias, direccion, giro y foto de empresa
                 $arrayDatos = array(
-                    "titulo" => $_POST["nombreIncidente"],
+                    "titulo" => $_POST["nuevoTitulo"],
                     "tipoIncidente" => $_POST["nuevoTipoIncidente"],
                     "fecha" => ControllerArchivos::toolsObtenerHora(),
                     "afectado" => $_POST["nuevoAfectado"],
@@ -33,7 +33,7 @@ class ControllerIncidentes
                     "comentarios" => $_POST["nuevoComentario"]
                 );
                 // envío de información al modelo
-                $respuesta = ModelEmpresas::modelRegistrarEmpresa($tablaBD, $arrayDatos);
+                $respuesta = ModelIncidentes::modelRegistrarIncidente($tablaBD, $arrayDatos);
 
                 // si viene una respuesta "ok" del modelo, quiere decir que se agregó los datos
                 if ($respuesta == "ok") {
@@ -75,48 +75,16 @@ class ControllerIncidentes
                 preg_match('/^(\d{2}\.\d{3}\.\d{3}-)([a-zA-Z]{1}$|\d{1}$)/', $_POST["editarIncidente"]) &&
                 preg_match('/^(\d{2}\.\d{3}\.\d{3}-)([a-zA-Z]{1}$|\d{1}$)/', $_POST["editComentariosIncidente"])
             ) {
-                $ruta = $_POST["fotoActual"];
-                // se verifica si la variable editarFoto no viene vacía para reemplazar. 
-                // si viene con datos se elimina la foto actual y se reemplaza
-                if (isset($_FILES["editarFoto"]["tmp_name"]) && !empty($_FILES["editarFoto"]["tmp_name"])) {
-                    list($ancho, $alto) = getimagesize($_FILES["editarFoto"]["tmp_name"]);
-                    $nuevoAncho = 500;
-                    $nuevoAlto = 500;
-                    $directorio = "view/componentes/images/empresas/" . $_POST["editarAlias"];
-                    if (!empty($_POST["fotoActual"])) {
-                        unlink($_POST["fotoActual"]);
-                    } else {
-                        mkdir($directorio, 0755);
-                    }
-                    // en caso que la foto venga en formato jpeg
-                    if ($_FILES["editarFoto"]["type"] == "image/jpeg") {
-                        $aleatorio = mt_rand(100, 999);
-                        $ruta = "view/componentes/images/empresas/" . $_POST["editarAlias"] . "/" . $aleatorio . ".jpg";
-                        $origen = imagecreatefromjpeg($_FILES["editarFoto"]["tmp_name"]);
-                        $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-                        imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-                        imagejpeg($destino, $ruta);
-                    }
-                    // en caso que la foto venga en png
-                    if ($_FILES["editarFoto"]["type"] == "image/png") {
-                        $aleatorio = mt_rand(100, 999);
-                        $ruta = "view/componentes/images/empresas/" . $_POST["editarAlias"] . "/" . $aleatorio . ".png";
-                        $origen = imagecreatefrompng($_FILES["editarFoto"]["tmp_name"]);
-                        $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-                        imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-                        imagepng($destino, $ruta);
-                    }
-                }
                 // tabla de la BBDD
-                $tablaBD = "empresas";
-                // array de datos para enviar al modelo
+                $tablaBD = "registro_incidentes";
+                // array de datos: debe incluir rut, nombre, alias, direccion, giro y foto de empresa
                 $arrayDatos = array(
-                    "rut" => $_POST["editarRut"],
-                    "nombre" => $_POST["editarNombre"],
-                    "alias" => $_POST["editarAlias"],
-                    "direccion" => $_POST["editarDireccion"],
-                    "giro" => $_POST["editarGiro"],
-                    "foto" => $ruta
+                    "titulo" => $_POST["editarTitulo"],
+                    "tipoIncidente" => $_POST["editarTipoIncidente"],
+                    "fecha" => ControllerArchivos::toolsObtenerHora(),
+                    "afectado" => $_POST["editarAfectado"],
+                    "prevencionista" => $_SESSION["id"],
+                    "comentarios" => $_POST["editarComentario"]
                 );
 
                 $respuesta = ModelEmpresas::modelEditarEmpresa($tablaBD, $arrayDatos);
@@ -124,14 +92,14 @@ class ControllerIncidentes
                     echo '<script>
                         swal({
                             type: "success",
-                            title: "La empresa ha sido modificada de forma correcta",
+                            title: "El incidente ha sido modificada de forma correcta",
                             showConfirmButton: true,
                             confirmButtonText: "Cerrar",
                             closeOnConfirm: false
                         }).then((result)=>{
                             if(result.value)
                             {
-                                window.location = "empresas";
+                                window.location = "incidentes";
                             }
                         });
                     </script>';
@@ -147,7 +115,7 @@ class ControllerIncidentes
                         }).then((result)=>{
                             if(result.value)
                             {
-                                window.location = "empresas";
+                                window.location = "incidentes";
                             }
                         });
                     </script>';
@@ -157,34 +125,29 @@ class ControllerIncidentes
     //___________________________________________________________________________________________________________
 
     //___________________________________________________________________________________________________________
-    // controller método que permite eliminar una empresa
-    public static function controllerEliminarEmpresa()
+    // controller método que permite eliminar un incidente
+    public static function controllerEliminarIncidente()
     {
-        if (isset($_GET["idEmpresa"])) {
+        if (isset($_GET["idIncidente"])) {
             // enviar por parámetros el id de la empresa
-            $tablaBD = "empresas";
-            $datos = $_GET["idEmpresa"];
-            if ($_GET["fotoEmpresa"] != "") {
-                // eliminar la foto de la empresa
-                unlink($_GET["fotoEmpresa"]);
-                // eliminar el directorio de la empresa (debe estar vacío)
-                rmdir('view/componentes/images/empresas/' . $_GET["aliasEmpresa"]);
-            }
-            // petición al modelo para eliminar la empresa
-            $respuesta = ModelEmpresas::modelEliminarEmpresa($tablaBD, $datos);
+            $tablaBD = "registro_incidentes";
+            $datos = $_GET["idIncidente"];
+
+            // petición al modelo para eliminar el incidente
+            $respuesta = ModelIncidentes::modelEliminarIncidente($tablaBD, $datos);
             // verificación de la respuesta del modelo
             if ($respuesta == "ok") {
                 echo '<script>
                         swal({
                             type: "success",
-                            title: "La empresa ha sido borrada de forma correcta",
+                            title: "El incidente ha sido borrado de forma correcta",
                             showConfirmButton: true,
                             confirmButtonText: "Cerrar",
                             closeOnConfirm: false
                         }).then((result)=>{
                             if(result.value)
                             {
-                                window.location = "empresas";
+                                window.location = "incidentes";
                             }
                         });
                     </script>';

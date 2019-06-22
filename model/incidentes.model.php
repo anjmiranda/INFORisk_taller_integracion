@@ -53,17 +53,19 @@ class ModelIncidentes
     //___________________________________________________________________________________________________________
 
     //___________________________________________________________________________________________________________
-    //  model método que permite editar empresa
-    public static function modelEditarEmpresa($tablaBD, $arrayDatos)
+    //  model método que permite editar incidente
+    public static function modelEditarIncidente($tablaBD, $arrayDatos)
     {
-        $stmt = Conexion::conectar()->prepare("UPDATE $tablaBD SET rut_empresa = :rut, nombre_empresa = :nombre, 
-        direccion_empresa = :direccion, giro_empresa = :giro, foto_empresa = :foto WHERE alias_empresa = :alias");
-        $stmt->bindParam(":rut", $arrayDatos["rut"], PDO::PARAM_STR);
-        $stmt->bindParam(":nombre", $arrayDatos["nombre"], PDO::PARAM_STR);
-        $stmt->bindParam(":direccion", $arrayDatos["direccion"], PDO::PARAM_STR);
-        $stmt->bindParam(":giro", $arrayDatos["giro"], PDO::PARAM_STR);
-        $stmt->bindParam(":foto", $arrayDatos["foto"], PDO::PARAM_STR);
-        $stmt->bindParam(":alias", $arrayDatos["alias"], PDO::PARAM_STR);
+        $stmt = Conexion::conectar()->prepare("UPDATE $tablaBD SET titulo_registro_incidente = :titulo, tipo_registrio_incidente_fk = :tipoIncidente,
+        fecha_registro_incidente = :fecha, afectado_registro_incidente_fk = :afectado, prevencionista_registro_incidente_fk = :prevencionista,
+        comentarios_registro_incidente = :comentarios WHERE id_registro_incidente = :idActual");
+        $stmt->bindParam(":titulo", $arrayDatos["titulo"], PDO::PARAM_STR);
+        $stmt->bindParam(":tipoIncidente", $arrayDatos["tipoIncidente"], PDO::PARAM_STR);
+        $stmt->bindParam(":fecha", $arrayDatos["fecha"], PDO::PARAM_STR);
+        $stmt->bindParam(":afectado", $arrayDatos["afectado"], PDO::PARAM_STR);
+        $stmt->bindParam(":prevencionista", $arrayDatos["prevencionista"], PDO::PARAM_STR);
+        $stmt->bindParam(":comentarios", $arrayDatos["comentarios"], PDO::PARAM_STR);
+        $stmt->bindParam(":idActual", $arrayDatos["idActual"], PDO::PARAM_STR);
 
         if ($stmt->execute()) {
             return "ok";
@@ -77,10 +79,10 @@ class ModelIncidentes
     //___________________________________________________________________________________________________________
 
     //___________________________________________________________________________________________________________    
-    // model método que permite eliminar empresa
-    public static function modelEliminarEmpresa($tablaBD, $datos)
+    // model método que permite eliminar incidente
+    public static function modelEliminarIncidente($tablaBD, $datos)
     {
-        $stmt = Conexion::conectar()->prepare("DELETE FROM $tablaBD WHERE id_empresa = :id");
+        $stmt = Conexion::conectar()->prepare("DELETE FROM $tablaBD WHERE id_registro_incidente = :id");
         $stmt->bindParam(":id", $datos, PDO::PARAM_STR);
 
         if ($stmt->execute()) {

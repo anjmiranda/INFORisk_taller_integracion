@@ -88,11 +88,11 @@ $(document).ready(function () {
             dataType: "json",
             success: function (respuesta) {
                 // procesamiento de los datos que vienen de la BBDD
-                $("#editarRut").val(respuesta["rut_empresa"]);
-                $("#editarNombre").val(respuesta["nombre_empresa"]);
-                $("#editarAlias").val(respuesta["alias_empresa"]);
-                $("#editarDireccion").val(respuesta["direccion_empresa"]);
-                $("#editarGiro").val(respuesta["giro_empresa"]);
+                $("#editarTitulo").val(respuesta["titulo_registro_incidente"]);
+                $("#editarTipoIncidente").val(respuesta["tipo_registro_incidente_fk"]);
+                $("#editarAfectado").val(respuesta["afectado_registro_incidentes_fk"]);
+                $("#editarComentario").val(respuesta["comentarios_registro_incidente"]);
+                $("#idActual").val(respuesta["id_registro_incidente"]);
             }
         });
     });
@@ -116,7 +116,7 @@ $(document).ready(function () {
         }).then((result) => {
             if (result.value) {
                 // envío de parametros por GET - idIncidente 
-                window.location = "index.php?ruta=incidente&idIncidente=";
+                window.location = "index.php?ruta=incidente&idIncidente=" + idIncidente;
             }
         })
     })

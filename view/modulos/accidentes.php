@@ -204,6 +204,7 @@
                                 <div class="input-group-text"><i class="fas fa-user-plus"></i></div>
                             </div>
                             <input type="text" class="form-control" name="editarTitulo" id="editarTitulo" placeholder="Ingrese su nombre del incidente">
+                            <input type="hidden" id="idActual" name="idActual">
                         </div>
                     </div>
 
@@ -213,8 +214,8 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fas fa-list-ul"></i></div>
                             </div>
-                            <select class="form-control input-lg" name="editarTipoIncidente" id="editarTipoIncidente">
-                                <option value="">Seleccione una opción</option>
+                            <select class="form-control input-lg" name="editarTipoIncidente">
+                                <option id="editarTipoIncidente" value="">Seleccione una opción</option>
                                 <?php
                                 // foreach para rellenar la tabla de roles
                                 foreach ($tipoIncidentes as $key => $tipoIncidente) {
@@ -231,8 +232,8 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fas fa-list-ul"></i></div>
                             </div>
-                            <select class="form-control input-lg" name="editarAfectado" id="editarAfectado">
-                                <option value="">Seleccione una opción</option>
+                            <select class="form-control input-lg" name="editarAfectado">
+                                <option id="editarAfectado" value="">Seleccione una opción</option>
                                 <?php
                                 // foreach para rellenar la tabla de roles
                                 foreach ($usuarios as $key => $usuario) {
@@ -275,14 +276,14 @@
 
 <?php
 // controller: registrar usuario
-//$regUsuario = new ControllerUsuarios();
-//$regUsuario->controllerRegistrarUsuario();
+$regIncidente = new ControllerUsuarios();
+$regUsuario->controllerRegistrarUsuario();
 
 // controller: editar usuario
-//$editUsuario = new ControllerUsuarios();
-//$editUsuario->controllerEditarUsuario();
+$editUsuario = new ControllerUsuarios();
+$editUsuario->controllerEditarUsuario();
 
 // controller: eliminar usuario
-//$elimUsuario = new ControllerUsuarios();
-//$elimUsuario->controllerEliminarUsuario();
+$elimUsuario = new ControllerUsuarios();
+$elimUsuario->controllerEliminarUsuario();
 ?>
