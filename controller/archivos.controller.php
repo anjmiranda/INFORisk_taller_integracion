@@ -288,6 +288,7 @@ class ControllerArchivos
     // metodo que permite saber el nombre del archivo segun el id proporcionado
     public static function toolsVerificarArchivo($idArchivo)
     {
+        $nombreArchivo;
         // verificacion de los archivos por id del archivo
         if ($idArchivo == "0") {
             $nombreArchivo = "contrato_trabajo.pdf";

@@ -30,7 +30,7 @@ class ModelIncidentes
     // model método que permite registrar un incidente
     public static function modelRegistrarIncidente($tablaBD, $arrayDatos)
     {
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tablaBD(titulo_registro_incidente, tipo_registrio_incidente_fk, 
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tablaBD(titulo_registro_incidente, tipo_registro_incidente_fk, 
         fecha_registro_incidente, afectado_registro_incidente_fk, prevencionista_registro_incidente_fk, comentarios_registro_incidente) 
         VALUES(:titulo, :tipoIncidente, :fecha, :afectado, :prevencionista, :comentarios)");
         $stmt->bindParam(":titulo", $arrayDatos["titulo"], PDO::PARAM_STR);
@@ -56,7 +56,7 @@ class ModelIncidentes
     //  model método que permite editar incidente
     public static function modelEditarIncidente($tablaBD, $arrayDatos)
     {
-        $stmt = Conexion::conectar()->prepare("UPDATE $tablaBD SET titulo_registro_incidente = :titulo, tipo_registrio_incidente_fk = :tipoIncidente,
+        $stmt = Conexion::conectar()->prepare("UPDATE $tablaBD SET titulo_registro_incidente = :titulo, tipo_registro_incidente_fk = :tipoIncidente,
         fecha_registro_incidente = :fecha, afectado_registro_incidente_fk = :afectado, prevencionista_registro_incidente_fk = :prevencionista,
         comentarios_registro_incidente = :comentarios WHERE id_registro_incidente = :idActual");
         $stmt->bindParam(":titulo", $arrayDatos["titulo"], PDO::PARAM_STR);

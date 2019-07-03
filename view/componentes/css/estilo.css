@@ -228,10 +228,10 @@ img {
     position: absolute;
     left: -10px;
     top: -20px;
-    background: #acbed3;
+    background: #000000;
     text-align: center;
     border-style: solid;
-    border-color: #ff4444;
+    border-color: #3844e0;
     border-radius: 0px 15px 0px 15px;
     color: #fff;
     padding: 5px 10px;

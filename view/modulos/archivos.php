@@ -30,8 +30,7 @@ $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
                     <div class="col-sm-12 col-md-3">
                         <div class="card rounded">
                             <div class="card-image">
-                                <span class="card-notify-badge">Card</span>
-                                <span class="card-notify-year">2018</span>
+                                <span class="card-notify-badge">Archivo 1</span>
                                 <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
                             </div>
                             <div class="card-body text-center">
@@ -48,8 +47,7 @@ $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
                     <div class="col-sm-12 col-md-3">
                         <div class="card rounded">
                             <div class="card-image">
-                                <span class="card-notify-badge">Card</span>
-                                <span class="card-notify-year">2018</span>
+                                <span class="card-notify-badge">Archivo 2</span>
                                 <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
                             </div>
                             <div class="card-body text-center">
@@ -66,8 +64,7 @@ $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
                     <div class="col-sm-12 col-md-3">
                         <div class="card rounded">
                             <div class="card-image">
-                                <span class="card-notify-badge">Card</span>
-                                <span class="card-notify-year">2018</span>
+                                <span class="card-notify-badge">Archivo 3</span>
                                 <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
                             </div>
                             <div class="card-body text-center">
@@ -84,8 +81,7 @@ $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
                     <div class="col-sm-12 col-md-3">
                         <div class="card rounded">
                             <div class="card-image">
-                                <span class="card-notify-badge">Card</span>
-                                <span class="card-notify-year">2018</span>
+                            <span class="card-notify-badge">Archivo 4</span>
                                 <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
                             </div>
                             <div class="card-body text-center">
@@ -105,8 +101,7 @@ $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
                     <div class="col-sm-12 col-md-3">
                         <div class="card rounded">
                             <div class="card-image">
-                                <span class="card-notify-badge">Card</span>
-                                <span class="card-notify-year">2018</span>
+                                <span class="card-notify-badge">Archivo 5</span>
                                 <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
                             </div>
                             <div class="card-body text-center">
@@ -123,8 +118,7 @@ $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
                     <div class="col-sm-12 col-md-3">
                         <div class="card rounded">
                             <div class="card-image">
-                                <span class="card-notify-badge">Card</span>
-                                <span class="card-notify-year">2018</span>
+                                <span class="card-notify-badge">Archivo 6</span>
                                 <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
                             </div>
                             <div class="card-body text-center">
@@ -141,8 +135,7 @@ $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
                     <div class="col-sm-12 col-md-3">
                         <div class="card rounded">
                             <div class="card-image">
-                                <span class="card-notify-badge">Card</span>
-                                <span class="card-notify-year">2018</span>
+                                <span class="card-notify-badge">Archivo 7</span>
                                 <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
                             </div>
                             <div class="card-body text-center">
@@ -159,8 +152,7 @@ $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
                     <div class="col-sm-12 col-md-3">
                         <div class="card rounded">
                             <div class="card-image">
-                                <span class="card-notify-badge">Card</span>
-                                <span class="card-notify-year">2018</span>
+                                <span class="card-notify-badge">Archivo 8</span>
                                 <img class="img-fluid" src="view/componentes/images/docs.png" alt="Alternate Text" />
                             </div>
                             <div class="card-body text-center">
@@ -216,7 +208,7 @@ $usuarios = ControllerUsuarios::controllerMostrarUsuarios($columnaBD, $valorBD);
                     <div class="form-group" id="errorValidacion">
                     </div>
 
-                    <button type="submit" id="btnCrearArchivo" class="btn btn-primary">Crear Usuario</button>
+                    <button type="submit" id="btnCrearArchivo" class="btn btn-primary">Registrar documento</button>
                 </form>
             </div>
 

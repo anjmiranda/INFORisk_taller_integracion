@@ -16,11 +16,11 @@ class ControllerIncidentes
     // controller método que permite ingresar incidente
     public static function controllerRegistrarIncidente()
     {
-        if (isset($_POST["nombreIncidente"])) {
+        if (isset($_POST["nuevoTitulo"])) {
             // expreg para validar 
             if (
-                preg_match('/^(\d{2}\.\d{3}\.\d{3}-)([a-zA-Z]{1}$|\d{1}$)/', $_POST["nombreIncidente"]) &&
-                preg_match('/^(\d{2}\.\d{3}\.\d{3}-)([a-zA-Z]{1}$|\d{1}$)/', $_POST["comentariosIncidente"])
+                preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoTitulo"]) &&
+                preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoComentario"])
             ) {
                 $tablaBD = "registro_incidentes";
                 // array de datos: debe incluir rut, nombre, alias, direccion, giro y foto de empresa
@@ -47,9 +47,18 @@ class ControllerIncidentes
                         }).then((result)=>{
                             if(result.value)
                             {
-                                window.location = "incidentes";
+                                window.location = "accidentes";
                             }
                         });
+                    </script>';
+                }else {
+                    echo '<script>
+                        swal({
+                                title: "Error al ingresar el nuevo incidente",
+                                text: "Revise bien y vuelva a ingresar los datos.",
+                                type: "error",
+                                confirmButtonText: "cerrar"
+                            });
                     </script>';
                 }
             } else {
@@ -70,10 +79,10 @@ class ControllerIncidentes
     // controller método que permite editar una empresa
     public static function controllerEditarIncidente()
     {
-        if (isset($_POST["editarNombre"])) {
+        if (isset($_POST["editarTitulo"])) {
             if (
-                preg_match('/^(\d{2}\.\d{3}\.\d{3}-)([a-zA-Z]{1}$|\d{1}$)/', $_POST["editarIncidente"]) &&
-                preg_match('/^(\d{2}\.\d{3}\.\d{3}-)([a-zA-Z]{1}$|\d{1}$)/', $_POST["editComentariosIncidente"])
+                preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarTitulo"]) &&
+                preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarComentario"])
             ) {
                 // tabla de la BBDD
                 $tablaBD = "registro_incidentes";
@@ -84,7 +93,8 @@ class ControllerIncidentes
                     "fecha" => ControllerArchivos::toolsObtenerHora(),
                     "afectado" => $_POST["editarAfectado"],
                     "prevencionista" => $_SESSION["id"],
-                    "comentarios" => $_POST["editarComentario"]
+                    "comentarios" => $_POST["editarComentario"],
+                    "idActual" => $_POST["idActual"]
                 );
 
                 $respuesta = ModelIncidentes::modelEditarIncidente($tablaBD, $arrayDatos);
@@ -99,7 +109,7 @@ class ControllerIncidentes
                         }).then((result)=>{
                             if(result.value)
                             {
-                                window.location = "incidentes";
+                                window.location = "accidentes";
                             }
                         });
                     </script>';
@@ -115,7 +125,7 @@ class ControllerIncidentes
                         }).then((result)=>{
                             if(result.value)
                             {
-                                window.location = "incidentes";
+                                window.location = "accidentes";
                             }
                         });
                     </script>';
@@ -147,7 +157,7 @@ class ControllerIncidentes
                         }).then((result)=>{
                             if(result.value)
                             {
-                                window.location = "incidentes";
+                                window.location = "accidentes";
                             }
                         });
                     </script>';
